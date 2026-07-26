@@ -1,0 +1,131 @@
+/* Wrapper to center the card vertically and horizontally */
+.service-detail-wrapper {
+  display: flex;
+  justify-content: center;   /* horizontal center */
+  align-items: center;       /* vertical center */
+  padding: 2rem;
+  background: var(--bg-color);
+  min-height: 100vh;         /* full viewport height */
+}
+
+/* Card */
+.service-detail-card {
+  background: var(--secon-bg-color);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0px 15px var(--hover-color);
+  max-width: 800px;
+  width: 100%;
+  color: #fdfdfd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Icon */
+.service-detail-icon {
+  font-size: 4rem;
+  color: var(--hover-color);
+  background-color: var(--bg-color);
+  padding: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--hover-color);
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Title */
+.service-detail-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--hover-color);
+}
+
+/* Description */
+.service-detail-desc p {
+  font-size: 1rem;
+  color: #d1d1d1;
+  text-align: justify;
+  max-width: 700px;
+}
+
+/* Back button */
+.back-btn {
+    margin-top: 2rem;
+   display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 36px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 2px solid var(--hover-color);
+  background: var(--hover-color);
+  color: var(--bg-color);
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: var(--bg-color);
+  color: var(--hover-color);
+  border-color: var(--hover-color);
+}
+
+/* Not found style */
+.not-found {
+  font-size: 1.2rem;
+  color: #ff5c5c;
+  margin-bottom: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .service-detail-card {
+    padding: 1.5rem;
+  }
+  .service-detail-title {
+    font-size: 1.6rem;
+  }
+  .service-detail-desc p {
+    font-size: 0.95rem;
+  }
+  .service-detail-icon {
+    font-size: 3rem;
+    height: 80px;
+    width: 80px;
+    padding: 15px;
+  }
+  .back-btn {
+    padding: 0.5rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-detail-card {
+    padding: 1rem;
+  }
+  .service-detail-title {
+    font-size: 1.4rem;
+  }
+  .service-detail-desc p {
+    font-size: 0.9rem;
+  }
+  .service-detail-icon {
+    font-size: 2.5rem;
+    height: 60px;
+    width: 60px;
+    padding: 10px;
+  }
+  .back-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}

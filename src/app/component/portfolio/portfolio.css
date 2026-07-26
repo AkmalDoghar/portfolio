@@ -1,0 +1,266 @@
+/* Portfolio Section */
+.portfolio {
+  padding: 4rem 9% 5rem;
+  background: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio .main-text {
+  text-align: center;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.portfolio .main-text span {
+  color: var(--text-color);
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.portfolio .main-text h2 {
+  font-weight: 700;
+  color: var(--hover-color);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Filter Buttons */
+.fillter-buttons {
+  margin-bottom: 3rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.fillter-buttons .button {
+  background: transparent;
+  outline: none;
+  border: 1.5px solid rgba(18, 247, 255, 0.3);
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding: 0.5rem 1.6rem;
+  color: var(--text-color);
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.fillter-buttons .button:hover,
+.fillter-buttons .button.active {
+  color: var(--hover-color);
+  border-color: var(--hover-color);
+  background: rgba(18, 247, 255, 0.08);
+}
+
+/* Portfolio Gallery Grid */
+.portfolio-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2.5rem;
+}
+
+/* Card entry animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base card */
+.port-box {
+  background: var(--secon-bg-color);
+  border-radius: 1.2rem;
+  overflow: hidden;
+  border: 1px solid rgba(18, 247, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.port-box.show {
+  animation: fadeInUp 0.55s ease forwards;
+}
+
+.port-box:hover {
+  border-color: var(--hover-color);
+  box-shadow: 0 8px 35px rgba(18, 247, 255, 0.15);
+  transform: translateY(-5px);
+}
+
+/* Image area */
+.port-image {
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+}
+
+.port-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.port-box:hover .port-image img {
+  transform: scale(1.07);
+}
+
+/* Role badge overlaid on image */
+.port-role {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 0.8rem;
+  background: rgba(18, 247, 255, 0.15);
+  color: var(--hover-color);
+  border: 1px solid rgba(18, 247, 255, 0.4);
+  backdrop-filter: blur(4px);
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  padding: 0.2rem 0.9rem;
+  font-weight: 500;
+}
+
+/* Content area */
+.port-content {
+  padding: 1.6rem 1.8rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.8rem;
+}
+
+.port-content h3 {
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.port-content > p {
+  font-size: 1.3rem;
+  color: #bbb;
+  line-height: 1.7;
+}
+
+/* Tech pills */
+.tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.pill {
+  background: rgba(18, 247, 255, 0.08);
+  color: var(--hover-color);
+  border: 1px solid rgba(18, 247, 255, 0.25);
+  border-radius: 2rem;
+  padding: 0.2rem 0.85rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+/* Expandable details */
+.port-details {
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(18, 247, 255, 0.1);
+  padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.port-detail-block {
+  font-size: 1.25rem;
+  color: #ccc;
+  line-height: 1.7;
+}
+
+.port-detail-block strong {
+  color: var(--hover-color);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.port-detail-block ul {
+  padding-left: 1.5rem;
+}
+
+.port-detail-block ul li {
+  margin-bottom: 0.25rem;
+}
+
+/* Bottom actions row */
+.port-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.port-toggle {
+  background: transparent;
+  border: 1.5px solid rgba(18, 247, 255, 0.4);
+  color: var(--hover-color);
+  border-radius: 2rem;
+  padding: 0.35rem 1.2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.port-toggle:hover {
+  background: rgba(18, 247, 255, 0.1);
+}
+
+.port-links {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.port-links a {
+  color: var(--text-color);
+  font-size: 2rem;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.port-links a:hover {
+  color: var(--hover-color);
+  transform: scale(1.15);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .portfolio-gallery {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio-gallery {
+    grid-template-columns: 1fr;
+  }
+}

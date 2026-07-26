@@ -1,0 +1,185 @@
+/* Experience Section — Timeline */
+
+.experience {
+  padding: 5rem 9% 5rem;
+  background: var(--secon-bg-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.experience .main-text {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.experience .main-text span {
+  font-size: 1.4rem;
+  color: #ffffff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.experience .main-text h2 {
+  font-size: var(--h2-font);
+  font-weight: 700;
+  color: var(--hover-color);
+}
+
+/* Timeline track */
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--hover-color), transparent);
+}
+
+/* Timeline item */
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 0.8rem 3rem 0.8rem 0;
+}
+
+.timeline-item--right {
+  left: 50%;
+  padding: 0.8rem 0 0.8rem 3rem;
+}
+
+/* Dot on the line */
+.timeline-dot {
+  position: absolute;
+  top: 2rem;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--hover-color);
+  border: 3px solid var(--bg-color);
+  box-shadow: 0 0 12px var(--hover-color);
+  z-index: 1;
+}
+
+.timeline-item--right .timeline-dot {
+  right: auto;
+  left: -10px;
+}
+
+/* Card */
+.timeline-card {
+  background: var(--bg-color);
+  border: 1px solid rgba(18, 247, 255, 0.15);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.timeline-card:hover {
+  border-color: var(--hover-color);
+  box-shadow: 0 0 20px rgba(18, 247, 255, 0.18);
+}
+
+.timeline-period {
+  font-size: 1.2rem;
+  color: var(--hover-color);
+  font-weight: 600;
+}
+
+.timeline-card h3 {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin: 0.5rem 0 0.3rem;
+}
+
+.timeline-type {
+  font-size: 1.2rem;
+  color: #aaa;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.timeline-card ul {
+  padding-left: 1.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.timeline-card ul li {
+  color: #ccc;
+  font-size: 1.3rem;
+  line-height: 1.8;
+  margin-bottom: 0.4rem;
+}
+
+/* Tech pills reused from portfolio */
+.timeline-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+}
+
+.timeline-tech .pill {
+  background: rgba(18, 247, 255, 0.1);
+  color: var(--hover-color);
+  border: 1px solid rgba(18, 247, 255, 0.3);
+  border-radius: 2rem;
+  padding: 0.25rem 0.9rem;
+  font-size: 1.1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .experience {
+    padding: 4rem 1.5rem !important;
+  }
+  .timeline::before {
+    left: 16px;
+  }
+
+  .timeline-item,
+  .timeline-item--right {
+    width: 100%;
+    left: 0;
+    padding: 1rem 1rem 1rem 3.5rem;
+  }
+
+  .timeline-dot,
+  .timeline-item--right .timeline-dot {
+    left: 6px;
+    right: auto;
+  }
+
+  .timeline-card {
+    max-height: 280px;
+    overflow-y: auto;
+    padding: 1.2rem;
+  }
+
+  .timeline-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .timeline-period,
+  .timeline-type {
+    font-size: 1rem;
+  }
+
+  .timeline-card ul li {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}

@@ -1,0 +1,284 @@
+/* Services Section */
+.services {
+  padding: 4rem 2rem;
+  background: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.main-text {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--hover-color);
+  position: relative;
+  z-index: 2;
+}
+
+.main-text h2 {
+  font-weight: 700;
+  margin-top: 1rem;
+  font-size: var(--norma-font);
+}
+
+.main-text span {
+  color: #fdfdfd;
+  font-size: 0.8rem;
+  font-weight: 200;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.section-services {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.service-box {
+  flex: 1 1 20rem;
+  padding: 1.8rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: center;
+  background: var(--secon-bg-color);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.service-box:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 0px 9px var(--hover-color);
+}
+
+.servise-icon {
+  width: 8rem;
+  height: 8rem;
+  background: var(--bg-color);
+  color: var(--hover-color);
+  font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 2px solid var(--hover-color);
+  margin: 0 auto 10px auto;
+  box-shadow: var(--neon-box-shadow);
+}
+
+.service-box h3 {
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  color: #fdfdfd;
+}
+
+.service-box p {
+  margin: 0.5rem 0 1.2rem 0;
+  color: #bdbdbd;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: center !important;
+  margin-top: auto;
+}
+
+.btn-box .btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 42px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  border: 2px solid var(--hover-color);
+  background: var(--hover-color);
+  color: var(--bg-color);
+  transition: all 0.3s ease;
+}
+
+.btn-box .btn:hover {
+  background: var(--bg-color);
+  color: var(--hover-color);
+  border-color: var(--hover-color);
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .section-services {
+    gap: 1.5rem;
+  }
+
+  .service-box {
+    flex: 1 1 45%;
+    padding: 1.5rem 1rem;
+  }
+
+  .servise-icon {
+    width: 6rem;
+    height: 6rem;
+    font-size: 2.5rem;
+  }
+
+  .service-box h3 {
+    font-size: 1.3rem;
+  }
+
+  .service-box p {
+    font-size: 0.95rem;
+  }
+
+  .btn-box .btn {
+    width: 120px;
+    height: 38px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .section-services {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem; 
+  }
+  .main-text{
+    margin-bottom: -20px;
+  }
+
+  .service-box {
+    flex: none; 
+    width: 100%; 
+    max-width: 100%; 
+    padding: 1.5rem 1rem; 
+    box-sizing: border-box; 
+  }
+
+  .servise-icon {
+    width: 5rem;
+    height: 5rem;
+    font-size: 2rem;
+  }
+
+  .service-box h3 {
+    font-size: 1.2rem;
+  }
+
+  .service-box p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  .btn-box .btn {
+    width: 100%; /* full width buttons on mobile */
+    max-width: 140px; /* limit max width */
+    height: 36px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Service Modal Styling */
+.service-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: 1rem;
+}
+
+.service-modal-content {
+  background: var(--secon-bg-color);
+  max-width: 600px;
+  width: 95%;
+  max-height: 85vh;
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  border: 1px solid rgba(18, 247, 255, 0.4);
+  position: relative;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  animation: modalZoom 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes modalZoom {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+  color: var(--hover-color);
+}
+
+.modal-icon {
+  font-size: 4.5rem;
+  color: var(--hover-color);
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 10px rgba(18, 247, 255, 0.3));
+}
+
+.service-modal-content h2 {
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.modal-desc {
+  text-align: left;
+  line-height: 1.8;
+  color: #ccc;
+  font-size: 1.15rem;
+  margin-bottom: 2rem;
+  overflow-y: auto;
+  flex: 1;
+  padding-right: 10px;
+}
+
+.modal-desc p {
+  margin-bottom: 1rem;
+}
+
+.modal-btn {
+  width: 120px !important;
+}
+
+@media (max-width: 480px) {
+  .service-modal-content {
+    padding: 2.5rem 1.5rem;
+  }
+  .service-modal-content h2 {
+    font-size: 1.6rem;
+  }
+  .modal-desc {
+    font-size: 1rem;
+  }
+}

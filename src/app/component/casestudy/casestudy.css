@@ -1,0 +1,123 @@
+/* Case Study Section */
+
+.casestudy {
+  padding: 5rem 9% 5rem;
+  background: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.casestudy .main-text {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+.casestudy .main-text span {
+  font-size: 1.4rem;
+  color: #ffffff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.casestudy .main-text h2 {
+  font-size: var(--h2-font);
+  font-weight: 700;
+  font-style: var(--font-accent) !important;
+  color: var(--hover-color);
+}
+
+.casestudy-project-name {
+  font-size: 1.5rem;
+  color: #aaa;
+  margin-top: 0.5rem;
+}
+
+/* 5-card grid: 3 top, 2 bottom centered */
+.casestudy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* last 2 cards centered */
+.casestudy-card:nth-child(4),
+.casestudy-card:nth-child(5) {
+  grid-column: span 1;
+}
+
+.casestudy-grid > *:nth-child(4) {
+  grid-column: 1 / 2;
+  margin-left: auto;
+  margin-right: 0;
+  width: 100%;
+}
+
+.casestudy-grid > *:nth-child(5) {
+  grid-column: 2 / 3;
+  margin-left: 0;
+  margin-right: auto;
+  width: 100%;
+}
+
+.casestudy-card {
+  background: var(--secon-bg-color);
+  border: 1px solid rgba(18, 247, 255, 0.12);
+  border-radius: 1.2rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.casestudy-card:hover {
+  border-color: var(--hover-color);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(18, 247, 255, 0.15);
+}
+
+.casestudy-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--hover-color);
+  display: flex;
+  justify-content: center;
+}
+
+.casestudy-card h3 {
+  font-size: 1.8rem;
+  color: var(--hover-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.casestudy-card p {
+  font-size: 1.35rem;
+  color: #ccc;
+  line-height: 1.85;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .casestudy-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .casestudy-grid > *:nth-child(4),
+  .casestudy-grid > *:nth-child(5) {
+    grid-column: span 1;
+    margin: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .casestudy-grid {
+    grid-template-columns: 1fr;
+  }
+}

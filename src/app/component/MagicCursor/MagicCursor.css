@@ -1,0 +1,80 @@
+.magic-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+.main-cursor {
+  position: fixed;
+  pointer-events: none;
+  transform: translate(0, 0);
+  z-index: 1000;
+  filter: drop-shadow(0 0 5px var(--hover-color));
+  transition:
+    transform 0.15s ease-out,
+    filter 0.3s ease;
+}
+
+.cursor-path {
+  fill: var(--bg-color);
+  stroke: var(--hover-color);
+  stroke-width: 1.5;
+  transition:
+    fill 0.3s ease,
+    stroke 0.3s ease,
+    stroke-width 0.3s ease;
+}
+
+/* Hovering State */
+.main-cursor.hovering {
+  transform: translate(0, 0) scale(1.25);
+  filter: drop-shadow(0 0 10px var(--hover-color))
+    drop-shadow(0 0 20px var(--hover-color));
+}
+
+.main-cursor.hovering .cursor-path {
+  fill: var(--hover-color);
+  stroke: var(--bg-color);
+  stroke-width: 2;
+}
+
+/* Clicking State */
+.main-cursor.clicking {
+  transform: translate(0, 0) scale(0.85);
+}
+
+.cursor-dot {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: var(--hover-color);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  box-shadow:
+    0 0 8px var(--hover-color),
+    0 0 12px #fff;
+  animation: stardustFade 0.8s ease-out forwards;
+}
+
+@keyframes stardustFade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.4) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0) rotate(180deg);
+  }
+}
+
+/* Ensure the cursor is hidden globally on desktop */
+.hide-cursor,
+.hide-cursor * {
+  cursor: none !important;
+}
