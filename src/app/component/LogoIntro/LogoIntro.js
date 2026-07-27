@@ -50,25 +50,23 @@ export default function LogoIntro() {
       {/* Main 3D Logo Scene */}
       <div className="logo-scene">
         <div className="logo-3d-wrapper">
-          {/* Glowing ring */}
-          <div className="logo-ring" />
-          <div className="logo-ring ring-2" />
+          {/* Ring 1 — forward rotation */}
+          <div className="logo-ring ring-fw" />
+          {/* Ring 2 — reverse rotation */}
+          <div className="logo-ring ring-rv" />
 
-          {/* The logo card */}
-          <div className="logo-card">
-            <div className="logo-card-face logo-card-front">
-              <div className="logo-brackets-wrap">
-                <span className="lb">&lt;</span>
-                <span className="logo-name">
-                  Akmal
-                  <span className="logo-dot">.</span>
-                </span>
-                <span className="lb">/&gt;</span>
-              </div>
-              <div className="logo-tagline">Frontend Developer</div>
-            </div>
+          {/* Circular logo container */}
+          <div className="logo-circle">
+            <img
+              src="/images/AK.png"
+              alt="AK Logo"
+              className="logo-ak-img"
+            />
           </div>
         </div>
+
+        {/* Tagline below circle */}
+        <div className="logo-tagline">Mern Stack Developer</div>
 
         {/* Bottom glow line */}
         <div className="bottom-glow" />
