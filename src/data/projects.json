@@ -1,0 +1,178 @@
+[
+  {
+    "id": 1787643601718,
+    "title": "SkyPulse PRO Weather PWA",
+    "role": "Lead Full-Stack Developer & UI/UX Designer",
+    "category": "web",
+    "img": "/images/uploads/project-1787643597701.png",
+    "description": "SkyPulse PRO is a high-performance, real-time Progressive Web App (PWA) delivering hyper-accurate weather forecasts, interactive radar metrics, dynamic frosted glassmorphism themes (adaptive Light/Dark modes), and AI-driven weather summaries.",
+    "tech": [
+      "Next.js",
+      "React",
+      "TailwindCSS",
+      "PWA",
+      "OpenWeather API",
+      "Chart.js",
+      "Framer Motion"
+    ],
+    "problem": "Standard weather applications are often cluttered with invasive ads, slow to load, and lack offline capabilities or real-time location precision. SkyPulse PRO solves this by delivering an edge-to-edge mobile PWA experience with zero ads, real-time geolocation tracking, instant 24-hour hourly forecasts, and an integrated AI assistant for daily activity planning.",
+    "features": [
+      "Progressive Web App (PWA) with offline support & native mobile installation",
+      "Real-time Geolocation Weather Tracking & City Search",
+      "24-Hour Hourly & 7-Day Extended Weather Forecasts",
+      "Dynamic Frosted Glassmorphism Theme (Adaptive Light & Dark Modes)",
+      "Integrated AI Assistant for personalized daily weather insights",
+      "Dynamic Interactive Weather Charts & Air Quality Index (AQI) Metrics"
+    ],
+    "result": "Achieved a 98+ Lighthouse performance rating, sub-second page loads, and a seamless native-like mobile PWA installation experience across iOS and Android devices",
+    "link": "http://skyplusweather.vercel.app/",
+    "github": "https://github.com/AkmalDoghar/weather-app"
+  },
+  {
+    "id": 6,
+    "category": "web",
+    "img": "/images/uploads/project-1787644934308.png",
+    "title": "DaaS Tech Admin Dashboard",
+    "role": "Full Stack Developer",
+    "description": "A scalable admin dashboard developed for DaaS Tech to manage clients, services, and digital projects efficiently through a centralized system.",
+    "tech": [
+      "Next.js",
+      "Node.js",
+      "MongoDB",
+      "Express",
+      "Redux"
+    ],
+    "problem": "The company lacked a centralized admin system to manage client projects, service orders, and internal workflows, causing delays and manual handling issues.",
+    "features": [
+      "Admin dashboard with role-based access",
+      "Client & project management system",
+      "Service order tracking & status updates",
+      "Secure authentication with JWT",
+      "Real-time notifications for admin actions"
+    ],
+    "result": "Improved internal workflow efficiency and reduced manual management effort by over 60%.",
+    "link": "https://daas-tech.vercel.app/",
+    "github": "https://github.com/Timigill/daas-tech"
+  },
+  {
+    "id": 5,
+    "category": "inter",
+    "img": "/images/uploads/project-1787643774271.png",
+    "title": "Libaas e Zauq — Fashion Store",
+    "role": "Frontend Developer",
+    "description": "Complete UI for a Pakistani fashion e-commerce brand — product pages, collections grid, and responsive mobile layout built from scratch.",
+    "tech": [
+      "Next.js",
+      "CSS3",
+      "React"
+    ],
+    "problem": "The brand had no online presence; they needed a store that reflected their aesthetic and worked well on mobile.",
+    "features": [
+      "Product collection grid",
+      "Category filtering",
+      "Mobile-first layout",
+      "Fast page loads"
+    ],
+    "result": "Live at libaasezauq.shop; drives consistent organic traffic.",
+    "link": "https://www.libaasezauq.shop",
+    "github": "https://github.com/Timigill/LibaaSeZauq"
+  },
+  {
+    "id": 4,
+    "category": "product",
+    "img": "/images/uploads/project-1787643760794.png",
+    "title": "LaanCer — Freelancer Platform",
+    "role": "Frontend Developer",
+    "description": "Landing page and project showcase UI for a Next.js freelancer marketplace platform.",
+    "tech": [
+      "Next.js",
+      "React"
+    ],
+    "problem": "The startup needed a polished landing page that communicated their value proposition clearly to both clients and freelancers.",
+    "features": [
+      "Hero with CTA",
+      "Feature highlights section",
+      "Freelancer profile cards",
+      "Fully responsive"
+    ],
+    "result": "Live at laancer.vercel.app with positive stakeholder feedback.",
+    "link": "https://laancer.vercel.app/",
+    "github": "https://github.com/Timigill/freelance-dashboard"
+  },
+  {
+    "id": 3,
+    "category": "inter",
+    "img": "/images/uploads/project-1787643746427.png",
+    "title": "DaaSForge Admin Dashboard",
+    "role": "Frontend Developer (Contributor)",
+    "description": "Contributed frontend modules to a company platform — data tables, chart views, and responsive layout improvements for the admin interface.",
+    "tech": [
+      "Next.js",
+      "React",
+      "REST API",
+      "Chart.js"
+    ],
+    "problem": "The team needed a unified data management interface that non-technical users could navigate comfortably.",
+    "features": [
+      "Role-based access views",
+      "Interactive charts",
+      "Filterable data tables",
+      "CSV export",
+      "Fully responsive"
+    ],
+    "result": "Platform deployed and used daily by the DaaSForge team.",
+    "link": "https://daas-forge.vercel.app/",
+    "github": "https://github.com/Timigill/daas-forge"
+  },
+  {
+    "id": 2,
+    "category": "web",
+    "img": "/images/uploads/project-1787643341031.png",
+    "title": "CartifyOutlet E-commerce Platform",
+    "role": "Full-Stack Developer",
+    "description": "A full-stack e-commerce platform built to manage product listings, user authentication, and order workflows with a seamless shopping experience.",
+    "tech": [
+      "Next.js",
+      "Node.js",
+      "MongoDB",
+      "NextAuth",
+      "JWT"
+    ],
+    "problem": "The business needed a complete online store to handle product management, user accounts, and secure checkout without relying on third-party limitations.",
+    "features": [
+      "User authentication with Google OAuth and JWT",
+      "Product listing & category management",
+      "Cart and checkout system",
+      "Order tracking and user dashboard",
+      "Admin panel for product and order control"
+    ],
+    "result": "Delivered a complete e-commerce workflow enabling users to browse, purchase, and manage orders efficiently.",
+    "link": "https://www.cartifyoutlet.com/",
+    "github": "https://github.com/Timigill/Found"
+  },
+  {
+    "id": 1,
+    "category": "product",
+    "img": "/images/image2.jpeg",
+    "title": "Elevare Digital Store",
+    "role": "Full-Stack Developer",
+    "description": "A full-featured e-commerce platform with product catalog, shopping cart, secure checkout, and a complete admin panel for inventory and order management.",
+    "tech": [
+      "Next.js",
+      "MongoDB",
+      "Node.js",
+      "NextAuth"
+    ],
+    "problem": "The client needed an online store they could manage themselves without relying on a developer for every update.",
+    "features": [
+      "Product catalog with filters",
+      "Cart with localStorage sync",
+      "Admin CRUD panel",
+      "JWT-based auth",
+      "Responsive on all devices"
+    ],
+    "result": "Live store managing 50+ SKUs with daily orders.",
+    "link": "#",
+    "github": "https://github.com/Timigill/elevaredigital"
+  }
+]

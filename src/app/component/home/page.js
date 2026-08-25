@@ -79,8 +79,9 @@ export default function HomeSection() {
             Download CV
           </a>
           <a
-            href="https://mail.google.com/mail/?view=cm&to=ranaakmalr703@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=84pakarmy@gmail.com"
             target="_blank"
+            rel="noreferrer"
             className="btn2"
           >
             Hire Me

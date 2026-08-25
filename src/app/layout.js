@@ -1,8 +1,5 @@
 import "./globals.css";
-import Navbar from "./component/navbar/page";
-import Footer from "./component/footer/page";
-import MagicCursor from "./component/MagicCursor/page";
-import LogoIntro from "./component/LogoIntro/LogoIntro";
+import ClientShell from "./component/ClientShell";
 import { Toaster } from "react-hot-toast";
 
 export const metadata = {
@@ -14,11 +11,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <LogoIntro />
-        <MagicCursor />
-        <Navbar />
-        {children}
-        <Footer />
+        <ClientShell>{children}</ClientShell>
 
         <Toaster
           position="top-center"

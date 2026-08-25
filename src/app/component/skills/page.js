@@ -4,58 +4,33 @@ import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./skills.css";
 
-const technicalSkills = [
-  { name: "HTML5", percent: 95, class: "html", level: "Advanced" },
-  { name: "CSS3", percent: 90, class: "css", level: "Advanced" },
-  {
-    name: "JavaScript (ES6+)",
-    percent: 80,
-    class: "javascript",
-    level: "Intermediate",
-  },
-  { name: "React.js", percent: 78, class: "reactjs", level: "Intermediate" },
-  { name: "Next.js", percent: 82, class: "nextjs", level: "Intermediate" },
-  {
-    name: "Node.js / Express",
-    percent: 65,
-    class: "nodejs",
-    level: "Intermediate",
-  },
-  { name: "MongoDB", percent: 65, class: "mongodb", level: "Intermediate" },
-  { name: "Git & GitHub", percent: 80, class: "git", level: "Intermediate" },
-];
-
-const professionalSkills = [
-  { name: "Team Work", percent: 90 },
-  { name: "Problem Solving", percent: 80 },
-  { name: "Project Management", percent: 70 },
-  { name: "Communication", percent: 75 },
-];
-
-const tools = [
-  "VS Code",
-  "Antigravity",
-  "Android Studio",
-  "GitHub",
-  "Vercel",
-  "MongoDB Atlas",
-  "npm",
-];
-
 export default function Skills() {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [skillsData, setSkillsData] = useState({ technical: [], professional: [], tools: [] });
 
   useScrollReveal();
 
   useEffect(() => {
+    fetch("/api/admin/skills")
+      .then(r => r.json())
+      .then(data => {
+        if (data && typeof data === "object" && !Array.isArray(data)) {
+          setSkillsData({
+            technical: data.technical || [],
+            professional: data.professional || [],
+            tools: data.tools || [],
+          });
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
+      ([entry]) => { setIsVisible(entry.isIntersecting); },
       { threshold: 0.15 },
     );
-
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
@@ -73,7 +48,7 @@ export default function Skills() {
         <div className="skill-left" data-reveal="fade-left" data-delay="0.1">
           <h3>Technical Skills</h3>
           <div className="bar-box">
-            {technicalSkills.map((skill, index) => (
+            {skillsData.technical.map((skill, index) => (
               <div className="skill-bar" key={skill.name}>
                 <div className="info">
                   <p>
@@ -100,7 +75,7 @@ export default function Skills() {
         <div className="skill-right" data-reveal="fade-right" data-delay="0.1">
           <h3>Professional Skills</h3>
           <div className="professional">
-            {professionalSkills.map((skill, index) => (
+            {skillsData.professional.map((skill, index) => (
               <SkillCircle
                 key={skill.name}
                 skill={skill}
@@ -111,17 +86,11 @@ export default function Skills() {
           </div>
 
           {/* Tools Section */}
-          <div
-            className="tools-section"
-            data-reveal="fade-up"
-            data-delay="0.25"
-          >
+          <div className="tools-section" data-reveal="fade-up" data-delay="0.25">
             <h3>Tools &amp; Platforms</h3>
             <div className="tools-chips">
-              {tools.map((tool) => (
-                <span key={tool} className="tool-chip">
-                  {tool}
-                </span>
+              {skillsData.tools.map((tool) => (
+                <span key={tool} className="tool-chip">{tool}</span>
               ))}
             </div>
           </div>

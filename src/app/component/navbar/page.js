@@ -81,6 +81,18 @@ export default function Navbar() {
     setIsOpen(false);
   };
 
+  const handleEmailClick = (e) => {
+    e.preventDefault();
+    const mailtoUrl = "mailto:84pakarmy@gmail.com";
+    const gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=84pakarmy@gmail.com";
+    
+    // Attempt opening Gmail Web Compose in new tab, and trigger mailto for default app
+    const win = window.open(gmailUrl, "_blank");
+    if (!win || win.closed || typeof win.closed === "undefined") {
+      window.location.href = mailtoUrl;
+    }
+  };
+
   return (
     <nav className={`navbar${scrolled ? " scrolled" : ""}`} ref={navRef}>
       {/* Logo */}
@@ -113,8 +125,7 @@ export default function Navbar() {
         <a
           className="nav-cta"
           href="mailto:84pakarmy@gmail.com"
-          target="_blank"
-          rel="noreferrer"
+          onClick={handleEmailClick}
         >
           <span className="cta-dot" />
           Let&apos;s Talk
@@ -146,8 +157,7 @@ export default function Navbar() {
         <a
           className="nav-cta drawer-cta"
           href="mailto:84pakarmy@gmail.com"
-          target="_blank"
-          rel="noreferrer"
+          onClick={handleEmailClick}
         >
           Let&apos;s Talk
         </a>

@@ -1,22 +1,29 @@
 "use client";
-import { useState } from "react";
-import { services } from "./servicesData";
+import { useState, useEffect } from "react";
 import { FaDesktop, FaCode, FaTimes } from "react-icons/fa";
 import { FaChartBar, FaBug } from "react-icons/fa6";
 import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./services.css";
 
+const icons = {
+  FaDesktop: <FaDesktop />,
+  FaCode: <FaCode />,
+  FaChartBar: <FaChartBar />,
+  FaBug: <FaBug />,
+};
+
 export default function Services() {
   const [selectedService, setSelectedService] = useState(null);
+  const [services, setServices] = useState([]);
   useScrollReveal();
 
-  const icons = {
-    FaDesktop: <FaDesktop />,
-    FaCode: <FaCode />,
-    FaChartBar: <FaChartBar />,
-    FaBug: <FaBug />,
-  };
+  useEffect(() => {
+    fetch("/api/admin/services")
+      .then(r => r.json())
+      .then(data => { if (Array.isArray(data)) setServices(data); })
+      .catch(() => {});
+  }, []);
 
   return (
     <section id="services" className="services">
@@ -72,10 +79,6 @@ export default function Services() {
                 <p key={i}>{line.trim()}</p>
               ))}
             </div>
-
-            {/* <button className="btn" onClick={() => setSelectedService(null)}>
-              Close
-            </button> */}
           </div>
         </div>
       )}

@@ -146,3 +146,37 @@ body {
   opacity: 1;
   transform: translateY(0) translateX(0) scale(1);
 }
+
+/* Remove navbar top padding in admin mode */
+body.admin-mode,
+body:has(.admin-login-page),
+body:has(.dash-root) {
+  padding-top: 0 !important;
+}
+
+/* Force standard mouse cursors in admin mode */
+body.admin-mode,
+body.admin-mode *,
+.admin-root-wrapper,
+.admin-root-wrapper * {
+  cursor: auto !important;
+}
+
+body.admin-mode a,
+body.admin-mode button,
+body.admin-mode label,
+body.admin-mode input[type="checkbox"],
+body.admin-mode select,
+.admin-root-wrapper a,
+.admin-root-wrapper button,
+.admin-root-wrapper label {
+  cursor: pointer !important;
+}
+
+body.admin-mode input[type="text"],
+body.admin-mode input[type="password"],
+body.admin-mode textarea,
+.admin-root-wrapper input[type="text"],
+.admin-root-wrapper input[type="password"] {
+  cursor: text !important;
+}
