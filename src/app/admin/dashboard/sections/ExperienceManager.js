@@ -168,7 +168,7 @@ export default function ExperienceManager({ onUpdate }) {
       <div className="items-list">
         {experiences.map(exp => (
           <div key={exp.id} className="item-card">
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
               <div className="item-card-title">{exp.title}</div>
               <div className="item-card-sub">{exp.period} · {exp.type}</div>
               {exp.tech && (

@@ -34,6 +34,10 @@ export default function ProjectsManager({ onUpdate }) {
   const fileInputRef = useRef(null);
   const [uploadingImg, setUploadingImg] = useState(false);
 
+  const [showAll, setShowAll] = useState(false);
+  const INITIAL_LIMIT = 4;
+  const displayedProjects = showAll ? projects : projects.slice(0, INITIAL_LIMIT);
+
   const showToast = (message, type = "success") => {
     setToast({ message, type });
   };
@@ -327,36 +331,50 @@ export default function ProjectsManager({ onUpdate }) {
         </div>
       )}
 
-      <div className="items-list">
-        {projects.map(project => (
-          <div key={project.id} className="item-card">
-            {project.img && (
-              <div style={{ width: "80px", height: "55px", borderRadius: "10px", overflow: "hidden", flexShrink: 0, border: "1px solid rgba(255,255,255,0.1)", background: "#000" }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={project.img} alt={project.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              </div>
-            )}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="item-card-title">{project.title}</div>
-              <div className="item-card-sub">{project.role} · <span className="badge">{project.category}</span></div>
-              {project.tech && (
-                <div style={{ marginTop: "0.5rem", display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
-                  {(Array.isArray(project.tech) ? project.tech : project.tech.split(",")).map(t => (
-                    <span key={t} className="badge">{t.trim()}</span>
-                  ))}
+      <div className="admin-projects-scroll-container">
+        <div className="items-list">
+          {displayedProjects.map(project => (
+            <div key={project.id} className="item-card">
+              {project.img && (
+                <div className="item-card-img-wrap">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={project.img} alt={project.title} className="item-card-thumb" />
                 </div>
               )}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="item-card-title">{project.title}</div>
+                <div className="item-card-sub">{project.role} · <span className="badge">{project.category}</span></div>
+                {project.tech && (
+                  <div style={{ marginTop: "0.5rem", display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
+                    {(Array.isArray(project.tech) ? project.tech : project.tech.split(",")).map(t => (
+                      <span key={t} className="badge">{t.trim()}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="item-card-actions">
+                <button className="btn-edit" onClick={() => openEdit(project)}>Edit</button>
+                <button className="btn-delete" onClick={() => handleDelete(project.id)}>Delete</button>
+              </div>
             </div>
-            <div className="item-card-actions">
-              <button className="btn-edit" onClick={() => openEdit(project)}>Edit</button>
-              <button className="btn-delete" onClick={() => handleDelete(project.id)}>Delete</button>
-            </div>
-          </div>
-        ))}
-        {projects.length === 0 && (
-          <div className="loading-state">No projects yet. Click "Add Project" to get started.</div>
-        )}
+          ))}
+          {projects.length === 0 && (
+            <div className="loading-state">No projects yet. Click "Add Project" to get started.</div>
+          )}
+        </div>
       </div>
+
+      {projects.length > INITIAL_LIMIT && (
+        <div className="see-more-wrap">
+          <button
+            type="button"
+            className="btn-see-more"
+            onClick={() => setShowAll(prev => !prev)}
+          >
+            <span>{showAll ? "See Less" : `See More (${projects.length - INITIAL_LIMIT} More)`}</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 }

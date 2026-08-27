@@ -155,7 +155,7 @@ export default function ServicesManager({ onUpdate }) {
       <div className="items-list">
         {services.map(s => (
           <div key={s.id} className="item-card">
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
               <div className="item-card-title">{s.title}</div>
               <div className="item-card-sub">{s.shortDesc}</div>
               <div style={{ marginTop: "0.35rem" }}><span className="badge">{s.icon}</span></div>

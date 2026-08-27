@@ -228,7 +228,7 @@ export default function SkillsManager({ onUpdate }) {
           <div className="items-list">
             {data.technical.map(s => (
               <div key={s.id} className="item-card">
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="item-card-title">{s.name}</div>
                   <div className="item-card-sub">{s.level} · {s.percent}%</div>
                   <div className="skill-percent-bar">
@@ -294,7 +294,7 @@ export default function SkillsManager({ onUpdate }) {
           <div className="items-list">
             {data.professional.map(s => (
               <div key={s.id} className="item-card">
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="item-card-title">{s.name}</div>
                   <div className="item-card-sub">{s.percent}%</div>
                   <div className="skill-percent-bar">
