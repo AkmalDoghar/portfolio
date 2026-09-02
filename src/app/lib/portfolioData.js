@@ -26,22 +26,21 @@ export function getSkills() {
   if (saved.length > 0) return saved;
   return {
     technical: [
-      { id: 1, name: "HTML5", percent: 95, class: "html", level: "Advanced" },
-      { id: 2, name: "CSS3", percent: 90, class: "css", level: "Advanced" },
-      { id: 3, name: "JavaScript (ES6+)", percent: 80, class: "javascript", level: "Intermediate" },
-      { id: 4, name: "React.js", percent: 78, class: "reactjs", level: "Intermediate" },
-      { id: 5, name: "Next.js", percent: 82, class: "nextjs", level: "Intermediate" },
-      { id: 6, name: "Node.js / Express", percent: 65, class: "nodejs", level: "Intermediate" },
-      { id: 7, name: "MongoDB", percent: 65, class: "mongodb", level: "Intermediate" },
-      { id: 8, name: "Git & GitHub", percent: 80, class: "git", level: "Intermediate" },
+      { id: 1, name: "Next.js", percent: 85, class: "nextjs", level: "Advanced", capabilities: "SSR/SSG, App Router, API routes & authentication" },
+      { id: 2, name: "React.js", percent: 85, class: "reactjs", level: "Advanced", capabilities: "Component architecture, state management & hooks" },
+      { id: 3, name: "Node.js & Express", percent: 80, class: "nodejs", level: "Intermediate", capabilities: "REST APIs, server middleware & JWT auth" },
+      { id: 4, name: "MongoDB & Mongoose", percent: 80, class: "mongodb", level: "Intermediate", capabilities: "Database design, schema modeling & CRUD" },
+      { id: 5, name: "JavaScript (ES6+)", percent: 88, class: "javascript", level: "Advanced", capabilities: "Async/await, ES modules, DOM & Fetch API" },
+      { id: 6, name: "CSS3 & HTML5", percent: 90, class: "css", level: "Advanced", capabilities: "Responsive layouts, glassmorphic UI & animations" },
+      { id: 7, name: "Git & GitHub", percent: 85, class: "git", level: "Intermediate", capabilities: "Version control, branching & pull requests" },
     ],
     professional: [
-      { id: 1, name: "Team Work", percent: 90 },
-      { id: 2, name: "Problem Solving", percent: 80 },
-      { id: 3, name: "Project Management", percent: 70 },
-      { id: 4, name: "Communication", percent: 75 },
+      { id: 1, name: "Problem Solving", percent: 85 },
+      { id: 2, name: "Clean Architecture", percent: 85 },
+      { id: 3, name: "Team Communication", percent: 80 },
+      { id: 4, name: "Project Delivery", percent: 75 },
     ],
-    tools: ["VS Code", "Antigravity", "Android Studio", "GitHub", "Vercel", "MongoDB Atlas", "npm"],
+    tools: ["VS Code", "GitHub", "Vercel", "MongoDB Atlas", "Postman", "npm / npx", "Cloudinary"],
   };
 }
 
@@ -143,26 +142,41 @@ export function getExperience() {
   if (saved.length > 0) return saved;
   return [
     {
-      id: 1, period: "2024 – Present", title: "Freelance Full-Stack Developer",
-      type: "Freelance / Self-Employed",
+      id: 1,
+      period: "2024 – Present",
+      title: "Freelance Frontend & Web Development",
+      type: "Freelance / Client Work",
       points: [
-        "Built and deployed e-commerce stores for small businesses using Next.js, MongoDB, and Node.js.",
-        "Developed custom admin dashboards with data tables, charts, and role-based access control.",
-        "Implemented secure auth systems (JWT + bcrypt) reused across multiple client projects.",
-        "Handled complete project lifecycle: requirements gathering, development, deployment, and handoff.",
+        "Developed responsive frontend interfaces and product storefronts for web clients (e.g. Libaas e Zauq and DaaS Tech admin panel).",
+        "Integrated REST APIs, component logic, and responsive layouts tailored to client specifications.",
+        "Handled project deployments on Vercel, DNS configurations, and client review iterations.",
       ],
-      tech: ["Next.js", "React", "Node.js", "MongoDB"],
+      tech: ["Next.js", "React", "Node.js", "MongoDB", "TailwindCSS"],
     },
     {
-      id: 2, period: "2023 – 2024", title: "Self-Directed Learning & Open Projects",
-      type: "Personal Projects",
+      id: 2,
+      period: "2024 – Present",
+      title: "Full-Stack Application Engineering",
+      type: "Personal & Production Projects",
       points: [
-        "Built 10+ projects from scratch to learn full-stack development in a real-world context.",
-        "Contributed UI improvements to company websites (DaaSTech, DaaSForge) as a junior contributor.",
-        "Explored REST API design, state management with Redux, and component-driven UI architecture.",
-        "Documented and open-sourced personal projects to build GitHub presence.",
+        "Engineered full-stack applications including SkyPulse PRO (Weather PWA) and CartifyOutlet e-commerce platform.",
+        "Implemented secure authentication (JWT + bcrypt), custom state management, and real-time PWA features.",
+        "Built dynamic UI dashboards, interactive charting widgets, and RESTful middleware endpoints.",
+        "Maintained structured commit history and documented codebases open-sourced on GitHub.",
       ],
-      tech: ["HTML", "CSS", "JavaScript", "React", "REST APIs", "Git"],
+      tech: ["Next.js", "React", "Node.js", "Express", "MongoDB", "PWA"],
+    },
+    {
+      id: 3,
+      period: "2023 – 2024",
+      title: "Web Engineering Foundations & Practice Labs",
+      type: "Learning & Open Source",
+      points: [
+        "Built 10+ practice applications from scratch to master modern full-stack web development.",
+        "Contributed UI improvements and responsive styling fixes to company repository codebases.",
+        "Practiced RESTful architecture, state management patterns, and git-based workflows.",
+      ],
+      tech: ["JavaScript (ES6+)", "React", "HTML5", "CSS3", "Git"],
     },
   ];
 }

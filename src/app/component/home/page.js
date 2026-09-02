@@ -7,15 +7,26 @@ import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./home.css";
 
 export default function HomeSection() {
-  const words = ["Full-Stack Developer", "Next.js Engineer", "MERN Stack Developer"];
-  const [currentWord, setCurrentWord] = useState("");
+  const words = ["Full-Stack JavaScript Developer", "Next.js & React Engineer", "Node.js & MongoDB Specialist"];
+  const [currentWord, setCurrentWord] = useState(words[0]);
   const [wordIndex, setWordIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(words[0].length);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
   useScrollReveal();
 
   useEffect(() => {
+    // Initial delay before starting animation loop
+    const initialDelay = setTimeout(() => {
+      setHasStarted(true);
+    }, 1500);
+    return () => clearTimeout(initialDelay);
+  }, []);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
     const current = words[wordIndex];
     let typingSpeed = isDeleting ? 80 : 120;
 
@@ -27,7 +38,7 @@ export default function HomeSection() {
         setCurrentWord(current.substring(0, charIndex - 1));
         setCharIndex(charIndex - 1);
       } else if (!isDeleting && charIndex === current.length) {
-        setTimeout(() => setIsDeleting(true), 1000);
+        setTimeout(() => setIsDeleting(true), 1200);
       } else if (isDeleting && charIndex === 0) {
         setIsDeleting(false);
         setWordIndex((prev) => (prev + 1) % words.length);
@@ -35,15 +46,14 @@ export default function HomeSection() {
     }, typingSpeed);
 
     return () => clearTimeout(type);
-  }, [charIndex, isDeleting, wordIndex, words]);
+  }, [charIndex, isDeleting, wordIndex, words, hasStarted]);
 
   return (
     <section id="home" className="home">
       <ParticleMesh particleCount={45} />
       <div className="home-content">
         <h2 data-reveal="fade-up" data-delay="0">
-          I Build Web Products That <span className="font-accent">Work</span> —
-          Not Just Look Good
+          Full-Stack <span className="font-accent">Next.js</span> Developer Building Fast, Production-Ready Web Apps
         </h2>
 
         <div className="change-text" data-reveal="fade-up" data-delay="0.1">
@@ -54,9 +64,9 @@ export default function HomeSection() {
         </div>
 
         <p data-reveal="fade-up" data-delay="0.2">
-          I turn ideas into fast, real-world web apps — from pixel-perfect
-          frontends to robust back-end APIs and admin dashboards. Currently
-          available for internships and freelance projects.
+          I build fast, production-ready web apps — from responsive frontends to
+          robust back-end APIs and admin dashboards. Currently available for
+          freelance projects and full-time developer roles.
         </p>
 
         <div className="info-box" data-reveal="fade-up" data-delay="0.25">
@@ -144,8 +154,8 @@ export default function HomeSection() {
           <div className="floating-badge badge-top-right">
             <div className="badge-icon-box">⚡</div>
             <div className="badge-text">
-              <span className="badge-title">Full-Stack</span>
-              <span className="badge-sub">Next.js & MERN</span>
+              <span className="badge-title">Full-Stack JS</span>
+              <span className="badge-sub">Next.js • React • Node • Mongo</span>
             </div>
           </div>
 

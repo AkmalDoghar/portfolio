@@ -6,6 +6,8 @@ import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./portfolio.css";
 
+import defaultProjects from "../../../data/projects.json";
+
 const filters = [
   { key: "all", label: "All" },
   { key: "product", label: "Products" },
@@ -13,7 +15,7 @@ const filters = [
   { key: "web", label: "Web Apps" },
 ];
 
-const INITIAL_LIMIT = 5;
+const INITIAL_LIMIT = 6;
 
 const DEFAULT_IMAGES = [
   "/images/image1.jpeg",
@@ -30,8 +32,8 @@ const getProjectImage = (img, index) => {
 
 export default function Portfolio() {
   const [activeFilter, setActiveFilter] = useState("all");
-  const [allProjects, setAllProjects] = useState([]);
-  const [filteredProjects, setFilteredProjects] = useState([]);
+  const [allProjects, setAllProjects] = useState(defaultProjects);
+  const [filteredProjects, setFilteredProjects] = useState(defaultProjects);
   const [visibleCount, setVisibleCount] = useState(INITIAL_LIMIT);
   const [expanded, setExpanded] = useState(null);
 
@@ -41,24 +43,28 @@ export default function Portfolio() {
     fetch("/api/admin/projects")
       .then(r => r.json())
       .then(data => {
-        if (Array.isArray(data)) {
+        if (Array.isArray(data) && data.length > 0) {
           const sorted = [...data].sort((a, b) => Number(b.id || 0) - Number(a.id || 0));
           setAllProjects(sorted);
+          setFilteredProjects(
+            activeFilter === "all"
+              ? sorted
+              : sorted.filter((p) => p.category === activeFilter)
+          );
         }
       })
       .catch(() => {});
   }, []);
 
-  useEffect(() => {
-    const results =
-      activeFilter === "all"
-        ? allProjects
-        : allProjects.filter((p) => p.category === activeFilter);
-
-    setFilteredProjects([]);
+  const handleFilterClick = (filterKey) => {
+    setActiveFilter(filterKey);
     setVisibleCount(INITIAL_LIMIT);
-    setTimeout(() => setFilteredProjects(results), 80);
-  }, [activeFilter, allProjects]);
+    if (filterKey === "all") {
+      setFilteredProjects(allProjects);
+    } else {
+      setFilteredProjects(allProjects.filter((p) => p.category === filterKey));
+    }
+  };
 
   const displayedProjects = filteredProjects.slice(0, visibleCount);
   const hasMore = filteredProjects.length > visibleCount;
@@ -87,7 +93,7 @@ export default function Portfolio() {
             <button
               key={f.key}
               className={`button ${activeFilter === f.key ? "active" : ""}`}
-              onClick={() => setActiveFilter(f.key)}
+              onClick={() => handleFilterClick(f.key)}
             >
               {f.label}
             </button>
@@ -118,6 +124,17 @@ export default function Portfolio() {
                     <span key={t} className="pill">{t}</span>
                   ))}
                 </div>
+
+                {/* Key features preview directly on card */}
+                {Array.isArray(project.features) && project.features.length > 0 && (
+                  <div className="port-features-preview">
+                    <ul>
+                      {project.features.slice(0, 3).map((f, i) => (
+                        <li key={i}>{f}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 {/* Expandable details */}
                 {expanded === project.id && (
@@ -156,22 +173,28 @@ export default function Portfolio() {
                   </button>
 
                   <div className="port-links">
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Live Demo"
-                    >
-                      <FiExternalLink />
-                    </a>
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="GitHub"
-                    >
-                      <FiGithub />
-                    </a>
+                    {project.link && project.link !== "#" && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="port-link-btn"
+                        title="Live Demo"
+                      >
+                        <FiExternalLink /> <span>Demo</span>
+                      </a>
+                    )}
+                    {project.github && project.github !== "#" && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="port-link-btn port-link-btn--code"
+                        title="GitHub Repository"
+                      >
+                        <FiGithub /> <span>Code</span>
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

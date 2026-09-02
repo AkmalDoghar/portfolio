@@ -1,5 +1,5 @@
 "use client";
-import { FiAlertCircle, FiLayers, FiZap, FiCheckCircle, FiTrendingUp } from "react-icons/fi";
+import { FiAlertCircle, FiLayers, FiZap, FiCheckCircle, FiTrendingUp, FiGithub } from "react-icons/fi";
 import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./casestudy.css";
@@ -9,31 +9,31 @@ const sections = [
     icon: <FiAlertCircle />,
     title: "The Problem",
     content:
-      "A small fashion retailer had no online presence and was losing customers to competitors with basic websites. They needed a complete e-commerce solution they could manage on their own — adding products, viewing orders, and updating inventory — without hiring a developer every time they needed a change.",
+      "Small retail businesses need a modern e-commerce storefront paired with an intuitive administrative portal, enabling staff to handle product listings, view incoming orders, and update inventory independently.",
   },
   {
     icon: <FiLayers />,
     title: "My Approach",
     content:
-      "I started by mapping out the key user journeys: browsing products, adding to cart, checking out, and the admin managing those orders. I chose Next.js for SEO and performance, MongoDB for flexible product schemas, and NextAuth for authentication. I built incrementally — storefront first, then cart, then admin panel — so the client could test each piece as I built it.",
+      "I mapped out core user journeys: product catalog browsing, client-side cart interaction, checkout workflows, and administrative management. I selected Next.js for server-side rendering and fast initial page loads, coupled with MongoDB for flexible product schemas and JWT authentication for route security.",
   },
   {
     icon: <FiZap />,
     title: "Challenges",
     content:
-      "Three main challenges came up: (1) Cart state needed to persist across sessions, even without login. (2) The admin panel needed to be secure but simple enough for a non-technical user. (3) Image uploads for products needed to work without a dedicated media server. Each challenge was a real problem that required a deliberate solution, not a workaround.",
+      "Three primary technical hurdles included: (1) Persisting cart state seamlessly across browser sessions prior to user login, (2) Building a secure admin panel accessible only to authorized roles, and (3) Managing scalable image asset uploads without heavy server overhead.",
   },
   {
     icon: <FiCheckCircle />,
     title: "Solutions",
     content:
-      "For the cart, I used localStorage with a React context layer — items persist on refresh, and sync to the session on login. For the admin panel, I implemented role-based auth so only admin accounts see dashboard routes — the UI is a simple table with inline edit/delete controls. For images, I used Cloudinary's free tier via their Node.js SDK — uploads go server-side, URLs get stored in MongoDB.",
+      "For cart state, I implemented a React context provider synced with localStorage to preserve items on refresh. For administrative security, I created route middleware and role-based guards restricting admin tools to verified accounts. For media assets, I integrated Cloudinary API uploading with image URLs stored directly in MongoDB.",
   },
   {
     icon: <FiTrendingUp />,
     title: "Outcome",
     content:
-      "The store went live within 3 weeks. The client was able to list products, process orders, and update inventory on their own from day one. The page loads consistently under 1.5 seconds on a mobile connection. This project became the template I use for every e-commerce client — the auth module and admin structure have been reused twice since.",
+      "Engineered a production-ready e-commerce architectural pattern featuring fast server-side rendering, lightweight bundle sizes, and a streamlined administrative workflow. This modular system serves as a scalable foundation for custom full-stack web applications.",
   },
 ];
 
@@ -47,7 +47,7 @@ export default function CaseStudy() {
         <span>Deep dive into one project</span>
         <h2>Case Study</h2>
         <p className="casestudy-project-name">
-          Elevare Digital Store — E-Commerce Platform
+          Elevare Digital Store — E-Commerce Architecture
         </p>
       </div>
 
@@ -64,6 +64,17 @@ export default function CaseStudy() {
             <p>{sec.content}</p>
           </div>
         ))}
+      </div>
+
+      <div className="casestudy-proof-actions" data-reveal="fade-up" data-delay="0.4">
+        <a
+          href="https://github.com/Timigill/elevaredigital"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="casestudy-proof-btn"
+        >
+          <FiGithub /> Inspect Case Study Repository &amp; Code
+        </a>
       </div>
     </section>
   );

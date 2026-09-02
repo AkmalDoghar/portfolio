@@ -1,37 +1,63 @@
 "use client";
+import { useState, useEffect } from "react";
 import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./experience.css";
 
-const experiences = [
+const defaultExperiences = [
   {
-    period: "2024 – Present",
-    title: "Freelance Full-Stack Developer",
-    type: "Freelance / Self-Employed",
+    id: 1,
+    period: "2025 – Present",
+    title: "Freelance Frontend & Web Development",
+    type: "Freelance / Client Work",
     points: [
-      "Built and deployed e-commerce stores for small businesses using Next.js, MongoDB, and Node.js.",
-      "Developed custom admin dashboards with data tables, charts, and role-based access control.",
-      "Implemented secure auth systems (JWT + bcrypt) reused across multiple client projects.",
-      "Handled complete project lifecycle: requirements gathering, development, deployment, and handoff.",
+      "Developed responsive frontend interfaces and product storefronts for web clients (e.g. Libaas e Zauq and DaaS Tech admin panel).",
+      "Integrated REST APIs, component logic, and responsive layouts tailored to client specifications.",
+      "Handled project deployments on Vercel, DNS configurations, and client review iterations.",
     ],
-    tech: ["Next.js", "React", "Node.js", "MongoDB"],
+    tech: ["Next.js", "React", "Node.js", "MongoDB", "TailwindCSS"],
   },
   {
-    period: "2023 – 2024",
-    title: "Self-Directed Learning & Open Projects",
-    type: "Personal Projects",
+    id: 2,
+    period: "2024 – 2025 (1 year)",
+    title: "Full-Stack Application Engineering",
+    type: "Personal & Production Projects",
     points: [
-      "Built 10+ projects from scratch to learn full-stack development in a real-world context.",
-      "Contributed UI improvements to company websites (DaaSTech, DaaSForge) as a junior contributor.",
-      "Explored REST API design, state management with Redux, and component-driven UI architecture.",
-      "Documented and open-sourced personal projects to build GitHub presence.",
+      "Engineered full-stack applications including SkyPulse PRO (Weather PWA) and CartifyOutlet e-commerce platform.",
+      "Implemented secure authentication (JWT + bcrypt), custom state management, and real-time PWA features.",
+      "Built dynamic UI dashboards, interactive charting widgets, and RESTful middleware endpoints.",
+      "Maintained structured commit history and documented codebases open-sourced on GitHub.",
     ],
-    tech: ["HTML", "CSS", "JavaScript", "React", "REST APIs", "Git"],
+    tech: ["Next.js", "React", "Node.js", "Express", "MongoDB", "PWA"],
+  },
+  {
+    id: 3,
+    period: "2023 – 2024",
+    title: "Web Engineering Foundations & Practice Labs",
+    type: "Learning & Open Source",
+    points: [
+      "Built 10+ practice applications from scratch to master modern full-stack web development.",
+      "Contributed UI improvements and responsive styling fixes to company repository codebases.",
+      "Practiced RESTful architecture, state management patterns, and git-based workflows.",
+    ],
+    tech: ["JavaScript (ES6+)", "React", "HTML5", "CSS3", "Git"],
   },
 ];
 
 export default function Experience() {
+  const [experiencesList, setExperiencesList] = useState(defaultExperiences);
   useScrollReveal();
+
+  useEffect(() => {
+    fetch("/api/admin/experience")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          setExperiencesList(data);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <section id="experience" className="experience">
@@ -42,7 +68,7 @@ export default function Experience() {
       </div>
 
       <div className="timeline">
-        {experiences.map((exp, index) => (
+        {experiencesList.map((exp, index) => (
           <div
             key={index}
             className={`timeline-item timeline-item--${index % 2 === 0 ? "left" : "right"}`}

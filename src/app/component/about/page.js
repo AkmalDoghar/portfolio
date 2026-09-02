@@ -86,7 +86,7 @@ export default function About() {
         </div>
         <Image
           src="/Akmal2.png"
-          alt="About Me"
+          alt="Muhammad Akmal - Full-Stack Developer Profile"
           width={450}
           height={350}
           priority
@@ -97,23 +97,23 @@ export default function About() {
         </div>
         <div className="info-about2">
           <span>8+</span>
-          <p>Projects Delivered</p>
+          <p>Projects Built</p>
         </div>
         <div className="info-about3">
           <span>3+</span>
-          <p>Happy Clients</p>
+          <p>Live Deployed Projects</p>
         </div>
       </div>
 
       <div className="about-content" data-reveal="fade-right" data-delay="0.1">
-        <h3>A developer who ships, not just codes</h3>
+        <h3>A developer who ships clean, production code</h3>
         <p>
-          I&apos;m Muhammad Akmal, a full-stack developer who builds web
+          I&apos;m Muhammad Akmal, a full-stack JavaScript developer who builds web
           applications from the ground up — database design, REST APIs,
-          server-side logic, and pixel-accurate frontends. I work primarily with
-          Next.js, React, Node.js, and MongoDB. Every project I take on gets
-          thorough testing, clean commits, and documentation so handoff is never
-          painful. I&apos;m actively improving through real client work and
+          server-side logic, and responsive frontends. I work primarily with
+          Next.js, React, Node.js, and MongoDB. Where appropriate, I add testing,
+          clean Git history, and documentation so handoff is smooth and straightforward.
+          I&apos;m actively refining my craft through client deliverables and
           open-source contributions.
         </p>
 
@@ -181,22 +181,21 @@ export default function About() {
               <div className="modal-section">
                 <h4>How I Work</h4>
                 <p>
-                  I plan before I code. I define the feature scope, break it
-                  into small tasks, and push working increments regularly. I
-                  write readable code, use meaningful commit messages, and hand
-                  off with documentation.
+                  I plan before I code. I define feature scope, break tasks into
+                  manageable increments, and write clean, maintainable code. I maintain
+                  meaningful commit histories and document setups for clear handoffs.
                 </p>
               </div>
 
               <div className="modal-section">
-                <h4>Tech I Use</h4>
+                <h4>Tech Stack Capabilities</h4>
                 <ul className="skill-list">
-                  <li>Next.js / React — UI and server-side rendering</li>
-                  <li>Node.js / Express — REST APIs and middleware</li>
-                  <li>MongoDB / Mongoose — database design</li>
-                  <li>CSS3 / Bootstrap — styling</li>
-                  <li>Git & GitHub — version control</li>
-                  <li>Vercel / Railway — deployment</li>
+                  <li><strong>Next.js</strong> — SSR/SSG, App Router, dynamic routing &amp; API endpoints</li>
+                  <li><strong>React</strong> — Reusable component architecture, custom hooks &amp; state management</li>
+                  <li><strong>Node.js &amp; Express</strong> — RESTful APIs, JWT authentication &amp; server middleware</li>
+                  <li><strong>MongoDB &amp; Mongoose</strong> — Data modeling, schema validation &amp; CRUD operations</li>
+                  <li><strong>CSS3 &amp; HTML5</strong> — Responsive layouts, glassmorphic UI styling &amp; animations</li>
+                  <li><strong>Git &amp; GitHub</strong> — Version control workflows &amp; structured commit history</li>
                 </ul>
               </div>
 

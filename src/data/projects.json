@@ -5,7 +5,7 @@
     "role": "Lead Full-Stack Developer & UI/UX Designer",
     "category": "web",
     "img": "/images/uploads/project-1787643597701.png",
-    "description": "SkyPulse PRO is a high-performance, real-time Progressive Web App (PWA) delivering hyper-accurate weather forecasts, interactive radar metrics, dynamic frosted glassmorphism themes (adaptive Light/Dark modes), and AI-driven weather summaries.",
+    "description": "SkyPulse PRO is a high-performance, real-time Progressive Web App (PWA) delivering hyper-accurate weather forecasts, interactive radar metrics, dynamic frosted glassmorphism themes, and AI-driven weather summaries.",
     "tech": [
       "Next.js",
       "React",
@@ -15,7 +15,7 @@
       "Chart.js",
       "Framer Motion"
     ],
-    "problem": "Standard weather applications are often cluttered with invasive ads, slow to load, and lack offline capabilities or real-time location precision. SkyPulse PRO solves this by delivering an edge-to-edge mobile PWA experience with zero ads, real-time geolocation tracking, instant 24-hour hourly forecasts, and an integrated AI assistant for daily activity planning.",
+    "problem": "Standard weather applications are often cluttered with ads, slow to load, and lack offline capabilities or real-time location precision. SkyPulse PRO solves this by delivering an edge-to-edge mobile PWA experience with zero ads, real-time geolocation tracking, instant 24-hour hourly forecasts, and an integrated AI assistant.",
     "features": [
       "Progressive Web App (PWA) with offline support & native mobile installation",
       "Real-time Geolocation Weather Tracking & City Search",
@@ -24,8 +24,8 @@
       "Integrated AI Assistant for personalized daily weather insights",
       "Dynamic Interactive Weather Charts & Air Quality Index (AQI) Metrics"
     ],
-    "result": "Achieved a 98+ Lighthouse performance rating, sub-second page loads, and a seamless native-like mobile PWA installation experience across iOS and Android devices",
-    "link": "http://skyplusweather.vercel.app/",
+    "result": "Achieved a 98+ Lighthouse performance rating, sub-second page loads, and a seamless PWA installation experience across iOS and Android devices.",
+    "link": "https://skyplusweather.vercel.app/",
     "github": "https://github.com/AkmalDoghar/weather-app"
   },
   {
@@ -33,7 +33,7 @@
     "category": "web",
     "img": "/images/uploads/project-1787644934308.png",
     "title": "DaaS Tech Admin Dashboard",
-    "role": "Full Stack Developer",
+    "role": "Full-Stack Developer",
     "description": "A scalable admin dashboard developed for DaaS Tech to manage clients, services, and digital projects efficiently through a centralized system.",
     "tech": [
       "Next.js",
@@ -50,7 +50,7 @@
       "Secure authentication with JWT",
       "Real-time notifications for admin actions"
     ],
-    "result": "Improved internal workflow efficiency and reduced manual management effort by over 60%.",
+    "result": "Streamlined internal admin workflows, unifying client records, order tracking, and project management into a single interface.",
     "link": "https://daas-tech.vercel.app/",
     "github": "https://github.com/Timigill/daas-tech"
   },
@@ -66,14 +66,14 @@
       "CSS3",
       "React"
     ],
-    "problem": "The brand had no online presence; they needed a store that reflected their aesthetic and worked well on mobile.",
+    "problem": "The brand needed an online storefront that reflected their aesthetic, showcased product categories clearly, and worked seamlessly on mobile.",
     "features": [
       "Product collection grid",
       "Category filtering",
       "Mobile-first layout",
       "Fast page loads"
     ],
-    "result": "Live at libaasezauq.shop; drives consistent organic traffic.",
+    "result": "Deployed live e-commerce platform with product collections, responsive mobile navigation, and optimized assets.",
     "link": "https://www.libaasezauq.shop",
     "github": "https://github.com/Timigill/LibaaSeZauq"
   },
@@ -95,7 +95,7 @@
       "Freelancer profile cards",
       "Fully responsive"
     ],
-    "result": "Live at laancer.vercel.app with positive stakeholder feedback.",
+    "result": "Deployed landing page and platform UI with responsive layout and clear stakeholder feedback.",
     "link": "https://laancer.vercel.app/",
     "github": "https://github.com/Timigill/freelance-dashboard"
   },
@@ -120,7 +120,7 @@
       "CSV export",
       "Fully responsive"
     ],
-    "result": "Platform deployed and used daily by the DaaSForge team.",
+    "result": "Contributed responsive data tables, analytical charts, and interactive views to company platform.",
     "link": "https://daas-forge.vercel.app/",
     "github": "https://github.com/Timigill/daas-forge"
   },
@@ -146,7 +146,7 @@
       "Order tracking and user dashboard",
       "Admin panel for product and order control"
     ],
-    "result": "Delivered a complete e-commerce workflow enabling users to browse, purchase, and manage orders efficiently.",
+    "result": "Delivered full-stack e-commerce solution with OAuth authentication, cart state management, and order processing.",
     "link": "https://www.cartifyoutlet.com/",
     "github": "https://github.com/Timigill/Found"
   },
@@ -163,7 +163,7 @@
       "Node.js",
       "NextAuth"
     ],
-    "problem": "The client needed an online store they could manage themselves without relying on a developer for every update.",
+    "problem": "The business needed an online store they could manage themselves with product listing, cart persistence, and order management tools.",
     "features": [
       "Product catalog with filters",
       "Cart with localStorage sync",
@@ -171,8 +171,8 @@
       "JWT-based auth",
       "Responsive on all devices"
     ],
-    "result": "Live store managing 50+ SKUs with daily orders.",
-    "link": "#",
+    "result": "Engineered full-stack e-commerce architecture with product catalog, cart persistence, and admin CRUD controls.",
+    "link": "https://github.com/Timigill/elevaredigital",
     "github": "https://github.com/Timigill/elevaredigital"
   }
 ]

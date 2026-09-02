@@ -80,39 +80,41 @@ export default function Contact() {
             </div>
             <div className="info-item">
               <div className="info-icon">
-                <FaPhone />
-              </div>
-              <div>
-                <h4>Phone</h4>
-                <p>+92 301 7697832</p>
-              </div>
-            </div>
-            <div className="info-item">
-              <div className="info-icon">
                 <FaMapMarkerAlt />
               </div>
               <div>
                 <h4>Location</h4>
-                <p>Faisalabad, Pakistan</p>
+                <p>Pakistan (Remote Available)</p>
               </div>
             </div>
           </div>
 
-          {/* <div className="social-links">
+          <div className="social-links">
             <a
               href="https://github.com/AkmalDoghar"
               target="_blank"
               rel="noreferrer"
+              title="GitHub Profile"
             >
               <FaGithub />
             </a>
-            <a href="#" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.linkedin.com/in/muhammad-akmal-dev/"
+              target="_blank"
+              rel="noreferrer"
+              title="LinkedIn Profile"
+            >
               <FaLinkedin />
             </a>
-            <a href="#" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.facebook.com/"
+              target="_blank"
+              rel="noreferrer"
+              title="Facebook Profile"
+            >
               <FaFacebook />
             </a>
-          </div> */}
+          </div>
         </div>
 
         {/* Right Side: Form */}
@@ -122,30 +124,36 @@ export default function Contact() {
           data-delay="0.2"
         >
           <form onSubmit={handleSubmit}>
+            {/* Honeypot field for bot protection */}
+            <input
+              type="text"
+              name="botcheck"
+              style={{ display: "none" }}
+              tabIndex="-1"
+              autoComplete="off"
+            />
             <div className="input-group">
-              <input name="name" type="text" placeholder="Your Name" required />
+              <input
+                name="name"
+                type="text"
+                placeholder="Your Name"
+                aria-label="Your Name"
+                required
+              />
               <input
                 name="email"
                 type="email"
                 placeholder="Your Email"
+                aria-label="Your Email"
                 required
               />
             </div>
-            <input
-              name="address"
-              type="text"
-              placeholder="Your Location (Optional)"
-            />
-            <input
-              name="phone"
-              type="tel"
-              placeholder="Phone Number (Optional)"
-            />
             <textarea
               name="message"
               cols="30"
               rows="6"
-              placeholder="Tell me about your project or opportunity..."
+              placeholder="How can I help? (Tell me about your project or opportunity...)"
+              aria-label="Message"
               required
             ></textarea>
 
@@ -155,7 +163,7 @@ export default function Contact() {
                 className={`sending-btn ${status === "submitting" ? "btn-submitting" : ""}`}
                 disabled={status === "submitting"}
               >
-                {status === "submitting" ? "Sending..." : "Send Message"}
+                {status === "submitting" ? "Sending Message..." : "Send Message"}
               </button>
             </div>
           </form>

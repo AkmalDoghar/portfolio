@@ -5,7 +5,17 @@
 }
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 85px;
   overflow-x: hidden;
+}
+
+section {
+  scroll-margin-top: 85px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--hover-color) !important;
+  outline-offset: 3px !important;
 }
 
 :root {
@@ -179,4 +189,20 @@ body.admin-mode textarea,
 .admin-root-wrapper input[type="text"],
 .admin-root-wrapper input[type="password"] {
   cursor: text !important;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .typing {
+    animation: none !important;
+  }
 }

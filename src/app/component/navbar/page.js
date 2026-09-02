@@ -82,15 +82,8 @@ export default function Navbar() {
   };
 
   const handleEmailClick = (e) => {
-    e.preventDefault();
-    const mailtoUrl = "mailto:84pakarmy@gmail.com";
-    const gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=84pakarmy@gmail.com";
-    
-    // Attempt opening Gmail Web Compose in new tab, and trigger mailto for default app
-    const win = window.open(gmailUrl, "_blank");
-    if (!win || win.closed || typeof win.closed === "undefined") {
-      window.location.href = mailtoUrl;
-    }
+    // Reliable mail action across desktop and mobile browsers
+    window.location.href = "mailto:84pakarmy@gmail.com";
   };
 
   return (

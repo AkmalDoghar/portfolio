@@ -4,10 +4,29 @@ import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./skills.css";
 
+const defaultSkillsData = {
+  technical: [
+    { id: 1, name: "Next.js", percent: 85, class: "nextjs", level: "Advanced", capabilities: "SSR/SSG, App Router, API routes & authentication" },
+    { id: 2, name: "React.js", percent: 85, class: "reactjs", level: "Advanced", capabilities: "Component architecture, state management & hooks" },
+    { id: 3, name: "Node.js & Express", percent: 80, class: "nodejs", level: "Intermediate", capabilities: "REST APIs, server middleware & JWT auth" },
+    { id: 4, name: "MongoDB & Mongoose", percent: 80, class: "mongodb", level: "Intermediate", capabilities: "Database design, schema modeling & CRUD" },
+    { id: 5, name: "JavaScript (ES6+)", percent: 88, class: "javascript", level: "Advanced", capabilities: "Async/await, ES modules, DOM & Fetch API" },
+    { id: 6, name: "CSS3 & HTML5", percent: 90, class: "css", level: "Advanced", capabilities: "Responsive layouts, glassmorphic UI & animations" },
+    { id: 7, name: "Git & GitHub", percent: 85, class: "git", level: "Intermediate", capabilities: "Version control, branching & pull requests" },
+  ],
+  professional: [
+    { id: 1, name: "Problem Solving", percent: 85 },
+    { id: 2, name: "Clean Architecture", percent: 85 },
+    { id: 3, name: "Team Communication", percent: 80 },
+    { id: 4, name: "Project Delivery", percent: 75 },
+  ],
+  tools: ["VS Code", "GitHub", "Vercel", "MongoDB Atlas", "Postman", "npm / npx", "Cloudinary"],
+};
+
 export default function Skills() {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [skillsData, setSkillsData] = useState({ technical: [], professional: [], tools: [] });
+  const [skillsData, setSkillsData] = useState(defaultSkillsData);
 
   useScrollReveal();
 
@@ -15,7 +34,7 @@ export default function Skills() {
     fetch("/api/admin/skills")
       .then(r => r.json())
       .then(data => {
-        if (data && typeof data === "object" && !Array.isArray(data)) {
+        if (data && typeof data === "object" && !Array.isArray(data) && data.technical?.length) {
           setSkillsData({
             technical: data.technical || [],
             professional: data.professional || [],
@@ -66,6 +85,9 @@ export default function Skills() {
                     }}
                   ></span>
                 </div>
+                {skill.capabilities && (
+                  <p className="skill-capabilities">{skill.capabilities}</p>
+                )}
               </div>
             ))}
           </div>

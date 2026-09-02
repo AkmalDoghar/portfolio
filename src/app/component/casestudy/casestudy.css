@@ -104,6 +104,39 @@
   line-height: 1.85;
 }
 
+/* Case Study Proof Action */
+.casestudy-proof-actions {
+  margin-top: 3.5rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+.casestudy-proof-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(18, 247, 255, 0.08);
+  border: 1.5px solid rgba(18, 247, 255, 0.35);
+  color: var(--hover-color);
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.casestudy-proof-btn:hover {
+  background: var(--hover-color);
+  color: #000;
+  border-color: var(--hover-color);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(18, 247, 255, 0.25);
+}
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .casestudy-grid {
