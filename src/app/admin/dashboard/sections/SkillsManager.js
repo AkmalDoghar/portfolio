@@ -21,7 +21,7 @@ export default function SkillsManager({ onUpdate }) {
 
   // Forms
   const [showTechForm, setShowTechForm] = useState(false);
-  const [techForm, setTechForm] = useState({ name: "", percent: 80, class: "other", level: "Intermediate" });
+  const [techForm, setTechForm] = useState({ name: "", capabilities: "", class: "other", level: "Intermediate" });
   const [editingTechId, setEditingTechId] = useState(null);
 
   const [showProfForm, setShowProfForm] = useState(false);
@@ -59,7 +59,7 @@ export default function SkillsManager({ onUpdate }) {
   async function saveTech(e) {
     e.preventDefault();
     setSaving(true);
-    const skill = { ...techForm, percent: Number(techForm.percent), id: editingTechId || Date.now() };
+    const skill = { ...techForm, id: editingTechId || Date.now() };
     const updated = editingTechId
       ? data.technical.map(s => s.id === editingTechId ? skill : s)
       : [...data.technical, skill];
@@ -68,7 +68,7 @@ export default function SkillsManager({ onUpdate }) {
     setData(newData);
     setShowTechForm(false);
     setEditingTechId(null);
-    setTechForm({ name: "", percent: 80, class: "other", level: "Intermediate" });
+    setTechForm({ name: "", capabilities: "", class: "other", level: "Intermediate" });
     onUpdate?.();
     showToast(editingTechId ? "Skill updated!" : "Skill added!");
     setSaving(false);
@@ -171,7 +171,7 @@ export default function SkillsManager({ onUpdate }) {
       {activeTab === "technical" && (
         <div>
           <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "1rem" }}>
-            <button className="btn-add" onClick={() => { setShowTechForm(true); setEditingTechId(null); setTechForm({ name: "", percent: 80, class: "other", level: "Intermediate" }); }}>
+            <button className="btn-add" onClick={() => { setShowTechForm(true); setEditingTechId(null); setTechForm({ name: "", capabilities: "", class: "other", level: "Intermediate" }); }}>
               <span>+</span> Add Skill
             </button>
           </div>
@@ -184,7 +184,7 @@ export default function SkillsManager({ onUpdate }) {
                     <div className="modal-title-icon">⚡</div>
                     <div>
                       <h3>{editingTechId ? "Edit Technical Skill" : "New Technical Skill"}</h3>
-                      <p>Define technology stack item and proficiency rating</p>
+                      <p>Define technology stack item and capabilities</p>
                     </div>
                   </div>
                   <button type="button" className="modal-close-btn" onClick={() => setShowTechForm(false)}>✕</button>
@@ -198,19 +198,19 @@ export default function SkillsManager({ onUpdate }) {
                         <input value={techForm.name} onChange={e => setTechForm(f => ({ ...f, name: e.target.value }))} placeholder="e.g. React.js" required />
                       </div>
                       <div className="form-group">
-                        <label>Proficiency Percent (1 - 100%)</label>
-                        <input type="number" min={1} max={100} value={techForm.percent} onChange={e => setTechForm(f => ({ ...f, percent: e.target.value }))} />
-                      </div>
-                      <div className="form-group">
-                        <label>Icon CSS Class</label>
-                        <select value={techForm.class} onChange={e => setTechForm(f => ({ ...f, class: e.target.value }))}>
-                          {TECH_CLASSES.map(c => <option key={c} value={c}>{c}</option>)}
-                        </select>
+                        <label>Capabilities / Key Features</label>
+                        <input value={techForm.capabilities || ""} onChange={e => setTechForm(f => ({ ...f, capabilities: e.target.value }))} placeholder="e.g. Component architecture, state management & hooks" />
                       </div>
                       <div className="form-group">
                         <label>Proficiency Level</label>
                         <select value={techForm.level} onChange={e => setTechForm(f => ({ ...f, level: e.target.value }))}>
                           {LEVELS.map(l => <option key={l} value={l}>{l}</option>)}
+                        </select>
+                      </div>
+                      <div className="form-group">
+                        <label>Icon CSS Class</label>
+                        <select value={techForm.class} onChange={e => setTechForm(f => ({ ...f, class: e.target.value }))}>
+                          {TECH_CLASSES.map(c => <option key={c} value={c}>{c}</option>)}
                         </select>
                       </div>
                     </div>
@@ -230,13 +230,10 @@ export default function SkillsManager({ onUpdate }) {
               <div key={s.id} className="item-card">
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="item-card-title">{s.name}</div>
-                  <div className="item-card-sub">{s.level} · {s.percent}%</div>
-                  <div className="skill-percent-bar">
-                    <div className="skill-percent-bar-fill" style={{ width: `${s.percent}%` }} />
-                  </div>
+                  <div className="item-card-sub">{s.level || "Technical Skill"}{s.capabilities ? ` • ${s.capabilities}` : ""}</div>
                 </div>
                 <div className="item-card-actions">
-                  <button className="btn-edit" onClick={() => { setTechForm({ ...s }); setEditingTechId(s.id); setShowTechForm(true); }}>Edit</button>
+                  <button className="btn-edit" onClick={() => { setTechForm({ name: s.name, capabilities: s.capabilities || "", class: s.class || "other", level: s.level || "Intermediate" }); setEditingTechId(s.id); setShowTechForm(true); }}>Edit</button>
                   <button className="btn-delete" onClick={() => deleteTech(s.id)}>Delete</button>
                 </div>
               </div>
@@ -297,12 +294,9 @@ export default function SkillsManager({ onUpdate }) {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div className="item-card-title">{s.name}</div>
                   <div className="item-card-sub">{s.percent}%</div>
-                  <div className="skill-percent-bar">
-                    <div className="skill-percent-bar-fill" style={{ width: `${s.percent}%` }} />
-                  </div>
                 </div>
                 <div className="item-card-actions">
-                  <button className="btn-edit" onClick={() => { setProfForm({ name: s.name, percent: s.percent }); setEditingProfId(s.id); setShowProfForm(true); }}>Edit</button>
+                  <button className="btn-edit" onClick={() => { setProfForm({ name: s.name, percent: s.percent || 80 }); setEditingProfId(s.id); setShowProfForm(true); }}>Edit</button>
                   <button className="btn-delete" onClick={() => deleteProf(s.id)}>Delete</button>
                 </div>
               </div>

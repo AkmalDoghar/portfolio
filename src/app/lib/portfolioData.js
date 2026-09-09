@@ -23,8 +23,9 @@ function writeFile(name, data) {
 // ─── Skills ──────────────────────────────────────────────────────────────────
 export function getSkills() {
   const saved = readFile("skills");
-  if (saved.length > 0) return saved;
+  if (saved && saved.technical && saved.technical.length > 0) return saved;
   return {
+
     technical: [
       { id: 1, name: "Next.js", percent: 85, class: "nextjs", level: "Advanced", capabilities: "SSR/SSG, App Router, API routes & authentication" },
       { id: 2, name: "React.js", percent: 85, class: "reactjs", level: "Advanced", capabilities: "Component architecture, state management & hooks" },

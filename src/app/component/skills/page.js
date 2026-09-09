@@ -6,13 +6,62 @@ import "./skills.css";
 
 const defaultSkillsData = {
   technical: [
-    { id: 1, name: "Next.js", percent: 85, class: "nextjs", level: "Advanced", capabilities: "SSR/SSG, App Router, API routes & authentication" },
-    { id: 2, name: "React.js", percent: 85, class: "reactjs", level: "Advanced", capabilities: "Component architecture, state management & hooks" },
-    { id: 3, name: "Node.js & Express", percent: 80, class: "nodejs", level: "Intermediate", capabilities: "REST APIs, server middleware & JWT auth" },
-    { id: 4, name: "MongoDB & Mongoose", percent: 80, class: "mongodb", level: "Intermediate", capabilities: "Database design, schema modeling & CRUD" },
-    { id: 5, name: "JavaScript (ES6+)", percent: 88, class: "javascript", level: "Advanced", capabilities: "Async/await, ES modules, DOM & Fetch API" },
-    { id: 6, name: "CSS3 & HTML5", percent: 90, class: "css", level: "Advanced", capabilities: "Responsive layouts, glassmorphic UI & animations" },
-    { id: 7, name: "Git & GitHub", percent: 85, class: "git", level: "Intermediate", capabilities: "Version control, branching & pull requests" },
+    {
+      id: 1,
+      name: "Next.js",
+      percent: 85,
+      class: "nextjs",
+      level: "Advanced",
+      capabilities: "SSR/SSG, App Router, API routes & authentication",
+    },
+    {
+      id: 2,
+      name: "React.js",
+      percent: 85,
+      class: "reactjs",
+      level: "Advanced",
+      capabilities: "Component architecture, state management & hooks",
+    },
+    {
+      id: 3,
+      name: "Node.js & Express",
+      percent: 80,
+      class: "nodejs",
+      level: "Intermediate",
+      capabilities: "REST APIs, server middleware & JWT auth",
+    },
+    {
+      id: 4,
+      name: "MongoDB & Mongoose",
+      percent: 80,
+      class: "mongodb",
+      level: "Intermediate",
+      capabilities: "Database design, schema modeling & CRUD",
+    },
+    {
+      id: 5,
+      name: "JavaScript (ES6+)",
+      percent: 88,
+      class: "javascript",
+      level: "Advanced",
+      capabilities: "Async/await, ES modules, DOM & Fetch API",
+    },
+    {
+      id: 6,
+      name: "CSS3 & HTML5",
+      percent: 90,
+      class: "css",
+      level: "Advanced",
+      capabilities: "Responsive layouts, glassmorphic UI & animations",
+    },
+    {
+      id: 7,
+      name: "Git & GitHub",
+      percent: 85,
+      class: "git",
+      level: "Intermediate",
+      capabilities: "Version control, branching & pull requests",
+    },
   ],
   professional: [
     { id: 1, name: "Problem Solving", percent: 85 },
@@ -20,21 +69,35 @@ const defaultSkillsData = {
     { id: 3, name: "Team Communication", percent: 80 },
     { id: 4, name: "Project Delivery", percent: 75 },
   ],
-  tools: ["VS Code", "GitHub", "Vercel", "MongoDB Atlas", "Postman", "npm / npx", "Cloudinary"],
+  tools: [
+    "VS Code",
+    "GitHub",
+    "Vercel",
+    "MongoDB Atlas",
+    "Antigravity",
+    "npm / npx",
+  ],
 };
 
 export default function Skills() {
   const sectionRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
   const [skillsData, setSkillsData] = useState(defaultSkillsData);
+  const [activeTab, setActiveTab] = useState("all");
 
   useScrollReveal();
 
   useEffect(() => {
-    fetch("/api/admin/skills")
-      .then(r => r.json())
-      .then(data => {
-        if (data && typeof data === "object" && !Array.isArray(data) && data.technical?.length) {
+    fetch("/api/admin/skills", { cache: "no-store" })
+      .then((r) => r.json())
+
+      .then((data) => {
+        if (
+          data &&
+          typeof data === "object" &&
+          !Array.isArray(data) &&
+          data.technical?.length
+        ) {
           setSkillsData({
             technical: data.technical || [],
             professional: data.professional || [],
@@ -47,46 +110,97 @@ export default function Skills() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => { setIsVisible(entry.isIntersecting); },
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
       { threshold: 0.15 },
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
+  const getTechIcon = (name) => {
+    const n = name.toLowerCase();
+    if (n.includes("next")) return "▲";
+    if (n.includes("react")) return "⚛";
+    if (n.includes("node") || n.includes("express")) return "🟢";
+    if (n.includes("mongo")) return "🍃";
+    if (n.includes("javascript") || n.includes("js")) return "⚡";
+    if (n.includes("css") || n.includes("html")) return "🎨";
+    if (n.includes("git")) return "🐙";
+    return "✦";
+  };
+
+  const filteredTechnical = skillsData.technical.filter((skill) => {
+    if (activeTab === "all") return true;
+    const n = skill.name.toLowerCase();
+    if (activeTab === "frontend") return n.includes("next") || n.includes("react") || n.includes("js") || n.includes("css") || n.includes("html");
+    if (activeTab === "backend") return n.includes("node") || n.includes("express") || n.includes("mongo") || n.includes("git");
+    return true;
+  });
+
   return (
     <section id="skills" className="skills" ref={sectionRef}>
       <ParticleMesh particleCount={40} />
       <div className="main-text" data-reveal="fade-up" data-delay="0">
         <span>What I work with</span>
-        <h2>My Skills</h2>
+        <h2>My Skills & Tech Stack</h2>
       </div>
 
       <div className="skill-main">
-        {/* Left Side - Technical */}
+        {/* Left Side - Technical Stack */}
         <div className="skill-left" data-reveal="fade-left" data-delay="0.1">
-          <h3>Technical Skills</h3>
-          <div className="bar-box">
-            {skillsData.technical.map((skill, index) => (
-              <div className="skill-bar" key={skill.name}>
-                <div className="info">
-                  <p>
-                    {skill.name}{" "}
-                    <span className="skill-level">{skill.level}</span>
-                  </p>
-                  <p>{skill.percent}%</p>
-                </div>
-                <div className="bar">
-                  <span
-                    className={skill.class}
-                    style={{
-                      width: isVisible ? `${skill.percent}%` : "0%",
-                      transitionDelay: isVisible ? `${index * 0.4}s` : "0s",
-                    }}
-                  ></span>
+          <div className="tech-header-row">
+            <h3>Technical Skills</h3>
+            {/* Category Filter Tabs */}
+            <div className="tech-filter-tabs">
+              <button
+                className={`filter-tab ${activeTab === "all" ? "active" : ""}`}
+                onClick={() => setActiveTab("all")}
+              >
+                All
+              </button>
+              <button
+                className={`filter-tab ${activeTab === "frontend" ? "active" : ""}`}
+                onClick={() => setActiveTab("frontend")}
+              >
+                Frontend
+              </button>
+              <button
+                className={`filter-tab ${activeTab === "backend" ? "active" : ""}`}
+                onClick={() => setActiveTab("backend")}
+              >
+                Backend & DB
+              </button>
+            </div>
+          </div>
+
+          <div className="exec-tech-grid">
+            {filteredTechnical.map((skill) => (
+              <div className="exec-tech-card" key={skill.name}>
+                <div className="exec-card-accent"></div>
+                <div className="exec-card-header">
+                  <div className="exec-card-title">
+                    <div className="exec-icon-badge">{getTechIcon(skill.name)}</div>
+                    <h4>{skill.name}</h4>
+                  </div>
+                  {skill.level && (
+                    <span className="exec-level-pill">
+                      <span className="pulsing-dot"></span>
+                      {skill.level}
+                    </span>
+                  )}
                 </div>
                 {skill.capabilities && (
-                  <p className="skill-capabilities">{skill.capabilities}</p>
+                  <div className="exec-capabilities">
+                    {skill.capabilities
+                      .split(/[,&]/)
+                      .map((cap, i) => (
+                        <span key={i} className="exec-cap-chip">
+                          {cap.trim()}
+                        </span>
+                      ))}
+                  </div>
                 )}
               </div>
             ))}
@@ -108,11 +222,17 @@ export default function Skills() {
           </div>
 
           {/* Tools Section */}
-          <div className="tools-section" data-reveal="fade-up" data-delay="0.25">
+          <div
+            className="tools-section"
+            data-reveal="fade-up"
+            data-delay="0.25"
+          >
             <h3>Tools &amp; Platforms</h3>
             <div className="tools-chips">
               {skillsData.tools.map((tool) => (
-                <span key={tool} className="tool-chip">{tool}</span>
+                <span key={tool} className="tool-chip">
+                  {tool}
+                </span>
               ))}
             </div>
           </div>
