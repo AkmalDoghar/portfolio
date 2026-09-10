@@ -47,7 +47,7 @@ export default function SkillsManager({ onUpdate }) {
 
   const fetchSkills = useCallback(async () => {
     setLoading(true);
-    const res = await fetch("/api/admin/skills");
+    const res = await fetch("/api/admin/skills", { cache: "no-store" });
     const d = await res.json();
     if (d && typeof d === "object" && !Array.isArray(d)) {
       setData({
@@ -58,6 +58,7 @@ export default function SkillsManager({ onUpdate }) {
     }
     setLoading(false);
   }, []);
+
 
   useEffect(() => {
     fetchSkills();
@@ -606,7 +607,11 @@ export default function SkillsManager({ onUpdate }) {
                     </span>
                   )}
                   <button
-                    onClick={() => deleteTool(tool)}
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      deleteTool(tool);
+                    }}
                     style={{
                       background: "none",
                       border: "none",
