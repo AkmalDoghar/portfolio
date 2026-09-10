@@ -8,17 +8,49 @@ function ensureDir() {
 }
 
 function readFile(name) {
-  ensureDir();
-  const filePath = path.join(dataDir, `${name}.json`);
-  if (!fs.existsSync(filePath)) return [];
-  return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+  try {
+    ensureDir();
+    const filePath = path.join(dataDir, `${name}.json`);
+    if (fs.existsSync(filePath)) {
+      return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+    }
+  } catch {
+    /* ignore read error */
+  }
+
+  // Fallback to /tmp directory on Vercel serverless environment
+  try {
+    const tmpPath = path.join("/tmp", `${name}.json`);
+    if (fs.existsSync(tmpPath)) {
+      return JSON.parse(fs.readFileSync(tmpPath, "utf-8"));
+    }
+  } catch {
+    /* ignore tmp read error */
+  }
+
+  return [];
 }
 
 function writeFile(name, data) {
-  ensureDir();
-  const filePath = path.join(dataDir, `${name}.json`);
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+  // First try writing to project data directory (works on localhost)
+  try {
+    ensureDir();
+    const filePath = path.join(dataDir, `${name}.json`);
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    return;
+  } catch {
+    /* ignore local write error */
+  }
+
+  // Fallback write to /tmp on Vercel (read-only filesystem)
+  try {
+    const tmpPath = path.join("/tmp", `${name}.json`);
+    fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2));
+  } catch {
+    /* ignore tmp write error */
+  }
 }
+
 
 // ─── Skills ──────────────────────────────────────────────────────────────────
 export function getSkills() {

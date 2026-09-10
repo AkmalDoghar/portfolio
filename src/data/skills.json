@@ -80,6 +80,10 @@
     }
   ],
   "tools": [
+    {
+      "name": "Antigravity",
+      "badge": "AI PAIR PROGRAMMER"
+    },
     "VS Code",
     "GitHub",
     "Vercel",
