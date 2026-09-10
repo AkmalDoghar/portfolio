@@ -7,6 +7,7 @@ import ProjectsManager from "./sections/ProjectsManager";
 import SkillsManager from "./sections/SkillsManager";
 import ServicesManager from "./sections/ServicesManager";
 import ExperienceManager from "./sections/ExperienceManager";
+import CaseStudyManager from "./sections/CaseStudyManager";
 import "./dashboard.css";
 
 const NAV_ITEMS = [
@@ -15,6 +16,7 @@ const NAV_ITEMS = [
   { id: "skills", label: "Skills", icon: "zap" },
   { id: "services", label: "Services", icon: "briefcase" },
   { id: "experience", label: "Experience", icon: "clock" },
+  { id: "casestudy", label: "Case Study", icon: "sparkles" },
 ];
 
 function Icon({ name, size = 20 }) {
@@ -101,17 +103,19 @@ export default function AdminDashboard() {
 
   const fetchStats = useCallback(async () => {
     try {
-      const [proj, skills, services, exp] = await Promise.all([
+      const [proj, skills, services, exp, cs] = await Promise.all([
         fetch("/api/admin/projects").then((r) => r.json()),
         fetch("/api/admin/skills").then((r) => r.json()),
         fetch("/api/admin/services").then((r) => r.json()),
         fetch("/api/admin/experience").then((r) => r.json()),
+        fetch("/api/admin/casestudy").then((r) => r.json()).catch(() => []),
       ]);
       setStats({
         projects: Array.isArray(proj) ? proj.length : 0,
         skills: skills?.technical ? skills.technical.length : Array.isArray(skills) ? skills.length : 0,
         services: Array.isArray(services) ? services.length : 0,
         experience: Array.isArray(exp) ? exp.length : 0,
+        casestudy: Array.isArray(cs) ? cs.length : 0,
       });
     } catch {
       /* ignore */
@@ -265,6 +269,9 @@ export default function AdminDashboard() {
           )}
           {activeSection === "experience" && (
             <ExperienceManager onUpdate={fetchStats} />
+          )}
+          {activeSection === "casestudy" && (
+            <CaseStudyManager onUpdate={fetchStats} />
           )}
         </main>
       </div>

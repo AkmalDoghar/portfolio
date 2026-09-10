@@ -12,11 +12,10 @@
   position: fixed;
   pointer-events: none;
   transform: translate(0, 0);
-  z-index: 1000;
+  z-index: 2147483647; /* Maximum — above navbar and all overlays */
   filter: drop-shadow(0 0 5px var(--hover-color));
-  transition:
-    transform 0.15s ease-out,
-    filter 0.3s ease;
+  /* No position transition — instant movement */
+  transition: transform 0.1s ease-out, filter 0.2s ease;
 }
 
 .cursor-path {

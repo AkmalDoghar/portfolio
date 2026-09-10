@@ -3,12 +3,14 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import {
   FaEnvelope,
-  FaPhone,
   FaMapMarkerAlt,
   FaGithub,
   FaLinkedin,
   FaFacebook,
+  FaPaperPlane,
+  FaWhatsapp,
 } from "react-icons/fa";
+import { FiClock, FiCheckCircle } from "react-icons/fi";
 import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./contact.css";
@@ -26,8 +28,8 @@ export default function Contact() {
     const data = {
       name: form.name.value,
       email: form.email.value,
-      address: form.address.value,
-      phone: form.phone.value,
+      address: form.address.value || "",
+      phone: form.phone.value || "",
       message: form.message.value,
     };
 
@@ -55,17 +57,22 @@ export default function Contact() {
 
   return (
     <section id="contact" className="contact">
-      <ParticleMesh particleCount={40} />
+      <ParticleMesh particleCount={35} />
       <div className="contact-container" data-reveal="fade-up">
         {/* Left Side: Info */}
         <div className="contact-info" data-reveal="fade-right" data-delay="0.1">
           <div className="main-text">
-            <span>Let&apos;s work together</span>
-            <h2 className="font-accent">Contact Me</h2>
+            <span>Let&apos;s build something together</span>
+            <h2 className="font-accent">Get In Touch</h2>
           </div>
+
+          <div className="contact-status-pill">
+            <span className="pulse-dot"></span>
+            <span>Available for Freelance &amp; Contract Work</span>
+          </div>
+
           <p className="contact-availability">
-            Currently open to internships and freelance projects. If you have a
-            project in mind or want to discuss an opportunity, let&apos;s talk.
+            Have a product idea, full-stack application to build, or career opportunity? Drop a message below and I&apos;ll get back to you promptly.
           </p>
 
           <div className="info-items">
@@ -74,17 +81,28 @@ export default function Contact() {
                 <FaEnvelope />
               </div>
               <div>
-                <h4>Email</h4>
+                <h4>Email Address</h4>
                 <p>84pakarmy@gmail.com</p>
               </div>
             </div>
+
             <div className="info-item">
               <div className="info-icon">
                 <FaMapMarkerAlt />
               </div>
               <div>
                 <h4>Location</h4>
-                <p>Pakistan (Remote Available)</p>
+                <p>Pakistan (Remote Worldwide)</p>
+              </div>
+            </div>
+
+            <div className="info-item">
+              <div className="info-icon">
+                <FiClock />
+              </div>
+              <div>
+                <h4>Response Time</h4>
+                <p>Within 24 hours guaranteed</p>
               </div>
             </div>
           </div>
@@ -114,6 +132,14 @@ export default function Contact() {
             >
               <FaFacebook />
             </a>
+            <a
+              href="https://wa.me/923017697832"
+              target="_blank"
+              rel="noreferrer"
+              title="WhatsApp"
+            >
+              <FaWhatsapp />
+            </a>
           </div>
         </div>
 
@@ -123,8 +149,12 @@ export default function Contact() {
           data-reveal="fade-left"
           data-delay="0.2"
         >
+          <div className="form-header">
+            <h3>Send Message</h3>
+            <p>Direct communication form</p>
+          </div>
+
           <form onSubmit={handleSubmit}>
-            {/* Honeypot field for bot protection */}
             <input
               type="text"
               name="botcheck"
@@ -133,29 +163,36 @@ export default function Contact() {
               autoComplete="off"
             />
             <div className="input-group">
-              <input
-                name="name"
-                type="text"
-                placeholder="Your Name"
-                aria-label="Your Name"
-                required
-              />
-              <input
-                name="email"
-                type="email"
-                placeholder="Your Email"
-                aria-label="Your Email"
-                required
-              />
+              <div className="input-field-wrap">
+                <input
+                  name="name"
+                  type="text"
+                  placeholder="Your Name"
+                  aria-label="Your Name"
+                  required
+                />
+              </div>
+              <div className="input-field-wrap">
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Your Email"
+                  aria-label="Your Email"
+                  required
+                />
+              </div>
             </div>
-            <textarea
-              name="message"
-              cols="30"
-              rows="6"
-              placeholder="How can I help? (Tell me about your project or opportunity...)"
-              aria-label="Message"
-              required
-            ></textarea>
+
+            <div className="input-field-wrap">
+              <textarea
+                name="message"
+                cols="30"
+                rows="5"
+                placeholder="Tell me about your project, timelines, or opportunity..."
+                aria-label="Message"
+                required
+              ></textarea>
+            </div>
 
             <div className="formBtn">
               <button
@@ -163,7 +200,13 @@ export default function Contact() {
                 className={`sending-btn ${status === "submitting" ? "btn-submitting" : ""}`}
                 disabled={status === "submitting"}
               >
-                {status === "submitting" ? "Sending Message..." : "Send Message"}
+                {status === "submitting" ? (
+                  <span>Sending Message...</span>
+                ) : (
+                  <>
+                    <FaPaperPlane /> <span>Send Message</span>
+                  </>
+                )}
               </button>
             </div>
           </form>
@@ -172,3 +215,4 @@ export default function Contact() {
     </section>
   );
 }
+

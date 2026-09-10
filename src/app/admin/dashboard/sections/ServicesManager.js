@@ -9,7 +9,8 @@ function Toast({ message, type, onClose }) {
   return <div className={`toast toast--${type}`}>{message}</div>;
 }
 
-const ICONS = ["FaDesktop", "FaCode", "FaChartBar", "FaBug"];
+const ICONS = ["FaDesktop", "FaCode", "FaChartBar", "FaBug", "FaServer", "FaMobileAlt"];
+
 
 const EMPTY = { id: "", title: "", icon: "FaDesktop", shortDesc: "", fullDesc: "" };
 

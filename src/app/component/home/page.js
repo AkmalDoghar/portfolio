@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { FaFacebook, FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./home.css";
@@ -126,6 +126,14 @@ export default function HomeSection() {
             rel="noopener noreferrer"
           >
             <FaInstagram />
+          </a>
+          <a
+            href="https://wa.me/923017697832"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="WhatsApp"
+          >
+            <FaWhatsapp />
           </a>
         </div>
       </div>

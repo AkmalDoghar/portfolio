@@ -9,7 +9,13 @@
       "Integrated REST APIs, component logic, and responsive layouts tailored to client specifications.",
       "Handled project deployments on Vercel, DNS configurations, and client review iterations."
     ],
-    "tech": ["Next.js", "React", "Node.js", "MongoDB", "TailwindCSS"]
+    "tech": [
+      "Next.js",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "TailwindCSS"
+    ]
   },
   {
     "id": 2,
@@ -22,7 +28,14 @@
       "Built dynamic UI dashboards, interactive charting widgets, and RESTful middleware endpoints.",
       "Maintained structured commit history and documented codebases open-sourced on GitHub."
     ],
-    "tech": ["Next.js", "React", "Node.js", "Express", "MongoDB", "PWA"]
+    "tech": [
+      "Next.js",
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "PWA"
+    ]
   },
   {
     "id": 3,
@@ -34,6 +47,12 @@
       "Contributed UI improvements and responsive styling fixes to company repository codebases.",
       "Practiced RESTful architecture, state management patterns, and git-based workflows."
     ],
-    "tech": ["JavaScript (ES6+)", "React", "HTML5", "CSS3", "Git"]
+    "tech": [
+      "JavaScript (ES6+)",
+      "React",
+      "HTML5",
+      "CSS3",
+      "Git"
+    ]
   }
 ]

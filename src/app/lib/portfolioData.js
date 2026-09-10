@@ -185,3 +185,72 @@ export function getExperience() {
 export function saveExperience(data) {
   writeFile("experience", data);
 }
+
+// ─── Case Study ──────────────────────────────────────────────────────────────
+export function getCaseStudy() {
+  const saved = readFile("casestudy");
+  if (saved.length > 0) return saved;
+  return [
+    {
+      id: "cs-1",
+      badge: "CORE ARCHITECTURE",
+      title: "Full-Stack Next.js 14 Engine",
+      icon: "⚡",
+      desc: "Architected around Next.js 14 App Router, Server Components (RSC), and dynamic API routes for optimal SSR performance.",
+      points: [
+        "Hybrid rendering strategy: SSR for SEO-critical pages & CSR for interactive state",
+        "Custom middleware route guards for authenticated session validation",
+        "Dynamic API routes handling JSON payloads with structured error handling",
+      ],
+      accent: "cyan",
+      span: 1,
+    },
+    {
+      id: "cs-2",
+      badge: "SECURITY & SHIELD",
+      title: "Authentication & Role Guards",
+      icon: "🔒",
+      desc: "Robust authentication pipeline utilizing HTTP-Only cookies, JWT encryption, and role-based access control (RBAC).",
+      points: [
+        "Encrypted JWT tokens stored in secure HTTP-Only cookies",
+        "Role-based access control protecting admin endpoints",
+        "CSRF protection & input sanitization across form submissions",
+      ],
+      accent: "rose",
+      span: 1,
+    },
+    {
+      id: "cs-3",
+      badge: "PERFORMANCE",
+      title: "Core Web Vitals Optimization",
+      icon: "🚀",
+      desc: "Engineered for 95+ Lighthouse performance scores through image optimization, lazy loading, and lightweight bundle splitting.",
+      points: [
+        "Next.js Image component optimization with WebP encoding",
+        "Asynchronous script loading & font subsetting",
+        "Sub-100ms First Contentful Paint (FCP) delivery",
+      ],
+      accent: "amber",
+      span: 1,
+    },
+    {
+      id: "cs-4",
+      badge: "DATA MODEL",
+      title: "MongoDB & Mongoose Schema Design",
+      icon: "💾",
+      desc: "Flexible, index-optimized Document modeling tailored for real-time CRUD operations and seamless CMS synchronization.",
+      points: [
+        "Indexed fields for fast query execution & pagination",
+        "Strict schema validation preventing bad document writes",
+        "Automated backup sync & connection pool management",
+      ],
+      accent: "emerald",
+      span: 1,
+    },
+  ];
+}
+
+export function saveCaseStudy(data) {
+  writeFile("casestudy", data);
+}
+

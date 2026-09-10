@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { FiBriefcase, FiCalendar, FiCheck } from "react-icons/fi";
 import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./experience.css";
@@ -61,39 +62,60 @@ export default function Experience() {
 
   return (
     <section id="experience" className="experience">
-      <ParticleMesh particleCount={40} />
+      <ParticleMesh particleCount={35} />
       <div className="main-text" data-reveal="fade-up" data-delay="0">
-        <span>Where I&apos;ve applied my skills</span>
-        <h2>Experience</h2>
+        <span>Career &amp; Engineering Track</span>
+        <h2>Work Experience</h2>
       </div>
 
       <div className="timeline">
-        {experiencesList.map((exp, index) => (
-          <div
-            key={index}
-            className={`timeline-item timeline-item--${index % 2 === 0 ? "left" : "right"}`}
-            data-reveal={index % 2 === 0 ? "fade-left" : "fade-right"}
-            data-delay={String(0.1 * index)}
-          >
-            <div className="timeline-dot"></div>
-            <div className="timeline-card">
-              <span className="timeline-period">{exp.period}</span>
-              <h3>{exp.title}</h3>
-              <span className="timeline-type">{exp.type}</span>
-              <ul>
-                {exp.points.map((point, i) => (
-                  <li key={i}>{point}</li>
-                ))}
-              </ul>
-              <div className="timeline-tech">
-                {exp.tech.map((t) => (
-                  <span key={t} className="pill">{t}</span>
-                ))}
+        {experiencesList.map((exp, index) => {
+          const isLeft = index % 2 === 0;
+          return (
+            <div
+              key={exp.id || index}
+              className={`timeline-item timeline-item--${isLeft ? "left" : "right"}`}
+              data-reveal={isLeft ? "fade-left" : "fade-right"}
+              data-delay={String(0.08 * index)}
+            >
+              <div className="timeline-dot">
+                <FiBriefcase className="dot-icon" />
+              </div>
+              <div className="timeline-card">
+                <div className="timeline-header">
+                  <span className="timeline-period">
+                    <FiCalendar className="period-icon" /> {exp.period}
+                  </span>
+                  {exp.type && <span className="timeline-type-pill">{exp.type}</span>}
+                </div>
+
+                <h3>{exp.title}</h3>
+
+                <ul className="timeline-points">
+                  {Array.isArray(exp.points) &&
+                    exp.points.map((point, i) => (
+                      <li key={i}>
+                        <FiCheck className="point-check" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                </ul>
+
+                {Array.isArray(exp.tech) && exp.tech.length > 0 && (
+                  <div className="timeline-tech">
+                    {exp.tech.map((t) => (
+                      <span key={t} className="pill">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
 }
+
