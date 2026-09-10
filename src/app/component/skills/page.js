@@ -225,27 +225,16 @@ export default function Skills() {
             category: getSkillCategory(skill),
           }));
 
-          // Ensure Antigravity is present in tools
-          let toolsList = data.tools || defaultSkillsData.tools;
-          const hasAntigravity = toolsList.some((t) =>
-            (typeof t === "string" ? t : t.name).toLowerCase().includes("antigravity")
-          );
-          if (!hasAntigravity) {
-            toolsList = [
-              { name: "Antigravity", icon: "antigravity", badge: "AI PAIR PROGRAMMER" },
-              ...toolsList,
-            ];
-          }
-
           setSkillsData({
             technical: normalizedTech,
             professional: data.professional || defaultSkillsData.professional,
-            tools: toolsList,
+            tools: data.tools || defaultSkillsData.tools,
           });
         }
       })
       .catch(() => {});
   }, []);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
