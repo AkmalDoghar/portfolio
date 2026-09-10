@@ -8,6 +8,7 @@ import SkillsManager from "./sections/SkillsManager";
 import ServicesManager from "./sections/ServicesManager";
 import ExperienceManager from "./sections/ExperienceManager";
 import CaseStudyManager from "./sections/CaseStudyManager";
+import CvManager from "./sections/CvManager";
 import "./dashboard.css";
 
 const NAV_ITEMS = [
@@ -17,6 +18,7 @@ const NAV_ITEMS = [
   { id: "services", label: "Services", icon: "briefcase" },
   { id: "experience", label: "Experience", icon: "clock" },
   { id: "casestudy", label: "Case Study", icon: "sparkles" },
+  { id: "cv", label: "Resume / CV", icon: "fileText" },
 ];
 
 function Icon({ name, size = 20 }) {
@@ -88,6 +90,15 @@ function Icon({ name, size = 20 }) {
     shield: (
       <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    fileText: (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <polyline points="14 2 14 8 20 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <polyline points="10 9 9 9 8 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
     ),
   };
@@ -272,6 +283,9 @@ export default function AdminDashboard() {
           )}
           {activeSection === "casestudy" && (
             <CaseStudyManager onUpdate={fetchStats} />
+          )}
+          {activeSection === "cv" && (
+            <CvManager onUpdate={fetchStats} />
           )}
         </main>
       </div>

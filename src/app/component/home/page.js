@@ -14,7 +14,18 @@ export default function HomeSection() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
 
+  const [cvUrl, setCvUrl] = useState("/M.Akmal CV.pdf");
+
   useScrollReveal();
+
+  useEffect(() => {
+    fetch("/api/admin/cv", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data) => {
+        if (data && data.url) setCvUrl(data.url);
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     // Initial delay before starting animation loop
@@ -85,7 +96,7 @@ export default function HomeSection() {
           data-reveal="fade-up"
           data-delay="0.3"
         >
-          <a href="/M.Akmal CV.pdf" download className="btn1">
+          <a href={cvUrl || "#"} download target="_blank" rel="noopener noreferrer" className="btn1">
             Download CV
           </a>
           <a

@@ -286,3 +286,19 @@ export function saveCaseStudy(data) {
   writeFile("casestudy", data);
 }
 
+// ─── CV / Resume ─────────────────────────────────────────────────────────────
+export function getCv() {
+  const saved = readFile("cv");
+  if (saved && saved.url) return saved;
+  return {
+    url: "/M.Akmal CV.pdf",
+    name: "M.Akmal CV.pdf",
+    updatedAt: "2026-09-10T00:00:00.000Z",
+  };
+}
+
+export function saveCv(data) {
+  writeFile("cv", data);
+}
+
+
