@@ -22,16 +22,28 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus("submitting");
 
     const form = e.target;
-    const data = {
-      name: form.name.value,
-      email: form.email.value,
-      address: form.address.value || "",
-      phone: form.phone.value || "",
-      message: form.message.value,
-    };
+    const name = form.name?.value?.trim() || "";
+    const email = form.email?.value?.trim() || "";
+    const message = form.message?.value?.trim() || "";
+
+    if (!name) {
+      toast.error("Please enter your name.");
+      return;
+    }
+    if (!email) {
+      toast.error("Please enter your email address.");
+      return;
+    }
+    if (message.length < 10) {
+      toast.error("Please enter a message of at least 10 characters (current: " + message.length + ").");
+      return;
+    }
+
+    setStatus("submitting");
+
+    const data = { name, email, message };
 
     try {
       const res = await fetch("/api/contact", {
@@ -43,17 +55,18 @@ export default function Contact() {
       const result = await res.json();
 
       if (res.ok) {
-        toast.success("Message sent! I'll get back to you within 24 hours.");
+        toast.success(result.message || "Message sent! I'll get back to you within 24 hours.");
         form.reset();
       } else {
-        toast.error("Failed to send: " + result.error);
+        toast.error(result.error || "Failed to send message.");
       }
     } catch (err) {
-      toast.error("Error sending message: " + err.message);
+      toast.error("Error sending message: " + (err.message || "Network error"));
     } finally {
       setStatus("");
     }
   };
+
 
   return (
     <section id="contact" className="contact">
