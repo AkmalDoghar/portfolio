@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import {
   FaEnvelope,
@@ -9,16 +9,40 @@ import {
   FaFacebook,
   FaPaperPlane,
   FaWhatsapp,
+  FaInstagram,
 } from "react-icons/fa";
-import { FiClock, FiCheckCircle } from "react-icons/fi";
+import { FiClock } from "react-icons/fi";
 import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./contact.css";
 
+const DEFAULT_SETTINGS = {
+  email: "84pakarmy@gmail.com",
+  location: "Pakistan (Remote Worldwide)",
+  responseTime: "Within 24 hours guaranteed",
+  github: "https://github.com/AkmalDoghar",
+  linkedin: "https://www.linkedin.com/in/muhammad-akmal-dev/",
+  facebook: "https://www.facebook.com/",
+  instagram: "https://www.instagram.com/muhammadakmal1225/",
+  whatsapp: "https://wa.me/923017697832",
+};
+
 export default function Contact() {
   const [status, setStatus] = useState("");
+  const [settings, setSettings] = useState(DEFAULT_SETTINGS);
 
   useScrollReveal();
+
+  useEffect(() => {
+    fetch("/api/admin/settings", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data) => {
+        if (data && typeof data === "object") {
+          setSettings((prev) => ({ ...prev, ...data }));
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,7 +61,11 @@ export default function Contact() {
       return;
     }
     if (message.length < 10) {
-      toast.error("Please enter a message of at least 10 characters (current: " + message.length + ").");
+      toast.error(
+        "Please enter a message of at least 10 characters (current: " +
+          message.length +
+          ")."
+      );
       return;
     }
 
@@ -55,7 +83,9 @@ export default function Contact() {
       const result = await res.json();
 
       if (res.ok) {
-        toast.success(result.message || "Message sent! I'll get back to you within 24 hours.");
+        toast.success(
+          result.message || "Message sent! I'll get back to you within 24 hours."
+        );
         form.reset();
       } else {
         toast.error(result.error || "Failed to send message.");
@@ -66,7 +96,6 @@ export default function Contact() {
       setStatus("");
     }
   };
-
 
   return (
     <section id="contact" className="contact">
@@ -85,7 +114,9 @@ export default function Contact() {
           </div>
 
           <p className="contact-availability">
-            Have a product idea, full-stack application to build, or career opportunity? Drop a message below and I&apos;ll get back to you promptly.
+            Have a product idea, full-stack application to build, or career
+            opportunity? Drop a message below and I&apos;ll get back to you
+            promptly.
           </p>
 
           <div className="info-items">
@@ -95,7 +126,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4>Email Address</h4>
-                <p>84pakarmy@gmail.com</p>
+                <p>{settings.email}</p>
               </div>
             </div>
 
@@ -105,7 +136,7 @@ export default function Contact() {
               </div>
               <div>
                 <h4>Location</h4>
-                <p>Pakistan (Remote Worldwide)</p>
+                <p>{settings.location}</p>
               </div>
             </div>
 
@@ -115,44 +146,62 @@ export default function Contact() {
               </div>
               <div>
                 <h4>Response Time</h4>
-                <p>Within 24 hours guaranteed</p>
+                <p>{settings.responseTime}</p>
               </div>
             </div>
           </div>
 
           <div className="social-links">
-            <a
-              href="https://github.com/AkmalDoghar"
-              target="_blank"
-              rel="noreferrer"
-              title="GitHub Profile"
-            >
-              <FaGithub />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/muhammad-akmal-dev/"
-              target="_blank"
-              rel="noreferrer"
-              title="LinkedIn Profile"
-            >
-              <FaLinkedin />
-            </a>
-            <a
-              href="https://www.facebook.com/"
-              target="_blank"
-              rel="noreferrer"
-              title="Facebook Profile"
-            >
-              <FaFacebook />
-            </a>
-            <a
-              href="https://wa.me/923017697832"
-              target="_blank"
-              rel="noreferrer"
-              title="WhatsApp"
-            >
-              <FaWhatsapp />
-            </a>
+            {settings.github && (
+              <a
+                href={settings.github}
+                target="_blank"
+                rel="noreferrer"
+                title="GitHub Profile"
+              >
+                <FaGithub />
+              </a>
+            )}
+            {settings.linkedin && (
+              <a
+                href={settings.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                title="LinkedIn Profile"
+              >
+                <FaLinkedin />
+              </a>
+            )}
+            {settings.facebook && (
+              <a
+                href={settings.facebook}
+                target="_blank"
+                rel="noreferrer"
+                title="Facebook Profile"
+              >
+                <FaFacebook />
+              </a>
+            )}
+            {settings.instagram && (
+              <a
+                href={settings.instagram}
+                target="_blank"
+                rel="noreferrer"
+                title="Instagram Profile"
+              >
+                <FaInstagram />
+              </a>
+            )}
+            {settings.whatsapp && (
+              <a
+                href={settings.whatsapp}
+                target="_blank"
+                rel="noreferrer"
+                title="WhatsApp"
+              >
+                <FaWhatsapp />
+              </a>
+            )}
           </div>
         </div>
 
@@ -210,7 +259,9 @@ export default function Contact() {
             <div className="formBtn">
               <button
                 type="submit"
-                className={`sending-btn ${status === "submitting" ? "btn-submitting" : ""}`}
+                className={`sending-btn ${
+                  status === "submitting" ? "btn-submitting" : ""
+                }`}
                 disabled={status === "submitting"}
               >
                 {status === "submitting" ? (
@@ -228,4 +279,3 @@ export default function Contact() {
     </section>
   );
 }
-

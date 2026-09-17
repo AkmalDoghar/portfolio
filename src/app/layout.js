@@ -34,6 +34,11 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
+  icons: {
+    icon: "/images/AK.png",
+    shortcut: "/images/AK.png",
+    apple: "/images/AK.png",
+  },
   twitter: {
     card: "summary_large_image",
     title: "Muhammad Akmal | Full-Stack Next.js & React Developer",
@@ -46,6 +51,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/images/AK.png" type="image/png" />
+        <link rel="shortcut icon" href="/images/AK.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/images/AK.png" />
+      </head>
       <body>
         <ClientShell>{children}</ClientShell>
 

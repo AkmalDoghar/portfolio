@@ -814,11 +814,13 @@
   margin-top: 0.15rem;
 }
 
-/* Add / Save buttons */
+/* Add / Save / Primary buttons */
 .btn-add,
-.btn-save {
+.btn-save,
+.btn-primary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.65rem 1.25rem;
   background: linear-gradient(135deg, #0ff7e0 0%, #7c3aed 100%);
@@ -828,22 +830,48 @@
   font-size: 0.88rem;
   font-weight: 700;
   font-family: inherit;
-  cursor: pointer;
+  cursor: pointer !important;
   transition: all 0.25s ease;
   box-shadow: 0 4px 15px rgba(15, 247, 224, 0.25);
 }
 
 .btn-add:hover,
-.btn-save:hover:not(:disabled) {
+.btn-save:hover:not(:disabled),
+.btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(15, 247, 224, 0.4);
   filter: brightness(1.05);
 }
 
-.btn-save:disabled {
+.btn-save:disabled,
+.btn-primary:disabled {
   opacity: 0.5;
-  cursor: not-allowed;
+  cursor: not-allowed !important;
 }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.1rem;
+  background: rgba(15, 247, 224, 0.1);
+  border: 1px solid rgba(15, 247, 224, 0.3);
+  border-radius: 12px;
+  color: #0ff7e0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer !important;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(15, 247, 224, 0.2);
+  border-color: rgba(15, 247, 224, 0.5);
+  color: #ffffff;
+}
+
 
 /* Cancel button */
 .btn-cancel {

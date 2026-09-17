@@ -301,4 +301,50 @@ export function saveCv(data) {
   writeFile("cv", data);
 }
 
+// ─── Home & Site Settings ───────────────────────────────────────────────────
+export function getSettings() {
+  const saved = readFile("settings");
+  if (saved && typeof saved === "object" && !Array.isArray(saved) && Object.keys(saved).length > 0) {
+    return saved;
+  }
+  return {
+    name: "Muhammad Akmal",
+    copyrightName: "Rana Akmal",
+    navbarLogoText: "Akmal",
+    email: "84pakarmy@gmail.com",
+    location: "Pakistan (Remote Worldwide)",
+    responseTime: "Within 24 hours guaranteed",
+    github: "https://github.com/AkmalDoghar",
+    linkedin: "https://www.linkedin.com/in/muhammad-akmal-dev/",
+    facebook: "https://www.facebook.com/",
+    instagram: "https://www.instagram.com/muhammadakmal1225/",
+    whatsapp: "https://wa.me/923017697832",
+    heroTitle: "Full-Stack Next.js Developer Building Fast, Production-Ready Web Apps",
+    typingWords: [
+      "Full-Stack JavaScript Developer",
+      "Next.js & React Engineer",
+      "Node.js & MongoDB Specialist"
+    ],
+    heroDescription: "I build fast, production-ready web apps — from responsive frontends to robust back-end APIs and admin dashboards. Currently available for freelance projects and full-time developer roles.",
+    heroImage: "/Akmal1.png",
+    badge1Title: "Full-Stack JS",
+    badge1Sub: "Next.js • React • Node • Mongo",
+    badge2Title: "Web Apps",
+    badge2Sub: "Fast & Scalable",
+    aboutImage: "/Akmal2.png",
+    aboutTag: "FULL-STACK WEB ENGINEER",
+    aboutTitle: "Crafting Scalable Digital Products with Clean Architecture",
+    aboutDescription1: "I'm Muhammad Akmal, a full-stack JavaScript engineer who builds web applications from the ground up — database schema design, RESTful APIs, server-side logic, and responsive user interfaces.",
+    aboutDescription2: "Primary focus on Next.js, React, Node.js, and MongoDB. I emphasize clean code, structured commit histories, clear documentation, and seamless deployments.",
+    aboutYearsExp: "1+",
+    aboutProjectsBuilt: "8+",
+    aboutLiveDeployed: "3+"
+  };
+}
+
+export function saveSettings(data) {
+  writeFile("settings", data);
+}
+
+
 

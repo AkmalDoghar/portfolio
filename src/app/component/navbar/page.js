@@ -8,6 +8,9 @@ export default function Navbar() {
   const [activeHash, setActiveHash] = useState("#home");
   const [scrolled, setScrolled] = useState(false);
   const [indicatorStyle, setIndicatorStyle] = useState({});
+  const [logoText, setLogoText] = useState("Akmal");
+  const [email, setEmail] = useState("m.akmal.dev42@gmail.com");
+
   const navRef = useRef(null);
   const listRef = useRef(null);
 
@@ -21,6 +24,18 @@ export default function Navbar() {
     { href: "#casestudy", label: "Case Study" },
     { href: "#contact", label: "Contact" },
   ];
+
+  useEffect(() => {
+    fetch("/api/admin/settings", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((data) => {
+        if (data && typeof data === "object") {
+          if (data.navbarLogoText) setLogoText(data.navbarLogoText);
+          if (data.email) setEmail(data.email);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -42,7 +57,7 @@ export default function Navbar() {
           if (entry.isIntersecting) setActiveHash("#" + entry.target.id);
         });
       },
-      { root: null, rootMargin: "-50% 0px -50% 0px", threshold: 0 },
+      { root: null, rootMargin: "-50% 0px -50% 0px", threshold: 0 }
     );
     links.forEach((link) => {
       const section = document.querySelector(link.href);
@@ -82,8 +97,7 @@ export default function Navbar() {
   };
 
   const handleEmailClick = (e) => {
-    // Reliable mail action across desktop and mobile browsers
-    window.location.href = "mailto:84pakarmy@gmail.com";
+    window.location.href = `mailto:${email}`;
   };
 
   return (
@@ -91,7 +105,7 @@ export default function Navbar() {
       {/* Logo */}
       <button className="nav-logo" onClick={() => scrollTo("#home")}>
         <span className="logo-bracket">&lt;</span>
-        Akmal
+        {logoText}
         <span className="logo-bracket"> /&gt;</span>
       </button>
 
@@ -103,7 +117,10 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(link.href);
+                }}
                 className={activeHash === link.href ? "active-link" : ""}
               >
                 {link.label}
@@ -117,7 +134,7 @@ export default function Navbar() {
       <div className="nav-right">
         <a
           className="nav-cta"
-          href="mailto:84pakarmy@gmail.com"
+          href={`mailto:${email}`}
           onClick={handleEmailClick}
         >
           <span className="cta-dot" />
@@ -128,7 +145,9 @@ export default function Navbar() {
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
-          <span /><span /><span />
+          <span />
+          <span />
+          <span />
         </button>
       </div>
 
@@ -139,7 +158,10 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(link.href);
+                }}
                 className={activeHash === link.href ? "active-link" : ""}
               >
                 {link.label}
@@ -149,7 +171,7 @@ export default function Navbar() {
         </ul>
         <a
           className="nav-cta drawer-cta"
-          href="mailto:84pakarmy@gmail.com"
+          href={`mailto:${email}`}
           onClick={handleEmailClick}
         >
           Let&apos;s Talk

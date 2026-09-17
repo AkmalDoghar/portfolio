@@ -9,10 +9,12 @@ import ServicesManager from "./sections/ServicesManager";
 import ExperienceManager from "./sections/ExperienceManager";
 import CaseStudyManager from "./sections/CaseStudyManager";
 import CvManager from "./sections/CvManager";
+import HomeSettingsManager from "./sections/HomeSettingsManager";
 import "./dashboard.css";
 
 const NAV_ITEMS = [
   { id: "overview", label: "Overview", icon: "grid" },
+  { id: "homeSettings", label: "Home & Site Info", icon: "sliders" },
   { id: "projects", label: "Projects", icon: "folder" },
   { id: "skills", label: "Skills", icon: "zap" },
   { id: "services", label: "Services", icon: "briefcase" },
@@ -20,6 +22,7 @@ const NAV_ITEMS = [
   { id: "casestudy", label: "Case Study", icon: "sparkles" },
   { id: "cv", label: "Resume / CV", icon: "fileText" },
 ];
+
 
 function Icon({ name, size = 20 }) {
   const icons = {
@@ -99,6 +102,19 @@ function Icon({ name, size = 20 }) {
         <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
         <polyline points="10 9 9 9 8 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      </svg>
+    ),
+    sliders: (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+        <line x1="4" y1="21" x2="4" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="4" y1="10" x2="4" y2="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="12" y1="21" x2="12" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="12" y1="8" x2="12" y2="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="20" y1="21" x2="20" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="20" y1="12" x2="20" y2="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="1" y1="14" x2="7" y2="14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="9" y1="8" x2="15" y2="8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <line x1="17" y1="16" x2="23" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
       </svg>
     ),
   };
@@ -269,6 +285,9 @@ export default function AdminDashboard() {
           {activeSection === "overview" && (
             <OverviewSection stats={stats} navigate={navigate} />
           )}
+          {activeSection === "homeSettings" && (
+            <HomeSettingsManager onUpdate={fetchStats} />
+          )}
           {activeSection === "projects" && (
             <ProjectsManager onUpdate={fetchStats} />
           )}
@@ -295,10 +314,12 @@ export default function AdminDashboard() {
 
 function OverviewSection({ stats, navigate }) {
   const cards = [
+    { label: "Home & Site Info", value: "Active", icon: "sliders", color: "#3b82f6", section: "homeSettings", tag: "Site Customizer" },
     { label: "Projects", value: stats.projects, icon: "folder", color: "#0ff7e0", section: "projects", tag: "Portfolio Showcase" },
     { label: "Technical Skills", value: stats.skills, icon: "zap", color: "#7c3aed", section: "skills", tag: "Expertise Matrix" },
     { label: "Services", value: stats.services, icon: "briefcase", color: "#ec4899", section: "services", tag: "Offered Solutions" },
     { label: "Experience Years", value: stats.experience, icon: "clock", color: "#f59e0b", section: "experience", tag: "Career Timeline" },
+    { label: "Case Studies", value: stats.casestudy || 0, icon: "sparkles", color: "#10b981", section: "casestudy", tag: "Detailed Analysis" },
   ];
 
   const currentDate = new Date().toLocaleDateString("en-US", {
@@ -315,10 +336,10 @@ function OverviewSection({ stats, navigate }) {
         <div className="banner-content">
           <div className="banner-badge">
             <Icon name="sparkles" size={14} />
-            <span>Dashboard v2.0 • Live Control</span>
+            <span>Dashboard v2.0 • Live Control Center</span>
           </div>
           <h2>Welcome back, Muhammad Akmal 👋</h2>
-          <p>Real-time control center for your personal portfolio, projects, and dynamic content.</p>
+          <p>Full control center for homepage customization, profile details, projects, skills &amp; resume.</p>
         </div>
         <div className="banner-date">
           <span>{currentDate}</span>
@@ -358,14 +379,17 @@ function OverviewSection({ stats, navigate }) {
       <div className="overview-quick">
         <div className="quick-header">
           <h3>Quick Management Shortcuts</h3>
-          <p>Directly jump into adding or modifying portfolio sections</p>
+          <p>Directly jump into editing any portfolio section</p>
         </div>
         <div className="quick-actions-grid">
           {[
+            { label: "Edit Home & Site Info", desc: "Modify hero text, email, social links & images", section: "homeSettings", color: "#3b82f6", icon: "sliders" },
             { label: "Add New Project", desc: "Showcase a new web app or repository", section: "projects", color: "#0ff7e0", icon: "folder" },
             { label: "Update Tech Stack", desc: "Add skills, frameworks & proficiency", section: "skills", color: "#7c3aed", icon: "zap" },
             { label: "Edit Service Offerings", desc: "Modify development & consulting services", section: "services", color: "#ec4899", icon: "briefcase" },
             { label: "Update Career History", desc: "Add jobs, client work or roles", section: "experience", color: "#f59e0b", icon: "clock" },
+            { label: "Manage Case Studies", desc: "Create or edit architecture breakdowns", section: "casestudy", color: "#10b981", icon: "sparkles" },
+            { label: "Upload Resume / CV", desc: "Replace PDF or update downloadable link", section: "cv", color: "#6366f1", icon: "fileText" },
           ].map((a) => (
             <button
               key={a.label}
