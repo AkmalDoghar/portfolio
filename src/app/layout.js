@@ -1,6 +1,19 @@
 import "./globals.css";
 import ClientShell from "./component/ClientShell";
 import { Toaster } from "react-hot-toast";
+import { Dancing_Script, Outfit } from "next/font/google";
+
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  variable: "--font-accent",
+  display: "swap",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata = {
   metadataBase: new URL("https://akmalcode.vercel.app/"),
@@ -50,8 +63,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${dancingScript.variable} ${outfit.variable}`}>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
         <link rel="icon" href="/images/AK.png" type="image/png" />
         <link rel="shortcut icon" href="/images/AK.png" type="image/png" />
         <link rel="apple-touch-icon" href="/images/AK.png" />
