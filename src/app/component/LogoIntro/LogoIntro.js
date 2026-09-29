@@ -4,22 +4,31 @@ import "./LogoIntro.css";
 
 export default function LogoIntro() {
   const [phase, setPhase] = useState("entering"); // entering -> holding -> exiting -> done
+  const [shouldShow, setShouldShow] = useState(false);
 
   useEffect(() => {
-    // Lock scroll during intro so page always starts at home
+    // Only show intro once per session and only on root "/" path
+    const hasSeen = typeof window !== "undefined" && sessionStorage.getItem("hasSeenIntro");
+    const isHomePage = typeof window !== "undefined" && window.location.pathname === "/";
+
+    if (hasSeen || !isHomePage) {
+      setPhase("done");
+      setShouldShow(false);
+      return;
+    }
+
+    setShouldShow(true);
+
+    // Lock scroll during initial intro
     document.body.style.overflow = "hidden";
     window.scrollTo(0, 0);
-
-    // Phase 1: 3D spin-in animation (1.2s)
-    // Phase 2: Hold with pulse — loading bar completes at 2.5s
-    // Phase 3: Exit animation (0.3s)
-    // Phase 4: Remove from DOM
 
     const t1 = setTimeout(() => setPhase("holding"), 1200);
     const t2 = setTimeout(() => setPhase("exiting"), 2500);
     const t3 = setTimeout(() => {
-      window.scrollTo(0, 0);          // ensure home section
-      document.body.style.overflow = ""; // unlock scroll
+      window.scrollTo(0, 0);
+      document.body.style.overflow = "";
+      sessionStorage.setItem("hasSeenIntro", "true");
       setPhase("done");
     }, 2800);
 
@@ -31,7 +40,7 @@ export default function LogoIntro() {
     };
   }, []);
 
-  if (phase === "done") return null;
+  if (!shouldShow || phase === "done") return null;
 
   return (
     <div className={`logo-intro-overlay ${phase}`}>

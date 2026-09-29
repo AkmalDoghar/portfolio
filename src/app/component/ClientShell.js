@@ -11,6 +11,12 @@ export default function ClientShell({ children }) {
   const pathname = usePathname();
   const isAdmin = pathname?.startsWith("/admin");
 
+  const isValidRoute =
+    pathname === "/" ||
+    pathname === "/services" ||
+    pathname?.startsWith("/services/") ||
+    pathname?.startsWith("/admin");
+
   useEffect(() => {
     if (isAdmin) {
       document.body.classList.remove("hide-cursor");
@@ -22,6 +28,16 @@ export default function ClientShell({ children }) {
 
   if (isAdmin) {
     return <main className="admin-root-wrapper">{children}</main>;
+  }
+
+  // Standalone 404 Page without Navbar & Footer
+  if (!isValidRoute) {
+    return (
+      <>
+        <MagicCursor />
+        <main className="not-found-root-wrapper">{children}</main>
+      </>
+    );
   }
 
   return (

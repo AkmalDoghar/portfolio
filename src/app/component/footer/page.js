@@ -6,7 +6,7 @@ import "./footer.css";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const [copyrightName, setCopyrightName] = useState("Rana Akmal");
+  const [copyrightName, setCopyrightName] = useState("Muhammad Akmal");
 
   useEffect(() => {
     fetch("/api/admin/settings", { cache: "no-store" })

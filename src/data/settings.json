@@ -1,6 +1,6 @@
 {
   "name": "Muhammad Akmal",
-  "copyrightName": "Rana Akmal",
+  "copyrightName": "Muhammad Akmal",
   "navbarLogoText": "Akmal",
   "email": "m.akmal.dev42@gmail.com",
   "location": "Pakistan (Remote Worldwide)",
@@ -10,25 +10,25 @@
   "facebook": "https://www.facebook.com/",
   "instagram": "https://www.instagram.com/muhammadakmal1225/",
   "whatsapp": "https://wa.me/923017697832",
-  "heroTitle": "Full-Stack Next.js Developer Building Fast, Production-Ready Web Apps",
+  "heroTitle": "Full-Stack Next.js Developer",
   "typingWords": [
-    "Full-Stack JavaScript Developer",
-    "Next.js & React Engineer",
-    "Node.js & MongoDB Specialist"
+    "Full-Stack Next.js Developer",
+    "React & Node.js Engineer",
+    "MongoDB & API Architect"
   ],
-  "heroDescription": "I build fast, production-ready web apps — from responsive frontends to robust back-end APIs and admin dashboards. Currently available for freelance projects and full-time developer roles.",
+  "heroDescription": "I build modern, scalable web applications using Next.js, React, Node.js and MongoDB.",
   "heroImage": "/Akmal1.png",
   "badge1Title": "Full-Stack JS",
   "badge1Sub": "Next.js • React • Node • Mongo",
   "badge2Title": "Web Apps",
   "badge2Sub": "Fast & Scalable",
   "aboutImage": "/Akmal2.png",
-  "aboutTag": "FULL-STACK WEB ENGINEER",
+  "aboutTag": "FULL-STACK NEXT.JS DEVELOPER",
   "aboutTitle": "Crafting Scalable Digital Products with Clean Architecture",
   "aboutDescription1": "I'm Muhammad Akmal, a full-stack JavaScript engineer who builds web applications from the ground up — database schema design, RESTful APIs, server-side logic, and responsive user interfaces.",
   "aboutDescription2": "Primary focus on Next.js, React, Node.js, and MongoDB. I emphasize clean code, structured commit histories, clear documentation, and seamless deployments.",
   "aboutYearsExp": "1+",
-  "aboutProjectsBuilt": "8+",
+  "aboutProjectsBuilt": "7+",
   "aboutLiveDeployed": "3+",
-  "updatedAt": "2026-09-17T06:25:34.745Z"
+  "updatedAt": "2026-09-28T22:00:00.000Z"
 }

@@ -60,23 +60,39 @@
   "professional": [
     {
       "id": 1,
-      "name": "Problem Solving",
-      "percent": 85
+      "name": "Responsive UI Development",
+      "level": "Expert",
+      "capabilities": "Mobile-first layouts, glassmorphism UI & smooth CSS animations"
     },
     {
       "id": 2,
-      "name": "Clean Architecture",
-      "percent": 85
+      "name": "REST API Integration",
+      "level": "Advanced",
+      "capabilities": "JSON payloads, async fetch, error handling & state sync"
     },
     {
       "id": 3,
-      "name": "Team Communication",
-      "percent": 80
+      "name": "Authentication & Security",
+      "level": "Advanced",
+      "capabilities": "JWT tokens, NextAuth, HTTP-Only cookies & role guards"
     },
     {
       "id": 4,
-      "name": "Project Delivery",
-      "percent": 75
+      "name": "Database Architecture",
+      "level": "Intermediate",
+      "capabilities": "Mongoose schemas, indexed queries, CRUD & data validation"
+    },
+    {
+      "id": 5,
+      "name": "Deployment & Maintenance",
+      "level": "Advanced",
+      "capabilities": "Vercel deployments, environment configs & git version control"
+    },
+    {
+      "id": 6,
+      "name": "Bug Fixing & Performance",
+      "level": "Advanced",
+      "capabilities": "Code auditing, re-render fixes & Lighthouse score optimization"
     }
   ],
   "tools": [

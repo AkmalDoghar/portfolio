@@ -98,7 +98,7 @@ export default function Navbar() {
 
   const handleEmailClick = (e) => {
     e.preventDefault();
-    const targetEmail = email || "84pakarmy@gmail.com";
+    const targetEmail = email || "m.akmal.dev42@gmail.com";
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(targetEmail)}`;
     const win = window.open(gmailUrl, "_blank");
     if (!win || win.closed || typeof win.closed === "undefined") {

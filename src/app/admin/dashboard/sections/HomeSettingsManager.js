@@ -535,7 +535,7 @@ export default function HomeSettingsManager({ onUpdate }) {
                 name="copyrightName"
                 value={form.copyrightName || ""}
                 onChange={handleChange}
-                placeholder="Rana Akmal"
+                placeholder="Muhammad Akmal"
               />
             </div>
           </div>

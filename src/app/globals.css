@@ -157,11 +157,13 @@ body {
   transform: translateY(0) translateX(0) scale(1);
 }
 
-/* Remove navbar top padding in admin mode */
+/* Remove navbar top padding in admin mode and 404 page */
 body.admin-mode,
 body:has(.admin-login-page),
-body:has(.dash-root) {
+body:has(.dash-root),
+body:has(.not-found-root-wrapper) {
   padding-top: 0 !important;
+  overflow: hidden;
 }
 
 /* Force standard mouse cursors in admin mode */

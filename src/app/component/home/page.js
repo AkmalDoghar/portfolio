@@ -1,20 +1,32 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { FaFacebook, FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaGithub,
+  FaLinkedin,
+  FaInstagram,
+  FaWhatsapp,
+} from "react-icons/fa";
+import {
+  FiDownload,
+  FiMail,
+  FiGithub,
+  FiArrowRight,
+} from "react-icons/fi";
 import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./home.css";
 
 const DEFAULT_SETTINGS = {
   name: "Muhammad Akmal",
-  email: "84pakarmy@gmail.com",
+  email: "m.akmal.dev42@gmail.com",
   github: "https://github.com/AkmalDoghar",
   linkedin: "https://www.linkedin.com/in/muhammad-akmal-dev/",
   facebook: "https://www.facebook.com/",
   instagram: "https://www.instagram.com/muhammadakmal1225/",
   whatsapp: "https://wa.me/923017697832",
-  heroTitle: "Full-Stack Next.js Developer Building Fast, Production-Ready Web Apps",
+  heroTitle: "Building Fast, Production-Ready Web Apps",
   typingWords: [
     "Full-Stack JavaScript Developer",
     "Next.js & React Engineer",
@@ -44,9 +56,7 @@ export default function HomeSection() {
   useEffect(() => {
     fetch("/api/admin/cv", { cache: "no-store" })
       .then((r) => r.json())
-      .then((data) => {
-        if (data && data.url) setCvUrl(data.url);
-      })
+      .then((data) => { if (data?.url) setCvUrl(data.url); })
       .catch(() => {});
 
     fetch("/api/admin/settings", { cache: "no-store" })
@@ -65,18 +75,14 @@ export default function HomeSection() {
   }, []);
 
   useEffect(() => {
-    const initialDelay = setTimeout(() => {
-      setHasStarted(true);
-    }, 1500);
-    return () => clearTimeout(initialDelay);
+    const t = setTimeout(() => setHasStarted(true), 1500);
+    return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {
     if (!hasStarted || words.length === 0) return;
-
     const current = words[wordIndex % words.length] || "";
-    let typingSpeed = isDeleting ? 80 : 120;
-
+    const speed = isDeleting ? 80 : 120;
     const type = setTimeout(() => {
       if (!isDeleting && charIndex < current.length) {
         setCurrentWord(current.substring(0, charIndex + 1));
@@ -90,12 +96,10 @@ export default function HomeSection() {
         setIsDeleting(false);
         setWordIndex((prev) => (prev + 1) % words.length);
       }
-    }, typingSpeed);
-
+    }, speed);
     return () => clearTimeout(type);
   }, [charIndex, isDeleting, wordIndex, words, hasStarted]);
 
-  // Clean display github link
   const githubDisplay = settings.github
     ? settings.github.replace(/^https?:\/\//, "").replace(/\/$/, "")
     : "github.com/AkmalDoghar";
@@ -103,38 +107,58 @@ export default function HomeSection() {
   return (
     <section id="home" className="home">
       <ParticleMesh particleCount={45} />
+
       <div className="home-content">
-        <h2 data-reveal="fade-up" data-delay="0">
+        {/* Greeting Badge */}
+        <div className="hero-greeting-badge" data-reveal="fade-up" data-delay="0">
+          <span className="greeting-dot" />
+          <span>Available for Freelance & Full-Time</span>
+        </div>
+
+        {/* Main Heading */}
+        <h2 data-reveal="fade-up" data-delay="0.05">
+          <span className="hero-title-accent">Full-Stack Developer</span>{" "}
           {settings.heroTitle}
         </h2>
 
+        {/* Typing Role */}
         <div className="change-text" data-reveal="fade-up" data-delay="0.1">
           <h3>
-            And I&apos;m a{" "}
-            <span className="typing font-accent">{currentWord}|</span>
+            I&apos;m a{" "}
+            <span className="typing font-accent">{currentWord}</span>
+            <span className="typing-cursor">|</span>
           </h3>
         </div>
 
-        <p data-reveal="fade-up" data-delay="0.2">
+        {/* Description */}
+        <p data-reveal="fade-up" data-delay="0.15">
           {settings.heroDescription}
         </p>
 
-        <div className="info-box" data-reveal="fade-up" data-delay="0.25">
-          <div className="email-info">
-            <h5>Email :</h5>
-            <span>{settings.email}</span>
+        {/* Contact Info Cards */}
+        <div className="info-box" data-reveal="fade-up" data-delay="0.2">
+          <div className="info-card">
+            <div className="info-card-icon">
+              <FiMail />
+            </div>
+            <div className="info-card-body">
+              <span className="info-card-label">Email</span>
+              <span className="info-card-value">{settings.email}</span>
+            </div>
           </div>
-          <div className="behance-info">
-            <h5>GitHub :</h5>
-            <span>{githubDisplay}</span>
+          <div className="info-card">
+            <div className="info-card-icon">
+              <FiGithub />
+            </div>
+            <div className="info-card-body">
+              <span className="info-card-label">GitHub</span>
+              <span className="info-card-value">{githubDisplay}</span>
+            </div>
           </div>
         </div>
 
-        <div
-          className="box-btn home-btn-box"
-          data-reveal="fade-up"
-          data-delay="0.3"
-        >
+        {/* CTA Buttons */}
+        <div className="box-btn home-btn-box" data-reveal="fade-up" data-delay="0.25">
           <a
             href={cvUrl || "#"}
             download
@@ -142,83 +166,58 @@ export default function HomeSection() {
             rel="noopener noreferrer"
             className="btn1"
           >
-            Download CV
+            <FiDownload />
+            <span>Download CV</span>
           </a>
           <a
-            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-              settings.email
-            )}`}
+            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(settings.email)}`}
             target="_blank"
             rel="noreferrer"
             className="btn2"
           >
-            Hire Me
+            <span>Hire Me</span>
+            <FiArrowRight className="btn-arrow" />
           </a>
         </div>
 
-        <div className="social-icon" data-reveal="fade-up" data-delay="0.4">
+        {/* Social Icons */}
+        <div className="social-icon" data-reveal="fade-up" data-delay="0.3">
           {settings.facebook && (
-            <a
-              href={settings.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Facebook"
-            >
+            <a href={settings.facebook} target="_blank" rel="noopener noreferrer" title="Facebook">
               <FaFacebook />
             </a>
           )}
           {settings.github && (
-            <a
-              href={settings.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="GitHub"
-            >
+            <a href={settings.github} target="_blank" rel="noopener noreferrer" title="GitHub">
               <FaGithub />
             </a>
           )}
           {settings.linkedin && (
-            <a
-              href={settings.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="LinkedIn"
-            >
+            <a href={settings.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn">
               <FaLinkedin />
             </a>
           )}
           {settings.instagram && (
-            <a
-              href={settings.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="Instagram"
-            >
+            <a href={settings.instagram} target="_blank" rel="noopener noreferrer" title="Instagram">
               <FaInstagram />
             </a>
           )}
           {settings.whatsapp && (
-            <a
-              href={settings.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              title="WhatsApp"
-            >
+            <a href={settings.whatsapp} target="_blank" rel="noopener noreferrer" title="WhatsApp">
               <FaWhatsapp />
             </a>
           )}
         </div>
       </div>
 
+      {/* Right Image */}
       <div className="home-image" data-reveal="fade-left" data-delay="0.15">
         <div className="hero-image-wrapper">
-          {/* Ambient Glow & Accent Backdrop */}
           <div className="hero-glow-backdrop"></div>
           <div className="hero-ring-accent"></div>
           <div className="hero-ring-accent-2"></div>
           <div className="hero-dots-accent"></div>
 
-          {/* Main Cutout Image */}
           <div className="hero-img-container">
             <Image
               src={settings.heroImage || "/Akmal1.png"}
@@ -230,7 +229,6 @@ export default function HomeSection() {
             />
           </div>
 
-          {/* Floating Badges */}
           <div className="floating-badge badge-top-right">
             <div className="badge-icon-box">⚡</div>
             <div className="badge-text">

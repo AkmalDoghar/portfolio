@@ -68,10 +68,12 @@ export function getSkills() {
       { id: 7, name: "Git & GitHub", percent: 85, class: "git", level: "Intermediate", capabilities: "Version control, branching & pull requests" },
     ],
     professional: [
-      { id: 1, name: "Problem Solving", percent: 85 },
-      { id: 2, name: "Clean Architecture", percent: 85 },
-      { id: 3, name: "Team Communication", percent: 80 },
-      { id: 4, name: "Project Delivery", percent: 75 },
+      { id: 1, name: "Responsive UI Development", level: "Expert", capabilities: "Mobile-first layouts, glassmorphism UI & smooth CSS animations" },
+      { id: 2, name: "REST API Integration", level: "Advanced", capabilities: "JSON payloads, async fetch, error handling & state sync" },
+      { id: 3, name: "Authentication & Security", level: "Advanced", capabilities: "JWT tokens, NextAuth, HTTP-Only cookies & role guards" },
+      { id: 4, name: "Database Architecture", level: "Intermediate", capabilities: "Mongoose schemas, indexed queries, CRUD & data validation" },
+      { id: 5, name: "Deployment & Maintenance", level: "Advanced", capabilities: "Vercel deployments, environment configs & git version control" },
+      { id: 6, name: "Bug Fixing & Performance", level: "Advanced", capabilities: "Code auditing, re-render fixes & Lighthouse score optimization" },
     ],
     tools: ["VS Code", "GitHub", "Vercel", "MongoDB Atlas", "Postman", "npm / npx", "Cloudinary"],
   };
@@ -158,10 +160,11 @@ export function getServices() {
   const saved = readFile("services");
   if (saved.length > 0) return saved;
   return [
-    { id: "fullstack", title: "Full-Stack Web Development", icon: "FaDesktop", shortDesc: "End-to-end web apps built with Next.js, Node.js, and MongoDB — from database to deployment.", fullDesc: "I build complete web applications — not just the part users see. That means designing the database schema, writing the API, handling auth, and building a fast, responsive frontend. I use Next.js for the UI layer, Node.js/Express for the server, and MongoDB for the database. I deploy on Vercel and Railway and hand off with clear documentation." },
-    { id: "dashboard", title: "Admin Dashboards", icon: "FaChartBar", shortDesc: "Custom management interfaces that give you real control over your data — no spreadsheets needed.", fullDesc: "Businesses need to manage products, orders, users, and reports without touching code. I build clean admin dashboards with real-time data tables, charts, search, filters, and role-based access. You get a tool that fits your workflow, not a generic template." },
-    { id: "api", title: "REST API Development", icon: "FaCode", shortDesc: "Secure, well-structured APIs that power your frontend, mobile app, or third-party integrations.", fullDesc: "I design and build REST APIs using Node.js and Express, with proper route structure, JWT authentication, input validation, and error handling. I follow REST conventions, document endpoints, and make sure the API is easy to integrate whether you're connecting a web app, mobile app, or external service." },
-    { id: "bugfix", title: "Bug Fixing & Performance", icon: "FaBug", shortDesc: "Slow page? Broken feature? I diagnose the issue and fix it — with proof that it's actually solved.", fullDesc: "I audit existing codebases for performance bottlenecks, memory leaks, broken API calls, and layout bugs. Whether it's a React re-rendering issue, a slow MongoDB query, or a CSS layout that breaks on mobile — I find the root cause and fix it properly, not patch it temporarily." },
+    { id: "fullstack", title: "Full-Stack Web Development", icon: "FaDesktop", shortDesc: "End-to-end web applications built with Next.js, React, Node.js, and MongoDB — from database to deployment.", fullDesc: "I build complete, responsive web applications designed for performance and SEO. That includes database schema design, RESTful APIs, secure authentication, serverless functions, and interactive user interfaces." },
+    { id: "dashboard", title: "Dashboard & Admin Panel Development", icon: "FaChartBar", shortDesc: "Custom management interfaces giving you real-time control over products, users, and business analytics.", fullDesc: "Businesses need clear admin controls without touching code. I build custom admin dashboards with real-time data tables, dynamic charts, CSV exports, role-based access, and instant database CMS synchronization." },
+    { id: "api", title: "API Development & Integration", icon: "FaCode", shortDesc: "Secure, RESTful APIs powering web apps, mobile services, and third-party API integrations.", fullDesc: "I engineer REST APIs using Node.js, Express, and Next.js Route Handlers with structured JSON payloads, JWT authentication middleware, rate limiting, and comprehensive endpoint documentation." },
+    { id: "database", title: "Database Architecture & Development", icon: "FaDatabase", shortDesc: "Scalable MongoDB document schemas, Mongoose models, indexing, and efficient CRUD query execution.", fullDesc: "I design robust document databases optimized for high read/write performance, schema validation, data aggregation pipelines, and secure cloud backups on MongoDB Atlas." },
+    { id: "bugfix", title: "Bug Fixing & Performance Optimization", icon: "FaBug", shortDesc: "Auditing existing codebases for layout glitches, slow queries, memory leaks, and Lighthouse optimization.", fullDesc: "I inspect existing React/Next.js applications to fix broken state logic, CSS layout bugs, hydration errors, slow API calls, and optimize bundle sizes for sub-second page loads." }
   ];
 }
 
@@ -260,7 +263,7 @@ export function getCaseStudy() {
       points: [
         "Next.js Image component optimization with WebP encoding",
         "Asynchronous script loading & font subsetting",
-        "Sub-100ms First Contentful Paint (FCP) delivery",
+        "Optimized First Contentful Paint (FCP) delivery",
       ],
       accent: "amber",
       span: 1,
@@ -309,9 +312,9 @@ export function getSettings() {
   }
   return {
     name: "Muhammad Akmal",
-    copyrightName: "Rana Akmal",
+    copyrightName: "Muhammad Akmal",
     navbarLogoText: "Akmal",
-    email: "84pakarmy@gmail.com",
+    email: "m.akmal.dev42@gmail.com",
     location: "Pakistan (Remote Worldwide)",
     responseTime: "Within 24 hours guaranteed",
     github: "https://github.com/AkmalDoghar",
@@ -319,25 +322,25 @@ export function getSettings() {
     facebook: "https://www.facebook.com/",
     instagram: "https://www.instagram.com/muhammadakmal1225/",
     whatsapp: "https://wa.me/923017697832",
-    heroTitle: "Full-Stack Next.js Developer Building Fast, Production-Ready Web Apps",
+    heroTitle: "Full-Stack Next.js Developer",
     typingWords: [
-      "Full-Stack JavaScript Developer",
-      "Next.js & React Engineer",
-      "Node.js & MongoDB Specialist"
+      "Full-Stack Next.js Developer",
+      "React & Node.js Engineer",
+      "MongoDB & API Architect"
     ],
-    heroDescription: "I build fast, production-ready web apps — from responsive frontends to robust back-end APIs and admin dashboards. Currently available for freelance projects and full-time developer roles.",
+    heroDescription: "I build modern, scalable web applications using Next.js, React, Node.js and MongoDB.",
     heroImage: "/Akmal1.png",
     badge1Title: "Full-Stack JS",
     badge1Sub: "Next.js • React • Node • Mongo",
     badge2Title: "Web Apps",
     badge2Sub: "Fast & Scalable",
     aboutImage: "/Akmal2.png",
-    aboutTag: "FULL-STACK WEB ENGINEER",
+    aboutTag: "FULL-STACK NEXT.JS DEVELOPER",
     aboutTitle: "Crafting Scalable Digital Products with Clean Architecture",
     aboutDescription1: "I'm Muhammad Akmal, a full-stack JavaScript engineer who builds web applications from the ground up — database schema design, RESTful APIs, server-side logic, and responsive user interfaces.",
     aboutDescription2: "Primary focus on Next.js, React, Node.js, and MongoDB. I emphasize clean code, structured commit histories, clear documentation, and seamless deployments.",
     aboutYearsExp: "1+",
-    aboutProjectsBuilt: "8+",
+    aboutProjectsBuilt: "7+",
     aboutLiveDeployed: "3+"
   };
 }

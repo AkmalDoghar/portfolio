@@ -5,7 +5,7 @@
     "role": "Lead Full-Stack Developer & UI/UX Designer",
     "category": "web",
     "img": "/images/uploads/project-1787643597701.png",
-    "description": "SkyPulse PRO is a high-performance, real-time Progressive Web App (PWA) delivering hyper-accurate weather forecasts, interactive radar metrics, dynamic frosted glassmorphism themes, and AI-driven weather summaries.",
+    "description": "SkyPulse PRO is a high-performance, real-time Progressive Web App (PWA) delivering accurate weather forecasts, interactive radar metrics, dynamic frosted glassmorphism themes, and AI-driven weather summaries.",
     "tech": [
       "Next.js",
       "React",
@@ -172,7 +172,7 @@
       "Responsive on all devices"
     ],
     "result": "Engineered full-stack e-commerce architecture with product catalog, cart persistence, and admin CRUD controls.",
-    "link": "https://github.com/Timigill/elevaredigital",
+    "link": "https://elevaredigital.vercel.app",
     "github": "https://github.com/Timigill/elevaredigital"
   }
 ]

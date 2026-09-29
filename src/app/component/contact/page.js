@@ -50,6 +50,7 @@ export default function Contact() {
     const form = e.target;
     const name = form.name?.value?.trim() || "";
     const email = form.email?.value?.trim() || "";
+    const subject = form.subject?.value?.trim() || "General Inquiry";
     const message = form.message?.value?.trim() || "";
 
     if (!name) {
@@ -71,7 +72,7 @@ export default function Contact() {
 
     setStatus("submitting");
 
-    const data = { name, email, message };
+    const data = { name, email, subject, message };
 
     try {
       const res = await fetch("/api/contact", {
@@ -243,6 +244,15 @@ export default function Contact() {
                   required
                 />
               </div>
+            </div>
+
+            <div className="input-field-wrap">
+              <input
+                name="subject"
+                type="text"
+                placeholder="Subject / Project Type (e.g. Next.js App, Freelance Work)"
+                aria-label="Subject or Project Type"
+              />
             </div>
 
             <div className="input-field-wrap">

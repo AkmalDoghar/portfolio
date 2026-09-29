@@ -3,28 +3,35 @@
     "id": "fullstack",
     "title": "Full-Stack Web Development",
     "icon": "FaDesktop",
-    "shortDesc": "End-to-end web apps built with Next.js, Node.js, and MongoDB — from database to deployment.",
-    "fullDesc": "I build complete web applications — not just the part users see. That means designing the database schema, writing the API, handling auth, and building a fast, responsive frontend. I use Next.js for the UI layer, Node.js/Express for the server, and MongoDB for the database. I deploy on Vercel and Railway and hand off with clear documentation."
+    "shortDesc": "End-to-end web applications built with Next.js, React, Node.js, and MongoDB — from database to deployment.",
+    "fullDesc": "I build complete, responsive web applications designed for performance and SEO. That includes database schema design, RESTful APIs, secure authentication, serverless functions, and interactive user interfaces."
   },
   {
     "id": "dashboard",
-    "title": "Admin Dashboards",
+    "title": "Dashboard & Admin Panel Development",
     "icon": "FaChartBar",
-    "shortDesc": "Custom management interfaces that give you real control over your data — no spreadsheets needed.",
-    "fullDesc": "Businesses need to manage products, orders, users, and reports without touching code. I build clean admin dashboards with real-time data tables, charts, search, filters, and role-based access. You get a tool that fits your workflow, not a generic template."
+    "shortDesc": "Custom management interfaces giving you real-time control over products, users, and business analytics.",
+    "fullDesc": "Businesses need clear admin controls without touching code. I build custom admin dashboards with real-time data tables, dynamic charts, CSV exports, role-based access, and instant database CMS synchronization."
   },
   {
     "id": "api",
-    "title": "REST API Development",
+    "title": "API Development & Integration",
     "icon": "FaCode",
-    "shortDesc": "Secure, well-structured APIs that power your frontend, mobile app, or third-party integrations.",
-    "fullDesc": "I design and build REST APIs using Node.js and Express, with proper route structure, JWT authentication, input validation, and error handling. I follow REST conventions, document endpoints, and make sure the API is easy to integrate whether you're connecting a web app, mobile app, or external service."
+    "shortDesc": "Secure, RESTful APIs powering web apps, mobile services, and third-party API integrations.",
+    "fullDesc": "I engineer REST APIs using Node.js, Express, and Next.js Route Handlers with structured JSON payloads, JWT authentication middleware, rate limiting, and comprehensive endpoint documentation."
+  },
+  {
+    "id": "database",
+    "title": "Database Architecture & Development",
+    "icon": "FaDatabase",
+    "shortDesc": "Scalable MongoDB document schemas, Mongoose models, indexing, and efficient CRUD query execution.",
+    "fullDesc": "I design robust document databases optimized for high read/write performance, schema validation, data aggregation pipelines, and secure cloud backups on MongoDB Atlas."
   },
   {
     "id": "bugfix",
-    "title": "Bug Fixing & Performance",
+    "title": "Bug Fixing & Performance Optimization",
     "icon": "FaBug",
-    "shortDesc": "Slow page? Broken feature? I diagnose the issue and fix it — with proof that it's actually solved.",
-    "fullDesc": "I audit existing codebases for performance bottlenecks, memory leaks, broken API calls, and layout bugs. Whether it's a React re-rendering issue, a slow MongoDB query, or a CSS layout that breaks on mobile — I find the root cause and fix it properly, not patch it temporarily."
+    "shortDesc": "Auditing existing codebases for layout glitches, slow queries, memory leaks, and Lighthouse optimization.",
+    "fullDesc": "I inspect existing React/Next.js applications to fix broken state logic, CSS layout bugs, hydration errors, slow API calls, and optimize bundle sizes for sub-second page loads."
   }
 ]

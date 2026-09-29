@@ -173,11 +173,11 @@ export default function Portfolio() {
                     </div>
                   )}
 
-                  {/* Features Bullet Preview */}
+                  {/* Features Bullet Preview (3 Key Features) */}
                   {Array.isArray(project.features) && project.features.length > 0 && (
                     <div className="port-features-preview">
                       <ul>
-                        {project.features.slice(0, 2).map((f, i) => (
+                        {project.features.slice(0, 3).map((f, i) => (
                           <li key={i}>
                             <FaCircleCheck className="feat-check-icon" />
                             <span>{f}</span>

@@ -341,21 +341,12 @@ export default function Skills() {
                     </div>
                   </div>
 
-                  {/* Visual Progress Bar */}
-                  <div className="bento-progress-container">
-                    <div className="bento-progress-info">
-                      <span>Proficiency</span>
-                      <span className="bento-percent">{isVisible ? skill.percent : 0}%</span>
-                    </div>
-                    <div className="bento-progress-track">
-                      <div
-                        className="bento-progress-fill"
-                        style={{
-                          width: isVisible ? `${skill.percent}%` : "0%",
-                          transitionDelay: `${index * 0.08}s`,
-                        }}
-                      ></div>
-                    </div>
+                  {/* Clean Level Display */}
+                  <div className="bento-level-container">
+                    <span className="bento-level-tag">
+                      <span className="bento-pulse-dot"></span>
+                      {skill.level || "Proficient"}
+                    </span>
                   </div>
 
                   {/* Capabilities Chips */}
@@ -407,7 +398,7 @@ export default function Skills() {
         {(activeTab === "all" || activeTab === "professional") && (
           <div key={`prof-block-${activeTab}`} className="bento-prof-block bento-animate-in">
             <div className="bento-section-title">
-              <FaBrain /> <h3>Engineering Mindset &amp; Soft Skills</h3>
+              <FaBrain /> <h3>What I Bring — Core Capabilities</h3>
             </div>
             <div className="bento-prof-grid">
               {skillsData.professional.map((prof, i) => (
@@ -420,20 +411,17 @@ export default function Skills() {
                     {getProfIcon(prof.icon || (i === 0 ? "brain" : i === 1 ? "sitemap" : i === 2 ? "comments" : "rocket"))}
                     <div>
                       <h5>{prof.name}</h5>
-                      {prof.desc && <p className="bento-prof-desc">{prof.desc}</p>}
+                      {prof.level && (
+                        <div className="bento-level-container" style={{ marginTop: "4px", marginBottom: "4px" }}>
+                          <span className="bento-level-tag">{prof.level}</span>
+                        </div>
+                      )}
+                      {prof.capabilities && (
+                        <p className="bento-prof-desc" style={{ fontSize: "0.82rem", color: "#808a9d", marginTop: "4px" }}>
+                          {prof.capabilities}
+                        </p>
+                      )}
                     </div>
-                  </div>
-                  <div className="bento-prof-bar-wrap">
-                    <div className="bento-prof-bar-track">
-                      <div
-                        className="bento-prof-bar-fill"
-                        style={{
-                          width: isVisible ? `${prof.percent}%` : "0%",
-                          transitionDelay: `${0.1 + i * 0.08}s`,
-                        }}
-                      ></div>
-                    </div>
-                    <span className="bento-prof-val">{isVisible ? prof.percent : 0}%</span>
                   </div>
                 </div>
               ))}

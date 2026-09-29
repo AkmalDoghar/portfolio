@@ -32,7 +32,7 @@ export async function POST(req) {
     }
 
     const data = await req.json();
-    const { name, email, message, botcheck } = data;
+    const { name, email, subject, message, botcheck } = data;
 
     // Honeypot check for automated bots
     if (botcheck) {
@@ -64,6 +64,8 @@ export async function POST(req) {
       );
     }
 
+    const emailSubject = subject && subject.trim() ? subject.trim() : "General Inquiry";
+
     // If SMTP environment variables are configured, send real email
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       const transporter = nodemailer.createTransport({
@@ -78,11 +80,12 @@ export async function POST(req) {
         from: process.env.EMAIL_USER,
         replyTo: email.trim(),
         to: process.env.EMAIL_USER,
-        subject: `Portfolio Contact: ${name.trim()}`,
+        subject: `Portfolio Contact [${emailSubject}]: ${name.trim()}`,
         text: `New contact submission from portfolio website:
 
 Name: ${name.trim()}
 Email: ${email.trim()}
+Subject / Project Type: ${emailSubject}
 
 Message:
 ${message.trim()}
@@ -94,6 +97,7 @@ ${message.trim()}
       console.log("Contact form submission logged (SMTP credentials not set):", {
         name,
         email,
+        subject: emailSubject,
         message,
         timestamp: new Date().toISOString(),
       });

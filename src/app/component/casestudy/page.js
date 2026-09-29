@@ -1,14 +1,15 @@
 "use client";
 import {
   FiAlertCircle,
-  FiLayers,
-  FiZap,
+  FiUserCheck,
   FiCheckCircle,
+  FiList,
+  FiCode,
+  FiZap,
   FiTrendingUp,
-  FiShield,
-  FiCpu,
-  FiDatabase,
+  FiExternalLink,
   FiGithub,
+  FiMessageSquare,
 } from "react-icons/fi";
 import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
@@ -16,68 +17,74 @@ import "./casestudy.css";
 
 const sections = [
   {
-    badge: "CHALLENGE",
+    step: "01",
+    badge: "PROBLEM STATEMENT",
     colorClass: "case-card--problem",
     icon: <FiAlertCircle />,
-    title: "The Problem",
+    title: "01 — The Problem",
     content:
-      "Small retail businesses need a modern e-commerce storefront paired with an intuitive administrative portal, enabling staff to handle product listings, view incoming orders, and update inventory independently.",
+      "Retail client needed an independent e-commerce storefront paired with an admin panel. Legacy manual inventory handling led to stock errors, untracked orders, and slow client updates.",
+    bullets: ["Untracked manual inventory", "Lack of role-based admin panel", "Slow mobile page speed"],
   },
   {
-    badge: "ARCHITECTURE",
+    step: "02",
+    badge: "ENGINEERING ROLE",
     colorClass: "case-card--approach",
-    icon: <FiLayers />,
-    title: "My Approach",
+    icon: <FiUserCheck />,
+    title: "02 — My Role",
     content:
-      "Mapped out core user journeys: product catalog browsing, client-side cart interaction, checkout workflows, and administrative management. Selected Next.js server-side rendering and MongoDB with JWT for route security.",
+      "Lead Full-Stack Developer — Managed architecture design, Next.js 14 App Router frontend, Node/Express API routes, JWT security, and MongoDB schema optimization.",
+    bullets: ["Database Schema Architect", "REST API & Auth Engineer", "UI/UX & State Manager"],
   },
   {
-    badge: "BOTTLENECKS",
-    colorClass: "case-card--challenges",
-    icon: <FiZap />,
-    title: "Key Hurdles",
-    content:
-      "Persisting cart state seamlessly across browser sessions, restricting administrative portal access strictly to authorized roles, and managing lightweight image asset uploads without server performance degradation.",
-  },
-  {
-    badge: "SOLUTION",
+    step: "03",
+    badge: "SYSTEM ARCHITECTURE",
     colorClass: "case-card--solutions",
     icon: <FiCheckCircle />,
-    title: "Engineered Solutions",
+    title: "03 — The Solution",
     content:
-      "Implemented a React Context sync provider with localStorage for persistent carts, Next.js route middleware guards for admin role authorization, and integrated Cloudinary CDN API for optimized media handling.",
+      "Built a full-stack Next.js application with MongoDB Atlas. Features persistent localStorage cart state, dynamic SSR product routes, and secure admin CRUD interface.",
+    bullets: ["Next.js SSR & Server Actions", "Persistent Client Shopping Cart", "Admin Portal CRUD Operations"],
   },
   {
-    badge: "SECURITY & SHIELD",
-    colorClass: "case-card--security",
-    icon: <FiShield />,
-    title: "Auth & Access Guards",
+    step: "04",
+    badge: "KEY DELIVERABLES",
+    colorClass: "case-card--features",
+    icon: <FiList />,
+    title: "04 — Key Features",
     content:
-      "Secured administrative API endpoints using JSON Web Tokens (JWT), password hashing with bcrypt, input sanitization, and strict middleware guards to block unauthorized requests.",
+      "Product Catalog Filters, Cart Persistence, JWT & NextAuth Security, Admin Product & Order CRUD Management, and Glassmorphic Mobile Layout.",
+    bullets: ["Instant Filterable Catalog", "Protected Admin Routes", "Real-Time Order Tracking"],
   },
   {
-    badge: "PERFORMANCE",
+    step: "05",
+    badge: "TECH STACK",
     colorClass: "case-card--performance",
-    icon: <FiCpu />,
-    title: "Speed Optimization",
+    icon: <FiCode />,
+    title: "05 — Tech Stack",
     content:
-      "Achieved sub-100ms API response times by leveraging Next.js server components, automatic WebP image compression, dynamic route caching, and lightweight client JS bundles.",
+      "Leveraged modern full-stack web technologies to ensure sub-second response times and maintainability across deployment environments.",
+    bullets: ["Next.js 14 • React • Node.js", "MongoDB • Mongoose • JWT", "TailwindCSS • Vercel"],
   },
   {
-    badge: "DATA MODEL",
-    colorClass: "case-card--database",
-    icon: <FiDatabase />,
-    title: "Flexible Schema Design",
+    step: "06",
+    badge: "CHALLENGES SOLVED",
+    colorClass: "case-card--challenges",
+    icon: <FiZap />,
+    title: "06 — Technical Hurdles",
     content:
-      "Structured indexed MongoDB document collections for products, inventory stock, customer orders, and admin credentials to ensure fast read-heavy query execution.",
+      "Prevented cart state loss across reloads, enforced HTTP-Only cookie auth middleware for admin routes, and optimized image handling using CDN compression.",
+    bullets: ["React Context state hydration", "Next.js Route Middleware guards", "Cloudinary CDN image optimization"],
   },
   {
-    badge: "OUTCOME & IMPACT",
+    step: "07",
+    badge: "MEASURABLE OUTCOME",
     colorClass: "case-card--outcome",
     icon: <FiTrendingUp />,
-    title: "Production Impact",
+    title: "07 — Measurable Result",
     content:
-      "Engineered a production-ready e-commerce pattern with fast initial page loads, 100% responsive administrative workflows, and a scalable modular foundation for web client deployments.",
+      "Delivered a production-ready application achieving fast page rendering, 100% responsive admin workflows, and robust error handling.",
+    bullets: ["Sub-second API response", "100% Mobile & Desktop Sync", "Zero-downtime Vercel Deploy"],
   },
 ];
 
@@ -88,10 +95,10 @@ export default function CaseStudy() {
     <section id="casestudy" className="casestudy">
       <ParticleMesh particleCount={35} />
       <div className="main-text" data-reveal="fade-up" data-delay="0">
-        <span>Deep Dive &amp; System Architecture</span>
+        <span>System Architecture &amp; Execution</span>
         <h2>Featured Case Study</h2>
         <p className="casestudy-project-name">
-          Elevare Digital Store — Full-Stack E-Commerce Portal
+          Elevare Digital Store — Full-Stack E-Commerce &amp; Admin Portal
         </p>
       </div>
 
@@ -109,19 +116,50 @@ export default function CaseStudy() {
             </div>
             <h3 className="font-accent">{sec.title}</h3>
             <p>{sec.content}</p>
+            {sec.bullets && (
+              <div className="casestudy-bullets">
+                {sec.bullets.map((b, i) => (
+                  <span key={i} className="casestudy-bullet-tag">
+                    ✓ {b}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
 
-      <div className="casestudy-proof-actions" data-reveal="fade-up" data-delay="0.3">
-        <a
-          href="https://github.com/Timigill/elevaredigital"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="casestudy-proof-btn"
-        >
-          <FiGithub /> <span>Inspect Repository Source Code</span>
-        </a>
+      {/* Bottom Proof & CTA Buttons */}
+      <div className="casestudy-proof-container" data-reveal="fade-up" data-delay="0.2">
+        <div className="casestudy-proof-header">
+          <span className="proof-step-badge">08 — PROOF &amp; LINKS</span>
+          <h3>Explore Live Proof &amp; Source Code</h3>
+          <p>Inspect the complete codebase repository or test the live e-commerce platform demo.</p>
+        </div>
+
+        <div className="casestudy-proof-btn-group">
+          <a
+            href="https://github.com/AkmalDoghar/weather-app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="casestudy-btn casestudy-btn--primary"
+          >
+            <FiGithub /> <span>Source Code (GitHub)</span>
+          </a>
+
+          <a
+            href="https://skyplusweather.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="casestudy-btn casestudy-btn--demo"
+          >
+            <FiExternalLink /> <span>Live Application Demo</span>
+          </a>
+
+          <a href="#contact" className="casestudy-btn casestudy-btn--contact">
+            <FiMessageSquare /> <span>Build Similar Project</span>
+          </a>
+        </div>
       </div>
     </section>
   );
