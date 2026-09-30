@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import "./LogoIntro.css";
 
-export default function LogoIntro() {
+export default function LogoIntro({ onDone }) {
   const [phase, setPhase] = useState("entering"); // entering -> holding -> exiting -> done
   const [shouldShow, setShouldShow] = useState(false);
 
@@ -14,6 +14,7 @@ export default function LogoIntro() {
     if (hasSeen || !isHomePage) {
       setPhase("done");
       setShouldShow(false);
+      onDone?.();
       return;
     }
 
@@ -30,6 +31,7 @@ export default function LogoIntro() {
       document.body.style.overflow = "";
       sessionStorage.setItem("hasSeenIntro", "true");
       setPhase("done");
+      onDone?.();
     }, 2800);
 
     return () => {

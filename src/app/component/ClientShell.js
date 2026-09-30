@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "./navbar/page";
 import Footer from "./footer/page";
 import MagicCursor from "./MagicCursor/page";
@@ -16,6 +16,9 @@ export default function ClientShell({ children }) {
     pathname === "/services" ||
     pathname?.startsWith("/services/") ||
     pathname?.startsWith("/admin");
+
+  // Track whether intro has completed so we can reveal Navbar
+  const [introComplete, setIntroComplete] = useState(false);
 
   useEffect(() => {
     if (isAdmin) {
@@ -42,11 +45,21 @@ export default function ClientShell({ children }) {
 
   return (
     <>
-      <LogoIntro />
+      <LogoIntro onDone={() => setIntroComplete(true)} />
       <MagicCursor />
-      <Navbar />
+      {/* Navbar: hidden with opacity until intro finishes, then fades in smoothly */}
+      <div
+        style={{
+          opacity: introComplete ? 1 : 0,
+          pointerEvents: introComplete ? "auto" : "none",
+          transition: "opacity 0.5s ease",
+        }}
+      >
+        <Navbar />
+      </div>
       <main>{children}</main>
       <Footer />
     </>
   );
 }
+
