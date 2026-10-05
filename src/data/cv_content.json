@@ -1,0 +1,104 @@
+{
+  "activeTemplate": "minimalist",
+  "personalInfo": {
+    "name": "Muhammad Akmal",
+    "title": "Full-Stack Next.js & React Developer",
+    "email": "m.akmal.dev42@gmail.com",
+    "phone": "+92 301 7697832",
+    "location": "Pakistan (Remote Worldwide)",
+    "summary": "I’m Muhammad Akmal, a passionate Web Developer and Computer Science student. I specialize in building modern, responsive, and user-friendly web applications. Skilled in React, Next.js, JavaScript, and modern web technologies. I enjoy turning ideas into clean, functional, and visually appealing digital experiences. Always learning, building, and improving my development skills.\n",
+    "github": "https://github.com/AkmalDoghar",
+    "linkedin": "https://www.linkedin.com/in/muhammad-akmal-dev/",
+    "website": "https://akmalcode.vercel.app"
+  },
+  "experience": [
+    {
+      "id": 1,
+      "company": "DaaS Tech · Libaas e Zauq (Clients)",
+      "role": "Freelance Full-Stack Developer",
+      "period": "2024 – Present",
+      "description": "Engineered responsive frontend storefronts, admin dashboards, and REST APIs tailored to client requirements.",
+      "bullets": [
+        "Developed Pakistani fashion e-commerce storefront (Libaas e Zauq) with mobile-first collection views",
+        "Built centralized admin panel for DaaS Tech to streamline client management and service orders",
+        "Configured Vercel deployments, custom domains, and DNS records"
+      ]
+    },
+    {
+      "id": 2,
+      "company": "Personal & Production Projects",
+      "role": "Full-Stack Web Engineer",
+      "period": "2024 – Present",
+      "description": "Architected end-to-end applications including SkyPulse PRO weather PWA and CartifyOutlet e-commerce platform.",
+      "bullets": [
+        "Built SkyPulse PRO PWA featuring OpenWeather API, 24h interactive charts, and AI weather summaries",
+        "Engineered full-stack e-commerce system with JWT authentication, cart persistence, and MongoDB schemas",
+        "Achieved 98+ Lighthouse performance scores across deployed web applications"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "degree": "Bachelor of Science in Computer Science / Web Engineering",
+      "institution": "Virtual University of Pakistan ",
+      "period": "2024",
+      "details": ""
+    }
+  ],
+  "skills": {
+    "frontend": [
+      "Next.js (App Router & SSR)",
+      "React.js & Hooks",
+      "JavaScript (ES6+)",
+      "TailwindCSS & CSS3",
+      "HTML5 & Responsive Layouts"
+    ],
+    "backend": [
+      "Node.js & Express",
+      "MongoDB & Mongoose",
+      "RESTful API Development",
+      "JWT & HTTP-Only Auth",
+      "NextAuth & OAuth 2.0",
+      "Server Middleware Guards"
+    ],
+    "tools": [
+      "Git & GitHub",
+      "Vercel Deployment",
+      "VS Code",
+      "npm / npx"
+    ]
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "SkyPulse PRO Weather PWA",
+      "tech": "Next.js, React, TailwindCSS, Chart.js, OpenWeather API",
+      "link": "https://skyplusweather.vercel.app/",
+      "github": "https://github.com/AkmalDoghar/weather-app",
+      "desc": "SkyPulse PRO is a high-performance, real-time Progressive Web App (PWA) delivering accurate weather forecasts, interactive radar metrics, dynamic frosted glassmorphism themes, and AI-driven weather summaries."
+    },
+    {
+      "id": 2,
+      "title": "DaaS Tech Admin Dashboard",
+      "tech": "Next.js, Node.js, MongoDB, Express, Redux",
+      "link": "https://daas-tech.vercel.app/",
+      "github": "https://github.com/Timigill/daas-tech",
+      "desc": "A scalable admin dashboard developed for DaaS Tech to manage clients, services, and digital projects efficiently through a centralized system."
+    },
+    {
+      "id": 3,
+      "title": "CartifyOutlet E-Commerce Platform",
+      "tech": "Next.js, Node.js, MongoDB, NextAuth, JWT",
+      "link": "https://www.cartifyoutlet.com/",
+      "github": "https://github.com/Timigill/Found",
+      "desc": "A full-stack e-commerce platform built to manage product listings, user authentication, and order workflows with a seamless shopping experience.Delivered full-stack e-commerce solution with OAuth authentication, cart state management, and order processing."
+    }
+  ],
+  "languages": [
+    "Urdu (Native / Fluent)",
+    "Punjabi (Fluent)",
+    "English (Full Professional Proficiency)"
+  ],
+  "primaryColor": "000"
+}

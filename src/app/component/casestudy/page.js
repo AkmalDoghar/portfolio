@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 import {
   FiAlertCircle,
   FiUserCheck,
@@ -15,81 +16,112 @@ import useScrollReveal from "../../hooks/useScrollReveal";
 import ParticleMesh from "../ParticleMesh/ParticleMesh";
 import "./casestudy.css";
 
-const sections = [
+const DEFAULT_SECTIONS = [
   {
-    step: "01",
+    id: "cs-1",
     badge: "PROBLEM STATEMENT",
     colorClass: "case-card--problem",
     icon: <FiAlertCircle />,
     title: "01 — The Problem",
     content:
-      "Retail client needed an independent e-commerce storefront paired with an admin panel. Legacy manual inventory handling led to stock errors, untracked orders, and slow client updates.",
-    bullets: ["Untracked manual inventory", "Lack of role-based admin panel", "Slow mobile page speed"],
+      "Standard weather apps are cluttered with ads, slow to load, lack offline support, and provide no real-time geolocation precision. Users needed a premium, installable PWA experience.",
+    bullets: ["No offline-capable weather apps", "Poor mobile performance & ads", "No AI-assisted weather insights"],
   },
   {
-    step: "02",
+    id: "cs-2",
     badge: "ENGINEERING ROLE",
     colorClass: "case-card--approach",
     icon: <FiUserCheck />,
     title: "02 — My Role",
     content:
-      "Lead Full-Stack Developer — Managed architecture design, Next.js 14 App Router frontend, Node/Express API routes, JWT security, and MongoDB schema optimization.",
-    bullets: ["Database Schema Architect", "REST API & Auth Engineer", "UI/UX & State Manager"],
+      "Lead Full-Stack Developer & UI/UX Designer — Managed PWA architecture, OpenWeather API integration, Chart.js data visualization, AI summary generation, and Framer Motion animations.",
+    bullets: ["PWA Architect & Service Worker", "API Integration & Data Pipeline", "UI/UX & Animation Engineer"],
   },
   {
-    step: "03",
+    id: "cs-3",
     badge: "SYSTEM ARCHITECTURE",
     colorClass: "case-card--solutions",
     icon: <FiCheckCircle />,
     title: "03 — The Solution",
     content:
-      "Built a full-stack Next.js application with MongoDB Atlas. Features persistent localStorage cart state, dynamic SSR product routes, and secure admin CRUD interface.",
-    bullets: ["Next.js SSR & Server Actions", "Persistent Client Shopping Cart", "Admin Portal CRUD Operations"],
+      "Built SkyPulse PRO as a Next.js PWA with OpenWeather API, real-time geolocation, 24-hour Chart.js forecasts, adaptive glassmorphism themes, and an integrated AI weather assistant.",
+    bullets: ["PWA with offline & install support", "Real-time Geolocation API", "Adaptive Dark/Light Glassmorphism"],
   },
   {
-    step: "04",
+    id: "cs-4",
     badge: "KEY DELIVERABLES",
     colorClass: "case-card--features",
     icon: <FiList />,
     title: "04 — Key Features",
     content:
-      "Product Catalog Filters, Cart Persistence, JWT & NextAuth Security, Admin Product & Order CRUD Management, and Glassmorphic Mobile Layout.",
-    bullets: ["Instant Filterable Catalog", "Protected Admin Routes", "Real-Time Order Tracking"],
+      "Real-time weather tracking, 7-day forecasts, AQI metrics, PWA installability, AI-powered daily summaries, and interactive Chart.js weather visualization.",
+    bullets: ["PWA Install + Offline Mode", "AI Weather Summary Assistant", "Interactive AQI & Radar Charts"],
   },
   {
-    step: "05",
+    id: "cs-5",
     badge: "TECH STACK",
     colorClass: "case-card--performance",
     icon: <FiCode />,
     title: "05 — Tech Stack",
     content:
-      "Leveraged modern full-stack web technologies to ensure sub-second response times and maintainability across deployment environments.",
-    bullets: ["Next.js 14 • React • Node.js", "MongoDB • Mongoose • JWT", "TailwindCSS • Vercel"],
+      "Modern frontend-focused stack chosen for PWA performance, smooth animations, and zero-backend real-time data delivery.",
+    bullets: ["Next.js 14 • React • TailwindCSS", "OpenWeather API • Chart.js", "Framer Motion • PWA Manifest"],
   },
   {
-    step: "06",
+    id: "cs-6",
     badge: "CHALLENGES SOLVED",
     colorClass: "case-card--challenges",
     icon: <FiZap />,
     title: "06 — Technical Hurdles",
     content:
-      "Prevented cart state loss across reloads, enforced HTTP-Only cookie auth middleware for admin routes, and optimized image handling using CDN compression.",
-    bullets: ["React Context state hydration", "Next.js Route Middleware guards", "Cloudinary CDN image optimization"],
+      "Managed geolocation permission fallbacks, implemented service worker caching for offline mode, and optimized Chart.js renders to prevent layout reflow on mobile.",
+    bullets: ["Geolocation permission fallback", "Service Worker offline caching", "Chart.js mobile re-render fix"],
   },
   {
-    step: "07",
+    id: "cs-7",
     badge: "MEASURABLE OUTCOME",
     colorClass: "case-card--outcome",
     icon: <FiTrendingUp />,
     title: "07 — Measurable Result",
     content:
-      "Delivered a production-ready application achieving fast page rendering, 100% responsive admin workflows, and robust error handling.",
-    bullets: ["Sub-second API response", "100% Mobile & Desktop Sync", "Zero-downtime Vercel Deploy"],
+      "Achieved 98+ Lighthouse performance score, sub-second page loads, native PWA installation on iOS and Android, and 100% mobile-responsive layout.",
+    bullets: ["98+ Lighthouse Score", "PWA install on iOS & Android", "Sub-second API response time"],
+  },
+  {
+    id: "cs-8",
+    badge: "PROOF & LINKS",
+    colorClass: "case-card--solutions",
+    icon: <FiCheckCircle />,
+    title: "08 — Live Applications",
+    content:
+      "Explore the open-source GitHub repository, inspect technical architecture, or test live production web applications.",
+    bullets: ["Open Source GitHub Repositories", "Live Production Deployments", "Clean Architecture Codebase"],
   },
 ];
 
 export default function CaseStudy() {
+  const [cards, setCards] = useState(DEFAULT_SECTIONS);
   useScrollReveal();
+
+  useEffect(() => {
+    fetch("/api/admin/casestudy", { cache: "no-store" })
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const mapped = data.map((item, idx) => ({
+            id: item.id || `cs-${idx}`,
+            badge: item.badge || "CASE STUDY",
+            colorClass: item.colorClass || (item.accent === "rose" ? "case-card--problem" : item.accent === "cyan" ? "case-card--approach" : item.accent === "amber" ? "case-card--features" : "case-card--solutions"),
+            icon: typeof item.icon === "string" ? item.icon : <FiCheckCircle />,
+            title: item.title,
+            content: item.desc || item.content || "",
+            bullets: Array.isArray(item.points) ? item.points : item.bullets || [],
+          }));
+          setCards(mapped);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <section id="casestudy" className="casestudy">
@@ -98,15 +130,15 @@ export default function CaseStudy() {
         <span>System Architecture &amp; Execution</span>
         <h2>Featured Case Study</h2>
         <p className="casestudy-project-name">
-          Elevare Digital Store — Full-Stack E-Commerce &amp; Admin Portal
+          SkyPulse PRO — Real-Time Weather PWA with AI Insights
         </p>
       </div>
 
       <div className="casestudy-grid">
-        {sections.map((sec, index) => (
+        {cards.map((sec, index) => (
           <div
-            key={sec.title}
-            className={`casestudy-card ${sec.colorClass}`}
+            key={sec.id || sec.title}
+            className={`casestudy-card ${sec.colorClass || "case-card--solutions"}`}
             data-reveal="zoom-in"
             data-delay={String(0.05 * index)}
           >
@@ -116,7 +148,7 @@ export default function CaseStudy() {
             </div>
             <h3 className="font-accent">{sec.title}</h3>
             <p>{sec.content}</p>
-            {sec.bullets && (
+            {sec.bullets && sec.bullets.length > 0 && (
               <div className="casestudy-bullets">
                 {sec.bullets.map((b, i) => (
                   <span key={i} className="casestudy-bullet-tag">

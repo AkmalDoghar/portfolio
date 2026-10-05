@@ -96,15 +96,12 @@
     }
   ],
   "tools": [
-    {
-      "name": "Antigravity",
-      "badge": "AI PAIR PROGRAMMER"
-    },
     "VS Code",
     "GitHub",
     "Vercel",
     "MongoDB Atlas",
     "Postman",
+    "Figma",
     "npm / npx"
   ]
 }

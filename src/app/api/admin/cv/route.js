@@ -29,6 +29,7 @@ export async function PUT(request) {
     if (contentType.includes("multipart/form-data")) {
       const formData = await request.formData();
       const file = formData.get("file");
+      const customName = formData.get("name");
 
       if (!file || typeof file === "string") {
         return NextResponse.json({ error: "No CV file provided" }, { status: 400 });
@@ -38,22 +39,29 @@ export async function PUT(request) {
       const buffer = Buffer.from(bytes);
 
       const ext = path.extname(file.name) || ".pdf";
-      const filename = `CV-${Date.now()}${ext.toLowerCase()}`;
+      const sanitizedFileName = (customName || file.name || "CV").replace(/[^a-zA-Z0-9.-]/g, "_");
+      const filename = `CV-${Date.now()}-${sanitizedFileName}`;
+
+      let publicUrl = `/uploads/${filename}`;
 
       // Upload to public/uploads
-      const uploadDir = path.join(process.cwd(), "public", "uploads");
       try {
+        const uploadDir = path.join(process.cwd(), "public", "uploads");
         await mkdir(uploadDir, { recursive: true });
         const filePath = path.join(uploadDir, filename);
         await writeFile(filePath, buffer);
       } catch {
-        /* fallback for serverless */
+        // Fallback to Data URL for Vercel serverless read-only filesystem
+        if (bytes.byteLength < 4 * 1024 * 1024) {
+          const base64 = buffer.toString("base64");
+          const mimeType = file.type || "application/pdf";
+          publicUrl = `data:${mimeType};base64,${base64}`;
+        }
       }
 
-      const publicUrl = `/uploads/${filename}`;
       const newCvData = {
         url: publicUrl,
-        name: file.name,
+        name: customName || file.name || "Muhammad Akmal CV.pdf",
         updatedAt: new Date().toISOString(),
       };
 
@@ -61,10 +69,21 @@ export async function PUT(request) {
       return NextResponse.json({ success: true, data: newCvData });
     }
 
-    // Handle JSON payload (e.g. manual URL update)
-    const data = await request.json();
-    saveCv(data);
-    return NextResponse.json({ success: true, data });
+    // Handle JSON payload (e.g. manual URL or Title update)
+    const body = await request.json();
+    if (!body || typeof body !== "object") {
+      return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
+    }
+
+    const existing = getCv();
+    const updated = {
+      url: typeof body.url === "string" ? body.url.trim() : existing.url,
+      name: typeof body.name === "string" ? body.name.trim() : existing.name,
+      updatedAt: new Date().toISOString(),
+    };
+
+    saveCv(updated);
+    return NextResponse.json({ success: true, data: updated });
   } catch (error) {
     console.error("CV update error:", error);
     return NextResponse.json({ error: "Failed to save CV" }, { status: 500 });
@@ -78,15 +97,15 @@ export async function DELETE() {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const emptyCv = {
-      url: "",
-      name: "No CV Uploaded",
+    const defaultCv = {
+      url: "/M.Akmal CV.pdf",
+      name: "M.Akmal CV.pdf",
       updatedAt: new Date().toISOString(),
     };
 
-    saveCv(emptyCv);
-    return NextResponse.json({ success: true, data: emptyCv });
+    saveCv(defaultCv);
+    return NextResponse.json({ success: true, data: defaultCv });
   } catch {
-    return NextResponse.json({ error: "Failed to delete CV" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to reset CV" }, { status: 500 });
   }
 }

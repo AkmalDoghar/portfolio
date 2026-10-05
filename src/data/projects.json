@@ -149,30 +149,5 @@
     "result": "Delivered full-stack e-commerce solution with OAuth authentication, cart state management, and order processing.",
     "link": "https://www.cartifyoutlet.com/",
     "github": "https://github.com/Timigill/Found"
-  },
-  {
-    "id": 1,
-    "category": "product",
-    "img": "/images/image2.jpeg",
-    "title": "Elevare Digital Store",
-    "role": "Full-Stack Developer",
-    "description": "A full-featured e-commerce platform with product catalog, shopping cart, secure checkout, and a complete admin panel for inventory and order management.",
-    "tech": [
-      "Next.js",
-      "MongoDB",
-      "Node.js",
-      "NextAuth"
-    ],
-    "problem": "The business needed an online store they could manage themselves with product listing, cart persistence, and order management tools.",
-    "features": [
-      "Product catalog with filters",
-      "Cart with localStorage sync",
-      "Admin CRUD panel",
-      "JWT-based auth",
-      "Responsive on all devices"
-    ],
-    "result": "Engineered full-stack e-commerce architecture with product catalog, cart persistence, and admin CRUD controls.",
-    "link": "https://elevaredigital.vercel.app",
-    "github": "https://github.com/Timigill/elevaredigital"
   }
 ]

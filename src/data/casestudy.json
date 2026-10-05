@@ -1,0 +1,122 @@
+[
+  {
+    "id": "cs-1",
+    "badge": "PROBLEM STATEMENT",
+    "title": "01 — The Problem",
+    "icon": "⚠️",
+    "desc": "Standard weather apps are cluttered with ads, slow to load, lack offline support, and provide no real-time geolocation precision. Users needed a premium, installable PWA experience.",
+    "points": [
+      "No offline-capable weather apps",
+      "Poor mobile performance & ads",
+      "No AI-assisted weather insights"
+    ],
+    "accent": "rose",
+    "colorClass": "case-card--problem",
+    "span": 1
+  },
+  {
+    "id": "cs-2",
+    "badge": "ENGINEERING ROLE",
+    "title": "02 — My Role",
+    "icon": "👤",
+    "desc": "Lead Full-Stack Developer & UI/UX Designer — Managed PWA architecture, OpenWeather API integration, Chart.js data visualization, AI summary generation, and Framer Motion animations.",
+    "points": [
+      "PWA Architect & Service Worker",
+      "API Integration & Data Pipeline",
+      "UI/UX & Animation Engineer"
+    ],
+    "accent": "cyan",
+    "colorClass": "case-card--approach",
+    "span": 1
+  },
+  {
+    "id": "cs-3",
+    "badge": "SYSTEM ARCHITECTURE",
+    "title": "03 — The Solution",
+    "icon": "⚡",
+    "desc": "Built SkyPulse PRO as a Next.js PWA with OpenWeather API, real-time geolocation, 24-hour Chart.js forecasts, adaptive glassmorphism themes, and an integrated AI weather assistant.",
+    "points": [
+      "PWA with offline & install support",
+      "Real-time Geolocation API",
+      "Adaptive Dark/Light Glassmorphism"
+    ],
+    "accent": "emerald",
+    "colorClass": "case-card--solutions",
+    "span": 1
+  },
+  {
+    "id": "cs-4",
+    "badge": "KEY DELIVERABLES",
+    "title": "04 — Key Features",
+    "icon": "📋",
+    "desc": "Real-time weather tracking, 7-day forecasts, AQI metrics, PWA installability, AI-powered daily summaries, and interactive Chart.js weather visualization.",
+    "points": [
+      "PWA Install + Offline Mode",
+      "AI Weather Summary Assistant",
+      "Interactive AQI & Radar Charts"
+    ],
+    "accent": "amber",
+    "colorClass": "case-card--features",
+    "span": 1
+  },
+  {
+    "id": "cs-5",
+    "badge": "TECH STACK",
+    "title": "05 — Tech Stack",
+    "icon": "💻",
+    "desc": "Modern frontend-focused stack chosen for PWA performance, smooth animations, and zero-backend real-time data delivery.",
+    "points": [
+      "Next.js 14 • React • TailwindCSS",
+      "OpenWeather API • Chart.js",
+      "Framer Motion • PWA Manifest"
+    ],
+    "accent": "violet",
+    "colorClass": "case-card--performance",
+    "span": 1
+  },
+  {
+    "id": "cs-6",
+    "badge": "CHALLENGES SOLVED",
+    "title": "06 — Technical Hurdles",
+    "icon": "⚡",
+    "desc": "Managed geolocation permission fallbacks, implemented service worker caching for offline mode, and optimized Chart.js renders to prevent layout reflow on mobile.",
+    "points": [
+      "Geolocation permission fallback",
+      "Service Worker offline caching",
+      "Chart.js mobile re-render fix"
+    ],
+    "accent": "rose",
+    "colorClass": "case-card--challenges",
+    "span": 1
+  },
+  {
+    "id": "cs-7",
+    "badge": "MEASURABLE OUTCOME",
+    "title": "07 — Measurable Result",
+    "icon": "🚀",
+    "desc": "Achieved 98+ Lighthouse performance score, sub-second page loads, native PWA installation on iOS and Android, and 100% mobile-responsive layout.",
+    "points": [
+      "98+ Lighthouse Score",
+      "PWA install on iOS & Android",
+      "Sub-second API response time"
+    ],
+    "accent": "emerald",
+    "colorClass": "case-card--outcome",
+    "span": 1
+  },
+  {
+    "id": "cs-8",
+    "badge": "PROOF & LINKS",
+    "title": "08 — Live Applications",
+    "icon": "🔗",
+    "desc": "Explore the open-source GitHub repository, inspect technical architecture, or test live production web applications.",
+    "points": [
+      "Open Source GitHub Repositories",
+      "Live Production Deployments",
+      "Clean Architecture Codebase"
+    ],
+    "accent": "blue",
+    "colorClass": "case-card--solutions",
+    "span": 1
+  }
+]

@@ -89,64 +89,64 @@ export function getProjects() {
   if (saved.length > 0) return saved;
   return [
     {
-      id: 1, category: "product", img: "/images/image2.jpeg",
-      title: "Elevare Digital Store", role: "Full-Stack Developer",
-      description: "A full-featured e-commerce platform with product catalog, shopping cart, secure checkout, and a complete admin panel for inventory and order management.",
-      tech: ["Next.js", "MongoDB", "Node.js", "NextAuth"],
-      problem: "The client needed an online store they could manage themselves without relying on a developer for every update.",
-      features: ["Product catalog with filters", "Cart with localStorage sync", "Admin CRUD panel", "JWT-based auth", "Responsive on all devices"],
-      result: "Live store managing 50+ SKUs with daily orders.",
-      link: "#", github: "#",
+      id: 1787643601718, category: "web", img: "/images/uploads/project-1787643597701.png",
+      title: "SkyPulse PRO Weather PWA", role: "Lead Full-Stack Developer & UI/UX Designer",
+      description: "SkyPulse PRO is a high-performance, real-time Progressive Web App (PWA) delivering accurate weather forecasts, interactive radar metrics, dynamic frosted glassmorphism themes, and AI-driven weather summaries.",
+      tech: ["Next.js", "React", "TailwindCSS", "PWA", "OpenWeather API", "Chart.js", "Framer Motion"],
+      problem: "Standard weather applications are often cluttered with ads, slow to load, and lack offline capabilities or real-time location precision.",
+      features: ["Progressive Web App (PWA) with offline support & native mobile installation", "Real-time Geolocation Weather Tracking & City Search", "24-Hour Hourly & 7-Day Extended Weather Forecasts", "Dynamic Frosted Glassmorphism Theme (Adaptive Light & Dark Modes)", "Integrated AI Assistant for personalized daily weather insights"],
+      result: "Achieved a 98+ Lighthouse performance rating, sub-second page loads, and a seamless PWA installation experience across iOS and Android devices.",
+      link: "https://skyplusweather.vercel.app/", github: "https://github.com/AkmalDoghar/weather-app",
     },
     {
-      id: 2, category: "web", img: "/images/image3.jpeg",
-      title: "CartifyOutlet E-commerce Platform", role: "Full-Stack Developer",
-      description: "A full-stack e-commerce platform built to manage product listings, user authentication, and order workflows with a seamless shopping experience.",
-      tech: ["Next.js", "Node.js", "MongoDB", "NextAuth", "JWT"],
-      problem: "The business needed a complete online store to handle product management, user accounts, and secure checkout without relying on third-party limitations.",
-      features: ["User authentication with Google OAuth and JWT", "Product listing & category management", "Cart and checkout system", "Order tracking and user dashboard", "Admin panel for product and order control"],
-      result: "Delivered a complete e-commerce workflow enabling users to browse, purchase, and manage orders efficiently.",
-      link: "https://www.cartifyoutlet.com/", github: "#",
+      id: 6, category: "web", img: "/images/uploads/project-1787644934308.png",
+      title: "DaaS Tech Admin Dashboard", role: "Full-Stack Developer",
+      description: "A scalable admin dashboard developed for DaaS Tech to manage clients, services, and digital projects efficiently through a centralized system.",
+      tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redux"],
+      problem: "The company lacked a centralized admin system to manage client projects, service orders, and internal workflows, causing delays and manual handling issues.",
+      features: ["Admin dashboard with role-based access", "Client & project management system", "Service order tracking & status updates", "Secure authentication with JWT", "Real-time notifications for admin actions"],
+      result: "Streamlined internal admin workflows, unifying client records, order tracking, and project management into a single interface.",
+      link: "https://daas-tech.vercel.app/", github: "https://github.com/Timigill/daas-tech",
     },
     {
-      id: 3, category: "inter", img: "/images/image1.jpeg",
-      title: "DaaSForge Admin Dashboard", role: "Frontend Developer (Contributor)",
-      description: "Contributed frontend modules to a company platform — data tables, chart views, and responsive layout improvements for the admin interface.",
-      tech: ["Next.js", "React", "REST API", "Chart.js"],
-      problem: "The team needed a unified data management interface that non-technical users could navigate comfortably.",
-      features: ["Role-based access views", "Interactive charts", "Filterable data tables", "CSV export", "Fully responsive"],
-      result: "Platform deployed and used daily by the DaaSForge team.",
-      link: "https://daas-forge.vercel.app/", github: "#",
+      id: 5, category: "inter", img: "/images/uploads/project-1787643774271.png",
+      title: "Libaas e Zauq — Fashion Store", role: "Frontend Developer",
+      description: "Complete UI for a Pakistani fashion e-commerce brand — product pages, collections grid, and responsive mobile layout built from scratch.",
+      tech: ["Next.js", "CSS3", "React"],
+      problem: "The brand needed an online storefront that reflected their aesthetic, showcased product categories clearly, and worked seamlessly on mobile.",
+      features: ["Product collection grid", "Category filtering", "Mobile-first layout", "Fast page loads"],
+      result: "Deployed live e-commerce platform with product collections, responsive mobile navigation, and optimized assets.",
+      link: "https://www.libaasezauq.shop", github: "https://github.com/Timigill/LibaaSeZauq",
     },
     {
-      id: 4, category: "product", img: "/images/image5.jpeg",
+      id: 4, category: "product", img: "/images/uploads/project-1787643760794.png",
       title: "LaanCer — Freelancer Platform", role: "Frontend Developer",
       description: "Landing page and project showcase UI for a Next.js freelancer marketplace platform.",
       tech: ["Next.js", "React"],
       problem: "The startup needed a polished landing page that communicated their value proposition clearly to both clients and freelancers.",
       features: ["Hero with CTA", "Feature highlights section", "Freelancer profile cards", "Fully responsive"],
-      result: "Live at laancer.vercel.app with positive stakeholder feedback.",
-      link: "https://laancer.vercel.app/", github: "#",
+      result: "Deployed landing page and platform UI with responsive layout and clear stakeholder feedback.",
+      link: "https://laancer.vercel.app/", github: "https://github.com/Timigill/freelance-dashboard",
     },
     {
-      id: 5, category: "inter", img: "/images/image6.jpeg",
-      title: "Libaas e Zauq — Fashion Store", role: "Frontend Developer",
-      description: "Complete UI for a Pakistani fashion e-commerce brand — product pages, collections grid, and responsive mobile layout built from scratch.",
-      tech: ["Next.js", "CSS3", "React"],
-      problem: "The brand had no online presence; they needed a store that reflected their aesthetic and worked well on mobile.",
-      features: ["Product collection grid", "Category filtering", "Mobile-first layout", "Fast page loads"],
-      result: "Live at libaasezauq.shop; drives consistent organic traffic.",
-      link: "https://www.libaasezauq.shop", github: "#",
+      id: 3, category: "inter", img: "/images/uploads/project-1787643746427.png",
+      title: "DaaSForge Admin Dashboard", role: "Frontend Developer (Contributor)",
+      description: "Contributed frontend modules to a company platform — data tables, chart views, and responsive layout improvements for the admin interface.",
+      tech: ["Next.js", "React", "REST API", "Chart.js"],
+      problem: "The team needed a unified data management interface that non-technical users could navigate comfortably.",
+      features: ["Role-based access views", "Interactive charts", "Filterable data tables", "CSV export", "Fully responsive"],
+      result: "Contributed responsive data tables, analytical charts, and interactive views to company platform.",
+      link: "https://daas-forge.vercel.app/", github: "https://github.com/Timigill/daas-forge",
     },
     {
-      id: 6, category: "web", img: "/images/image4.jpeg",
-      title: "DaaS Tech Admin Dashboard", role: "Full Stack Developer",
-      description: "A scalable admin dashboard developed for DaaS Tech to manage clients, services, and digital projects efficiently through a centralized system.",
-      tech: ["Next.js", "Node.js", "MongoDB", "Express", "Redux"],
-      problem: "The company lacked a centralized admin system to manage client projects, service orders, and internal workflows, causing delays and manual handling issues.",
-      features: ["Admin dashboard with role-based access", "Client & project management system", "Service order tracking & status updates", "Secure authentication with JWT", "Real-time notifications for admin actions"],
-      result: "Improved internal workflow efficiency and reduced manual management effort by over 60%.",
-      link: "https://www.daastech.info/", github: "#",
+      id: 2, category: "web", img: "/images/uploads/project-1787643341031.png",
+      title: "CartifyOutlet E-commerce Platform", role: "Full-Stack Developer",
+      description: "A full-stack e-commerce platform built to manage product listings, user authentication, and order workflows with a seamless shopping experience.",
+      tech: ["Next.js", "Node.js", "MongoDB", "NextAuth", "JWT"],
+      problem: "The business needed a complete online store to handle product management, user accounts, and secure checkout without relying on third-party limitations.",
+      features: ["User authentication with Google OAuth and JWT", "Product listing & category management", "Cart and checkout system", "Order tracking and user dashboard", "Admin panel for product and order control"],
+      result: "Delivered full-stack e-commerce solution with OAuth authentication, cart state management, and order processing.",
+      link: "https://www.cartifyoutlet.com/", github: "https://github.com/Timigill/Found",
     },
   ];
 }
@@ -319,10 +319,10 @@ export function getSettings() {
     responseTime: "Within 24 hours guaranteed",
     github: "https://github.com/AkmalDoghar",
     linkedin: "https://www.linkedin.com/in/muhammad-akmal-dev/",
-    facebook: "https://www.facebook.com/",
+    facebook: "",
     instagram: "https://www.instagram.com/muhammadakmal1225/",
     whatsapp: "https://wa.me/923017697832",
-    heroTitle: "Full-Stack Next.js Developer",
+    heroTitle: "Building Fast, Production-Ready Web Apps",
     typingWords: [
       "Full-Stack Next.js Developer",
       "React & Node.js Engineer",
@@ -341,12 +341,41 @@ export function getSettings() {
     aboutDescription2: "Primary focus on Next.js, React, Node.js, and MongoDB. I emphasize clean code, structured commit histories, clear documentation, and seamless deployments.",
     aboutYearsExp: "1+",
     aboutProjectsBuilt: "7+",
-    aboutLiveDeployed: "3+"
+    aboutLiveDeployed: "6+"
   };
 }
 
 export function saveSettings(data) {
   writeFile("settings", data);
+}
+
+// ─── Interactive CV Content ──────────────────────────────────────────────────
+export function getCvContent() {
+  const saved = readFile("cv_content");
+  if (saved && typeof saved === "object" && saved.personalInfo) {
+    return saved;
+  }
+  return {
+    personalInfo: {
+      name: "Muhammad Akmal",
+      title: "Full-Stack Next.js & React Developer",
+      email: "m.akmal.dev42@gmail.com",
+      phone: "+92 301 7697832",
+      location: "Pakistan (Remote Worldwide)",
+      summary: "Full-Stack JavaScript Developer specializing in Next.js, React, Node.js, Express, and MongoDB.",
+      github: "https://github.com/AkmalDoghar",
+      linkedin: "https://www.linkedin.com/in/muhammad-akmal-dev/",
+      website: "https://akmalcode.vercel.app"
+    },
+    experience: [],
+    education: [],
+    skills: { frontend: [], backend: [], tools: [] },
+    projects: []
+  };
+}
+
+export function saveCvContent(data) {
+  writeFile("cv_content", data);
 }
 
 

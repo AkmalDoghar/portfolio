@@ -23,7 +23,7 @@ const DEFAULT_SETTINGS = {
   email: "m.akmal.dev42@gmail.com",
   github: "https://github.com/AkmalDoghar",
   linkedin: "https://www.linkedin.com/in/muhammad-akmal-dev/",
-  facebook: "https://www.facebook.com/",
+  facebook: "",
   instagram: "https://www.instagram.com/muhammadakmal1225/",
   whatsapp: "https://wa.me/923017697832",
   heroTitle: "Building Fast, Production-Ready Web Apps",
@@ -170,9 +170,7 @@ export default function HomeSection() {
             <span>Download CV</span>
           </a>
           <a
-            href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(settings.email)}`}
-            target="_blank"
-            rel="noreferrer"
+            href="#contact"
             className="btn2"
           >
             <span>Hire Me</span>

@@ -3,9 +3,10 @@
     "id": 1,
     "period": "2025 – Present",
     "title": "Freelance Frontend & Web Development",
+    "company": "DaaS Tech · Libaas e Zauq (Clients)",
     "type": "Freelance / Client Work",
     "points": [
-      "Developed responsive frontend interfaces and product storefronts for web clients (e.g. Libaas e Zauq and DaaS Tech admin panel).",
+      "Developed responsive frontend interfaces and product storefronts for web clients (Libaas e Zauq fashion store and DaaS Tech admin panel).",
       "Integrated REST APIs, component logic, and responsive layouts tailored to client specifications.",
       "Handled project deployments on Vercel, DNS configurations, and client review iterations."
     ],
@@ -21,6 +22,7 @@
     "id": 2,
     "period": "2024 – 2025 (1 year)",
     "title": "Full-Stack Application Engineering",
+    "company": "SkyPulse PRO · CartifyOutlet (Personal Projects)",
     "type": "Personal & Production Projects",
     "points": [
       "Engineered full-stack applications including SkyPulse PRO (Weather PWA) and CartifyOutlet e-commerce platform.",
@@ -40,7 +42,8 @@
   {
     "id": 3,
     "period": "2023 – 2024",
-    "title": "Web Engineering Foundations & Practice Labs",
+    "title": "Web  Engineering Foundations & Practice Labs",
+    "company": "Self-Directed Learning & Open Source",
     "type": "Learning & Open Source",
     "points": [
       "Built 10+ practice applications from scratch to master modern full-stack web development.",
