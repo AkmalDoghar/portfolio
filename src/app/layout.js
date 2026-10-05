@@ -57,9 +57,12 @@ export const metadata = {
     type: "website",
   },
   icons: {
-    icon: "/images/AK-icon.png",
-    shortcut: "/images/AK-icon.png",
-    apple: "/images/AK-icon.png",
+    icon: [
+      { url: "/images/AK-icon.png?v=2", type: "image/png" },
+      { url: "/favicon.ico?v=2" },
+    ],
+    shortcut: "/images/AK-icon.png?v=2",
+    apple: "/images/AK-icon.png?v=2",
   },
   twitter: {
     card: "summary_large_image",
@@ -77,9 +80,9 @@ export default function RootLayout({ children }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
-        <link rel="icon" href="/images/AK-icon.png" type="image/png" />
-        <link rel="shortcut icon" href="/images/AK-icon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/images/AK-icon.png" />
+        <link rel="icon" href="/images/AK-icon.png?v=2" type="image/png" />
+        <link rel="shortcut icon" href="/images/AK-icon.png?v=2" type="image/png" />
+        <link rel="apple-touch-icon" href="/images/AK-icon.png?v=2" />
       </head>
       <body>
         <ClientShell>{children}</ClientShell>

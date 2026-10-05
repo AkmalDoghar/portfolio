@@ -10,6 +10,11 @@ export const revalidate = 0;
 export async function GET() {
   try {
     const data = getCv();
+    // Prevent leaking base64 data URLs in GET response
+    if (data?.url?.startsWith("data:")) {
+      data.url = "/api/cv/download";
+      saveCv(data);
+    }
     return NextResponse.json(data);
   } catch {
     return NextResponse.json({ error: "Failed to fetch CV data" }, { status: 500 });
@@ -38,9 +43,11 @@ export async function PUT(request) {
       const bytes = await file.arrayBuffer();
       const buffer = Buffer.from(bytes);
 
-      const ext = path.extname(file.name) || ".pdf";
-      const sanitizedFileName = (customName || file.name || "CV").replace(/[^a-zA-Z0-9.-]/g, "_");
-      const filename = `CV-${Date.now()}-${sanitizedFileName}`;
+      const rawExt = path.extname(file.name) || ".pdf";
+      const ext = rawExt.toLowerCase();
+      const baseTitle = (customName || file.name || "CV").replace(/\.[^/.]+$/, "");
+      const sanitizedTitle = baseTitle.replace(/[^a-zA-Z0-9_-]/g, "_");
+      const filename = `CV-${Date.now()}-${sanitizedTitle}${ext}`;
 
       let publicUrl = `/uploads/${filename}`;
 
@@ -50,13 +57,23 @@ export async function PUT(request) {
         await mkdir(uploadDir, { recursive: true });
         const filePath = path.join(uploadDir, filename);
         await writeFile(filePath, buffer);
-      } catch {
-        // Fallback to Data URL for Vercel serverless read-only filesystem
-        if (bytes.byteLength < 4 * 1024 * 1024) {
-          const base64 = buffer.toString("base64");
-          const mimeType = file.type || "application/pdf";
-          publicUrl = `data:${mimeType};base64,${base64}`;
+
+        // Backup to /tmp directory if possible
+        try {
+          await mkdir("/tmp", { recursive: true });
+          await writeFile(path.join("/tmp", "cv_uploaded.pdf"), buffer);
+        } catch {
+          /* ignore tmp backup error */
         }
+      } catch (fsErr) {
+        console.warn("Public directory write failed, falling back to /tmp + /api/cv/download:", fsErr);
+        try {
+          await mkdir("/tmp", { recursive: true });
+          await writeFile(path.join("/tmp", "cv_uploaded.pdf"), buffer);
+        } catch {
+          /* ignore tmp error */
+        }
+        publicUrl = "/api/cv/download";
       }
 
       const newCvData = {
@@ -76,8 +93,15 @@ export async function PUT(request) {
     }
 
     const existing = getCv();
+    let updatedUrl = typeof body.url === "string" ? body.url.trim() : existing.url;
+    
+    // Sanitize any existing base64 url
+    if (updatedUrl.startsWith("data:")) {
+      updatedUrl = "/api/cv/download";
+    }
+
     const updated = {
-      url: typeof body.url === "string" ? body.url.trim() : existing.url,
+      url: updatedUrl,
       name: typeof body.name === "string" ? body.name.trim() : existing.name,
       updatedAt: new Date().toISOString(),
     };

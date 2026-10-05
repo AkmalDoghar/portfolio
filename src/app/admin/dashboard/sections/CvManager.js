@@ -11,7 +11,7 @@ function Toast({ message, type, onClose }) {
 }
 
 export default function CvManager({ onUpdate }) {
-  const [activeTab, setActiveTab] = useState("content"); // 'content' | 'upload'
+  const [activeTab, setActiveTab] = useState("upload"); // 'content' | 'upload'
   const [cvData, setCvData] = useState({ url: "", name: "", updatedAt: "" });
   const [displayName, setDisplayName] = useState("");
   const [manualUrl, setManualUrl] = useState("");
@@ -29,9 +29,11 @@ export default function CvManager({ onUpdate }) {
       const res = await fetch("/api/admin/cv", { cache: "no-store" });
       const data = await res.json();
       if (data) {
-        setCvData(data);
+        let cleanUrl = data.url || "";
+        if (cleanUrl.startsWith("data:")) cleanUrl = "/api/cv/download";
+        setCvData({ ...data, url: cleanUrl });
         setDisplayName(data.name || "");
-        setManualUrl(data.url || "");
+        setManualUrl(cleanUrl);
       }
     } catch {
       showToast("Failed to load CV status", "error");
@@ -48,6 +50,14 @@ export default function CvManager({ onUpdate }) {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    // Check file type
+    const isPdf = file.type === "application/pdf" || file.name.toLowerCase().endsWith(".pdf");
+    if (!isPdf) {
+      showToast("Please select a valid PDF document (.pdf)", "error");
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
     setUploading(true);
     const formData = new FormData();
     formData.append("file", file);
@@ -63,11 +73,13 @@ export default function CvManager({ onUpdate }) {
       const result = await res.json();
 
       if (res.ok && result.data) {
-        setCvData(result.data);
-        setManualUrl(result.data.url);
+        let cleanUrl = result.data.url;
+        if (cleanUrl.startsWith("data:")) cleanUrl = "/api/cv/download";
+        setCvData({ ...result.data, url: cleanUrl });
+        setManualUrl(cleanUrl);
         setDisplayName(result.data.name);
         onUpdate?.();
-        showToast("New CV uploaded and updated live on portfolio!");
+        showToast("New CV uploaded successfully and active live on portfolio!");
       } else {
         showToast(result.error || "Failed to upload CV file", "error");
       }
@@ -87,9 +99,12 @@ export default function CvManager({ onUpdate }) {
     }
 
     setUploading(true);
+    let targetUrl = manualUrl.trim();
+    if (targetUrl.startsWith("data:")) targetUrl = "/api/cv/download";
+
     const updatedPayload = {
-      url: manualUrl.trim(),
-      name: displayName.trim() || manualUrl.split("/").pop() || "Muhammad Akmal CV.pdf",
+      url: targetUrl,
+      name: displayName.trim() || targetUrl.split("/").pop() || "Muhammad Akmal CV.pdf",
     };
 
     try {
@@ -101,9 +116,11 @@ export default function CvManager({ onUpdate }) {
       const result = await res.json();
 
       if (res.ok && result.data) {
-        setCvData(result.data);
+        let cleanUrl = result.data.url;
+        if (cleanUrl.startsWith("data:")) cleanUrl = "/api/cv/download";
+        setCvData({ ...result.data, url: cleanUrl });
         setDisplayName(result.data.name);
-        setManualUrl(result.data.url);
+        setManualUrl(cleanUrl);
         onUpdate?.();
         showToast("CV details updated successfully!");
       } else {
@@ -173,27 +190,6 @@ export default function CvManager({ onUpdate }) {
       >
         <button
           type="button"
-          onClick={() => setActiveTab("content")}
-          style={{
-            padding: "0.75rem 1.5rem",
-            borderRadius: "12px",
-            background: activeTab === "content" ? "linear-gradient(135deg, #12f7ff, #0099ff)" : "rgba(255, 255, 255, 0.05)",
-            color: activeTab === "content" ? "#0b0f19" : "#cbd5e1",
-            fontWeight: 700,
-            border: "none",
-            cursor: "pointer",
-            fontSize: "0.95rem",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            boxShadow: activeTab === "content" ? "0 4px 20px rgba(18, 247, 255, 0.3)" : "none",
-          }}
-        >
-          📝 Interactive CV Content Builder
-        </button>
-
-        <button
-          type="button"
           onClick={() => setActiveTab("upload")}
           style={{
             padding: "0.75rem 1.5rem",
@@ -212,6 +208,27 @@ export default function CvManager({ onUpdate }) {
         >
           📤 PDF Upload &amp; Link Manager
         </button>
+
+        <button
+          type="button"
+          onClick={() => setActiveTab("content")}
+          style={{
+            padding: "0.75rem 1.5rem",
+            borderRadius: "12px",
+            background: activeTab === "content" ? "linear-gradient(135deg, #12f7ff, #0099ff)" : "rgba(255, 255, 255, 0.05)",
+            color: activeTab === "content" ? "#0b0f19" : "#cbd5e1",
+            fontWeight: 700,
+            border: "none",
+            cursor: "pointer",
+            fontSize: "0.95rem",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "8px",
+            boxShadow: activeTab === "content" ? "0 4px 20px rgba(18, 247, 255, 0.3)" : "none",
+          }}
+        >
+          📝 Interactive CV Content Builder
+        </button>
       </div>
 
       {/* MODE 1: Interactive CV Content Builder */}
@@ -224,7 +241,7 @@ export default function CvManager({ onUpdate }) {
           <input
             type="file"
             ref={fileInputRef}
-            accept=".pdf,.doc,.docx"
+            accept=".pdf"
             onChange={handleFileUpload}
             style={{ display: "none" }}
           />
@@ -279,7 +296,7 @@ export default function CvManager({ onUpdate }) {
                 </div>
 
                 <p style={{ color: "#94a3b8", fontSize: "0.85rem", margin: "6px 0 0 0", wordBreak: "break-all" }}>
-                  <strong style={{ color: "#12f7ff" }}>Download Path:</strong> {cvData.url || "Not set"}
+                  <strong style={{ color: "#12f7ff" }}>Active Document Link:</strong> {cvData.url || "Not set"}
                 </p>
 
                 {cvData.updatedAt && (
