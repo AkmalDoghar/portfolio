@@ -38,7 +38,7 @@ export default function SkillsManager({ onUpdate }) {
   const [editingTechId, setEditingTechId] = useState(null);
 
   const [showProfForm, setShowProfForm] = useState(false);
-  const [profForm, setProfForm] = useState({ name: "", percent: 85, desc: "", icon: "brain" });
+  const [profForm, setProfForm] = useState({ name: "", percent: 85, level: "Advanced", capabilities: "", icon: "brain" });
   const [editingProfId, setEditingProfId] = useState(null);
 
   const [toolForm, setToolForm] = useState({ name: "", badge: "" });
@@ -116,8 +116,12 @@ export default function SkillsManager({ onUpdate }) {
   async function saveProf(e) {
     e.preventDefault();
     setSaving(true);
+    const existingSkill = data.professional.find((item) => item.id === editingProfId) || {};
     const skill = {
+      ...existingSkill,
       ...profForm,
+      desc: profForm.capabilities,
+      capabilities: profForm.capabilities,
       percent: Number(profForm.percent) || 80,
       id: editingProfId || Date.now(),
     };
@@ -129,7 +133,7 @@ export default function SkillsManager({ onUpdate }) {
     setData(newData);
     setShowProfForm(false);
     setEditingProfId(null);
-    setProfForm({ name: "", percent: 85, desc: "", icon: "brain" });
+    setProfForm({ name: "", percent: 85, level: "Advanced", capabilities: "", icon: "brain" });
     onUpdate?.();
     showToast(editingProfId ? "Soft skill updated!" : "Soft skill added!");
     setSaving(false);
@@ -242,13 +246,13 @@ export default function SkillsManager({ onUpdate }) {
 
           {showTechForm && (
             <div
-              className="admin-modal-overlay"
+              className="admin-modal-overlay skills-edit-modal-overlay"
               onClick={(e) => {
                 if (e.target === e.currentTarget) setShowTechForm(false);
               }}
             >
-              <div className="admin-modal-box">
-                <div className="modal-header">
+              <div className="admin-modal-box skills-edit-modal">
+                <div className="modal-header skills-edit-modal-header">
                   <div className="modal-title-wrap">
                     <div className="modal-title-icon">⚡</div>
                     <div>
@@ -261,10 +265,10 @@ export default function SkillsManager({ onUpdate }) {
                   </button>
                 </div>
 
-                <form onSubmit={saveTech} className="modal-form-body">
-                  <div className="form-section">
+                <form onSubmit={saveTech} className="modal-form-body skills-edit-form">
+                  <div className="form-section skills-edit-section">
                     <div className="form-section-title">⚡ Technology Details</div>
-                    <div className="form-grid">
+                    <div className="form-grid skills-edit-grid">
                       <div className="form-group">
                         <label>Skill Name *</label>
                         <input
@@ -323,7 +327,7 @@ export default function SkillsManager({ onUpdate }) {
                         />
                       </div>
 
-                      <div className="form-group" style={{ gridColumn: "span 2" }}>
+                      <div className="form-group skills-edit-full-row" style={{ gridColumn: "span 2" }}>
                         <label>Capabilities (Comma Separated)</label>
                         <input
                           value={techForm.capabilities || ""}
@@ -425,7 +429,7 @@ export default function SkillsManager({ onUpdate }) {
               onClick={() => {
                 setShowProfForm(true);
                 setEditingProfId(null);
-                setProfForm({ name: "", percent: 85, desc: "", icon: "brain" });
+                setProfForm({ name: "", percent: 85, level: "Advanced", capabilities: "", icon: "brain" });
               }}
             >
               <span>+</span> Add Soft Skill
@@ -434,13 +438,13 @@ export default function SkillsManager({ onUpdate }) {
 
           {showProfForm && (
             <div
-              className="admin-modal-overlay"
+              className="admin-modal-overlay skills-edit-modal-overlay"
               onClick={(e) => {
                 if (e.target === e.currentTarget) setShowProfForm(false);
               }}
             >
-              <div className="admin-modal-box">
-                <div className="modal-header">
+              <div className="admin-modal-box skills-edit-modal">
+                <div className="modal-header skills-edit-modal-header">
                   <div className="modal-title-wrap">
                     <div className="modal-title-icon">💡</div>
                     <div>
@@ -453,10 +457,10 @@ export default function SkillsManager({ onUpdate }) {
                   </button>
                 </div>
 
-                <form onSubmit={saveProf} className="modal-form-body">
-                  <div className="form-section">
+                <form onSubmit={saveProf} className="modal-form-body skills-edit-form">
+                  <div className="form-section skills-edit-section">
                     <div className="form-section-title">💡 Soft Skill Details</div>
-                    <div className="form-grid">
+                    <div className="form-grid skills-edit-grid">
                       <div className="form-group">
                         <label>Skill Name *</label>
                         <input
@@ -465,6 +469,20 @@ export default function SkillsManager({ onUpdate }) {
                           placeholder="e.g. Problem Solving"
                           required
                         />
+                      </div>
+
+                      <div className="form-group">
+                        <label>Proficiency Level</label>
+                        <select
+                          value={profForm.level || "Advanced"}
+                          onChange={(e) => setProfForm((f) => ({ ...f, level: e.target.value }))}
+                        >
+                          {LEVELS.map((level) => (
+                            <option key={level} value={level}>
+                              {level}
+                            </option>
+                          ))}
+                        </select>
                       </div>
 
                       <div className="form-group">
@@ -492,12 +510,13 @@ export default function SkillsManager({ onUpdate }) {
                         </select>
                       </div>
 
-                      <div className="form-group" style={{ gridColumn: "span 2" }}>
-                        <label>Description / Subtitle</label>
-                        <input
-                          value={profForm.desc || ""}
-                          onChange={(e) => setProfForm((f) => ({ ...f, desc: e.target.value }))}
-                          placeholder="e.g. Algorithmic thinking & debugging complex architecture"
+                      <div className="form-group skills-edit-full-row" style={{ gridColumn: "span 2" }}>
+                        <label>Capabilities / Description</label>
+                        <textarea
+                          rows={3}
+                          value={profForm.capabilities || ""}
+                          onChange={(e) => setProfForm((f) => ({ ...f, capabilities: e.target.value }))}
+                          placeholder="e.g. Vercel deployments, environment configs & git version control"
                         />
                       </div>
                     </div>
@@ -520,10 +539,12 @@ export default function SkillsManager({ onUpdate }) {
             {data.professional.map((s) => (
               <div key={s.id || s.name} className="item-card">
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div className="item-card-title">
-                    {s.name} ({s.percent}%)
+                  <div className="item-card-title" style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: "0.5rem" }}>
+                    <span>{s.name}</span>
+                    {s.level && <span className="skills-level-pill">{s.level}</span>}
+                    {s.percent != null && <span style={{ fontSize: "0.78rem", color: "#94a3b8" }}>({s.percent}%)</span>}
                   </div>
-                  <div className="item-card-sub">{s.desc || "Soft Skill"}</div>
+                  <div className="item-card-sub">{s.capabilities || s.desc || "Soft Skill"}</div>
                 </div>
                 <div className="item-card-actions">
                   <button
@@ -532,7 +553,8 @@ export default function SkillsManager({ onUpdate }) {
                       setProfForm({
                         name: s.name,
                         percent: s.percent || 85,
-                        desc: s.desc || "",
+                        level: s.level || "Advanced",
+                        capabilities: s.capabilities || s.desc || "",
                         icon: s.icon || "brain",
                       });
                       setEditingProfId(s.id);

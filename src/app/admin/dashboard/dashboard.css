@@ -1419,6 +1419,354 @@ box-shadow: 0 0 20px rgba(15, 247, 224, 0.25);
   }
 }
 
+/* Skills and CV editor responsive controls */
+.skills-manager-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  width: fit-content;
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+  padding: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.skills-manager-tab {
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  background: transparent;
+  color: #cbd5e1;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.skills-manager-tab:hover {
+  border-color: rgba(15, 247, 224, 0.18);
+  background: rgba(15, 247, 224, 0.06);
+  color: #e2e8f0;
+}
+
+.skills-manager-tab--active {
+  border-color: rgba(15, 247, 224, 0.22);
+  background: rgba(15, 247, 224, 0.1);
+  color: #8cece1;
+}
+
+.skills-manager-tools-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.skills-manager-tools-form .form-group {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.skills-manager .item-card-title {
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.cv-manager,
+.cv-content-editor {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.cv-manager-tabs {
+  flex-wrap: wrap;
+}
+
+.cv-manager-tabs > button {
+  flex: 1 1 240px;
+  justify-content: center;
+}
+
+.cv-manager-status-info {
+  min-width: 0 !important;
+  overflow-wrap: anywhere;
+}
+
+.cv-manager-status-heading {
+  flex-wrap: wrap;
+}
+
+.cv-manager-form-actions,
+.cv-editor-toolbar-actions {
+  flex-wrap: wrap;
+}
+
+.cv-editor-toolbar-actions > * {
+  flex: 1 1 190px;
+  justify-content: center;
+  text-align: center;
+}
+
+.cv-editor-tabs > button {
+  flex: 1 1 175px;
+  justify-content: center;
+}
+
+.cv-editor-grid {
+  min-width: 0;
+}
+
+.cv-editor-add-row {
+  flex-wrap: wrap;
+  align-items: stretch;
+  max-width: 100% !important;
+}
+
+.cv-editor-add-row input {
+  flex: 1 1 220px;
+  min-width: 0;
+  max-width: none !important;
+}
+
+.cv-editor-bullet-row {
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.cv-editor-bullet-row input {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.cv-editor-section-heading,
+.cv-editor-entry-heading {
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.cv-editor-entry-heading > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.admin-modal-box.skills-edit-modal {
+  max-width: 740px;
+  border-color: rgba(45, 212, 191, 0.22);
+  border-radius: 20px;
+  background: linear-gradient(155deg, rgba(17, 24, 39, 0.98), rgba(13, 17, 32, 0.98));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), 0 0 30px rgba(45, 212, 191, 0.08);
+}
+
+.skills-edit-modal .skills-edit-modal-header {
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.07), rgba(255, 255, 255, 0.015));
+}
+
+.skills-edit-modal .modal-title-icon {
+  border-color: rgba(45, 212, 191, 0.22);
+  background: rgba(45, 212, 191, 0.08);
+}
+
+.skills-edit-modal .skills-edit-form {
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.skills-edit-section {
+  margin-bottom: 0;
+  padding: 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.skills-edit-modal .skills-edit-grid {
+  gap: 0.95rem;
+}
+
+.skills-edit-full-row {
+  grid-column: 1 / -1 !important;
+}
+
+.skills-edit-grid input[type="range"] {
+  accent-color: #2dd4bf;
+}
+
+.skills-edit-form .modal-footer {
+  padding: 1rem 0 0;
+  border-top-color: rgba(255, 255, 255, 0.08);
+  background: transparent;
+}
+
+.skills-edit-form .modal-footer > button {
+  min-width: 120px;
+}
+
+.skills-level-pill {
+  flex-shrink: 0;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  border-radius: 999px;
+  background: rgba(45, 212, 191, 0.08);
+  color: #99f6e4;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .cv-editor-grid--three {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-manager .items-list {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .skills-manager-tabs {
+    width: 100%;
+  }
+
+  .skills-manager-tab {
+    flex: 1 1 145px;
+  }
+
+  .cv-editor-toolbar {
+    align-items: stretch !important;
+  }
+
+  .cv-content-editor .admin-card {
+    padding: 1.1rem !important;
+  }
+
+  .admin-modal-overlay.skills-edit-modal-overlay {
+    padding: 0.75rem;
+  }
+
+  .admin-modal-box.skills-edit-modal {
+    max-height: calc(100dvh - 1.5rem);
+    border-radius: 16px;
+  }
+
+  .skills-edit-modal .skills-edit-modal-header {
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .skills-edit-modal .modal-title-wrap {
+    flex: 1;
+    min-width: 0;
+    gap: 0.65rem;
+  }
+
+  .skills-edit-modal .modal-title-wrap h3 {
+    font-size: 1rem;
+  }
+
+  .skills-edit-modal .modal-title-wrap p {
+    line-height: 1.4;
+  }
+
+  .skills-edit-modal .skills-edit-form {
+    gap: 0.85rem;
+    padding: 1rem;
+  }
+
+  .skills-edit-section {
+    padding: 0.9rem;
+  }
+
+  .skills-edit-modal .skills-edit-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0.85rem;
+  }
+
+  .skills-edit-form .modal-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 0.6rem;
+    padding-top: 0.9rem;
+  }
+
+  .skills-edit-form .modal-footer > button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 580px) {
+  .skills-manager-tab {
+    flex-basis: 100%;
+    text-align: left;
+  }
+
+  .skills-manager-tools-form > .btn-add {
+    width: 100%;
+  }
+
+  .cv-manager-tabs > button {
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .cv-editor-toolbar-actions > *,
+  .cv-editor-add-row > .btn-add {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .cv-editor-tabs > button {
+    flex-basis: calc(50% - 0.5rem);
+    padding: 0.5rem 0.4rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .cv-editor-grid--two,
+  .cv-editor-grid--three {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0.9rem !important;
+  }
+
+  .cv-editor-section-heading,
+  .cv-editor-entry-heading {
+    align-items: flex-start !important;
+  }
+
+  .cv-content-editor .admin-card {
+    padding: 0.85rem !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .admin-modal-overlay.skills-edit-modal-overlay {
+    padding: 0.4rem;
+  }
+
+  .admin-modal-box.skills-edit-modal {
+    max-height: calc(100dvh - 0.8rem);
+    border-radius: 14px;
+  }
+
+  .skills-edit-modal .skills-edit-modal-header,
+  .skills-edit-modal .skills-edit-form {
+    padding: 0.8rem;
+  }
+
+  .skills-edit-modal .modal-title-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+}
+
 /* ─────────────────────────────────────────────────────────────
    MODAL POPUP DIALOG STYLES
    ───────────────────────────────────────────────────────────── */

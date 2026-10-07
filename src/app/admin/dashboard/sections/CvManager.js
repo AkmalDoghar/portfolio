@@ -168,7 +168,7 @@ export default function CvManager({ onUpdate }) {
   const hasCv = Boolean(cvData.url && cvData.url.trim());
 
   return (
-    <div style={{ maxWidth: "950px" }}>
+    <div className="cv-manager" style={{ maxWidth: "950px" }}>
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
       <div className="section-header">
@@ -180,6 +180,7 @@ export default function CvManager({ onUpdate }) {
 
       {/* Main Mode Toggle Buttons */}
       <div
+        className="cv-manager-tabs"
         style={{
           display: "flex",
           gap: "1rem",
@@ -275,8 +276,8 @@ export default function CvManager({ onUpdate }) {
                 📄
               </div>
 
-              <div style={{ flex: 1, minWidth: "240px" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <div className="cv-manager-status-info" style={{ flex: 1, minWidth: "240px" }}>
+                <div className="cv-manager-status-heading" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   <h3 style={{ color: "#ffffff", fontSize: "1.15rem", margin: 0, fontWeight: 700 }}>
                     {cvData.name || "Muhammad Akmal CV.pdf"}
                   </h3>
@@ -437,7 +438,7 @@ export default function CvManager({ onUpdate }) {
                 />
               </div>
 
-              <div style={{ display: "flex", gap: "0.75rem", justifyContent: "flex-end" }}>
+              <div className="cv-manager-form-actions" style={{ display: "flex", gap: "0.75rem", justifyContent: "flex-end" }}>
                 <button
                   type="button"
                   className="btn-add"

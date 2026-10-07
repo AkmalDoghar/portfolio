@@ -332,21 +332,11 @@ export default function Skills() {
                         <h4>{skill.name}</h4>
                         {skill.tag && <span className="bento-tag-pill">{skill.tag}</span>}
                       </div>
-                      {skill.level && (
-                        <span className="bento-level-badge">
-                          <span className="bento-pulse-dot"></span>
-                          {skill.level}
-                        </span>
-                      )}
+                      <span className="bento-level-badge">
+                        <span className="bento-pulse-dot"></span>
+                        {skill.level || "Proficient"}
+                      </span>
                     </div>
-                  </div>
-
-                  {/* Clean Level Display */}
-                  <div className="bento-level-container">
-                    <span className="bento-level-tag">
-                      <span className="bento-pulse-dot"></span>
-                      {skill.level || "Proficient"}
-                    </span>
                   </div>
 
                   {/* Capabilities Chips */}
@@ -410,12 +400,10 @@ export default function Skills() {
                   <div className="bento-prof-header">
                     {getProfIcon(prof.icon || (i === 0 ? "brain" : i === 1 ? "sitemap" : i === 2 ? "comments" : "rocket"))}
                     <div>
-                      <h5>{prof.name}</h5>
-                      {prof.level && (
-                        <div className="bento-level-container" style={{ marginTop: "4px", marginBottom: "4px" }}>
-                          <span className="bento-level-tag">{prof.level}</span>
-                        </div>
-                      )}
+                      <div className="bento-prof-title-row">
+                        <h5>{prof.name}</h5>
+                        {prof.level && <span className="bento-level-tag bento-prof-level">{prof.level}</span>}
+                      </div>
                       {prof.capabilities && (
                         <p className="bento-prof-desc" style={{ fontSize: "0.82rem", color: "#808a9d", marginTop: "4px" }}>
                           {prof.capabilities}

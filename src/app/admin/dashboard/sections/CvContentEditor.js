@@ -270,11 +270,12 @@ export default function CvContentEditor({ onUpdate }) {
   if (!data) return null;
 
   return (
-    <div>
+    <div className="cv-content-editor">
       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
       {/* TOP PROMINENT ACTION BAR (Re-aligned & Sticky) */}
       <div
+        className="cv-editor-toolbar"
         style={{
           background: "rgba(15, 23, 42, 0.9)",
           border: "1px solid rgba(18, 247, 255, 0.3)",
@@ -299,7 +300,7 @@ export default function CvContentEditor({ onUpdate }) {
           </span>
         </div>
 
-        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+        <div className="cv-editor-toolbar-actions" style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <a
             href="/cv"
             target="_blank"
@@ -347,7 +348,7 @@ export default function CvContentEditor({ onUpdate }) {
       </div>
 
       {/* Sub Tabs Bar */}
-      <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.5rem" }}>
+      <div className="cv-editor-tabs" style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.5rem" }}>
         {[
           { id: "personal", label: "👤 Personal Profile" },
           { id: "experience", label: "💼 Experience (" + (data.experience?.length || 0) + ")" },
@@ -469,7 +470,7 @@ export default function CvContentEditor({ onUpdate }) {
             </div>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}>
+          <div className="cv-editor-grid cv-editor-grid--two" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem" }}>
             <div className="form-group">
               <label style={labelStyle}>Full Name</label>
               <input
@@ -593,7 +594,7 @@ export default function CvContentEditor({ onUpdate }) {
             ))}
           </div>
 
-          <div style={{ display: "flex", gap: "10px", maxWidth: "450px" }}>
+          <div className="cv-editor-add-row" style={{ display: "flex", gap: "10px", maxWidth: "450px" }}>
             <input
               type="text"
               id="new-language-input"
@@ -628,7 +629,7 @@ export default function CvContentEditor({ onUpdate }) {
       {/* TAB 2: Work Experience */}
       {activeSubTab === "experience" && (
         <div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+          <div className="cv-editor-section-heading" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
             <h3 style={{ color: "#ffffff", margin: 0 }}>💼 Work &amp; Role History</h3>
             <button type="button" className="btn-add" onClick={handleAddExperience}>
               ➕ Add Work Experience Entry
@@ -637,7 +638,7 @@ export default function CvContentEditor({ onUpdate }) {
 
           {(data.experience || []).map((exp, idx) => (
             <div key={exp.id || idx} className="admin-card" style={{ marginBottom: "1.25rem", background: "rgba(15, 23, 42, 0.6)", padding: "1.5rem", borderRadius: "16px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+              <div className="cv-editor-entry-heading" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
                 <span style={{ color: "#12f7ff", fontWeight: 700, fontSize: "0.95rem" }}>
                   Entry #{idx + 1}: {exp.role || "Untitled Role"}
                 </span>
@@ -646,7 +647,7 @@ export default function CvContentEditor({ onUpdate }) {
                 </button>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1rem" }}>
+              <div className="cv-editor-grid cv-editor-grid--three" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1rem" }}>
                 <div className="form-group">
                   <label style={labelStyle}>Role / Position Title</label>
                   <input
@@ -688,7 +689,7 @@ export default function CvContentEditor({ onUpdate }) {
 
               {/* Bullet points manager */}
               <div style={{ marginTop: "1rem", background: "rgba(0,0,0,0.3)", padding: "1rem", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.06)" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
+                <div className="cv-editor-section-heading" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
                   <label style={{ color: "#cbd5e1", fontSize: "0.85rem", fontWeight: 600 }}>
                     Key Bullet Points &amp; Achievements:
                   </label>
@@ -698,7 +699,7 @@ export default function CvContentEditor({ onUpdate }) {
                 </div>
 
                 {(exp.bullets || []).map((bullet, bIdx) => (
-                  <div key={bIdx} style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
+                  <div key={bIdx} className="cv-editor-bullet-row" style={{ display: "flex", gap: "8px", marginBottom: "8px" }}>
                     <input
                       type="text"
                       style={inputStyle}
@@ -758,7 +759,7 @@ export default function CvContentEditor({ onUpdate }) {
                   ))}
                 </div>
 
-                <div style={{ display: "flex", gap: "8px" }}>
+                <div className="cv-editor-add-row" style={{ display: "flex", gap: "8px" }}>
                   <input
                     type="text"
                     id={`new-tag-${category}`}
@@ -795,7 +796,7 @@ export default function CvContentEditor({ onUpdate }) {
       {/* TAB 4: Education */}
       {activeSubTab === "education" && (
         <div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+          <div className="cv-editor-section-heading" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
             <h3 style={{ color: "#ffffff", margin: 0 }}>🎓 Education &amp; Credentials</h3>
             <button type="button" className="btn-add" onClick={handleAddEducation}>
               ➕ Add Education Entry
@@ -804,7 +805,7 @@ export default function CvContentEditor({ onUpdate }) {
 
           {(data.education || []).map((edu, idx) => (
             <div key={edu.id || idx} className="admin-card" style={{ marginBottom: "1.25rem", background: "rgba(15, 23, 42, 0.6)", padding: "1.5rem", borderRadius: "16px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+              <div className="cv-editor-entry-heading" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
                 <span style={{ color: "#12f7ff", fontWeight: 700, fontSize: "0.95rem" }}>
                   Education #{idx + 1}: {edu.degree || "Degree Title"}
                 </span>
@@ -813,7 +814,7 @@ export default function CvContentEditor({ onUpdate }) {
                 </button>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1rem" }}>
+              <div className="cv-editor-grid cv-editor-grid--three" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "1rem" }}>
                 <div className="form-group">
                   <label style={labelStyle}>Degree / Qualification</label>
                   <input
@@ -860,7 +861,7 @@ export default function CvContentEditor({ onUpdate }) {
       {/* TAB 5: CV Projects */}
       {activeSubTab === "projects" && (
         <div>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+          <div className="cv-editor-section-heading" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
             <h3 style={{ color: "#ffffff", margin: 0 }}>🚀 Featured Projects in CV</h3>
             <button type="button" className="btn-add" onClick={handleAddProject}>
               ➕ Add CV Project Entry
@@ -869,7 +870,7 @@ export default function CvContentEditor({ onUpdate }) {
 
           {(data.projects || []).map((proj, idx) => (
             <div key={proj.id || idx} className="admin-card" style={{ marginBottom: "1.25rem", background: "rgba(15, 23, 42, 0.6)", padding: "1.5rem", borderRadius: "16px" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+              <div className="cv-editor-entry-heading" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
                 <span style={{ color: "#12f7ff", fontWeight: 700, fontSize: "0.95rem" }}>
                   Project #{idx + 1}: {proj.title || "Project Title"}
                 </span>
@@ -878,7 +879,7 @@ export default function CvContentEditor({ onUpdate }) {
                 </button>
               </div>
 
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+              <div className="cv-editor-grid cv-editor-grid--two" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                 <div className="form-group">
                   <label style={labelStyle}>Project Title</label>
                   <input

@@ -83,14 +83,20 @@
       "capabilities": "Mongoose schemas, indexed queries, CRUD & data validation"
     },
     {
-      "id": 5,
       "name": "Deployment & Maintenance",
+      "percent": 85,
+      "desc": "",
+      "icon": "rocket",
+      "id": 5,
       "level": "Advanced",
       "capabilities": "Vercel deployments, environment configs & git version control"
     },
     {
-      "id": 6,
       "name": "Bug Fixing & Performance",
+      "percent": 67,
+      "desc": "",
+      "icon": "brain",
+      "id": 6,
       "level": "Advanced",
       "capabilities": "Code auditing, re-render fixes & Lighthouse score optimization"
     }
@@ -100,8 +106,6 @@
     "GitHub",
     "Vercel",
     "MongoDB Atlas",
-    "Postman",
-    "Figma",
     "npm / npx"
   ]
 }
